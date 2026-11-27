@@ -1,0 +1,1537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bell to Bell Trend | Bell to Bell Strategies</title>
+<meta name="description" content="An intraday trend-following strategy for NQ and MNQ with rules-based sizing.">
+<link rel="canonical" href="https://belltobellstrategies.com/trend">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bell to Bell Strategies">
+<meta property="og:title" content="Bell to Bell Trend | Bell to Bell Strategies">
+<meta property="og:description" content="An intraday trend-following strategy for NQ and MNQ with rules-based sizing.">
+<meta property="og:url" content="https://belltobellstrategies.com/trend">
+<meta property="og:image" content="https://belltobellstrategies.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0C0C0B">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23FF4200'/%3E%3Cpath transform='translate%284.48 4%29 scale%28.96%29' d='M12 1.8a1.4 1.4 0 1 1 0 2.8a1.4 1.4 0 1 1 0-2.8zM12 4.6c-3.6 0-6 2.7-6 6.2v3.9c0 .9-.4 1.7-1.1 2.3l-.9.8v1.2h16v-1.2l-.9-.8c-.7-.6-1.1-1.4-1.1-2.3v-3.9c0-3.5-2.4-6.2-6-6.2zM9.6 20.2a2.4 2.4 0 0 0 4.8 0z' fill='%23000'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="strat-page s-trend">
+<header class="site"><div class="wrap bar"><a class="brand" href="index.html" aria-label="Bell to Bell Strategies, home"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 586 320" fill="none" aria-hidden="true" focusable="false"><path d="M 162.48 30.98 C 180.8 31.13 198.92 32.17 215.59 39.77 C 232.27 47.36 243.03 63.11 245.89 81.21 C 248.75 99.31 250.79 116.32 253.91 134.38 C 257.03 152.44 261.1 169.55 266.58 187.04 C 272.06 204.53 285.87 218.42 287.85 236.64 C 289.82 254.85 269.47 231.49 262.32 214.61 C 255.18 197.74 251.12 180.66 246.81 162.85 C 242.51 145.03 239.88 127.93 236.88 109.85 C 233.89 91.77 234.79 71.81 221.44 59.26 C 208.08 46.72 188.94 44.88 170.64 43.9 C 152.34 42.93 133.32 44.8 118.14 55.07 C 102.96 65.33 100.93 85.03 97.9 103.1 C 94.87 121.18 92.84 138.49 89.24 156.45 C 85.63 174.42 80.53 191.3 74.27 208.52 C 68 225.74 60.4 241.81 49.05 256.2 C 37.7 270.59 60.25 268.69 78.57 268.7 C 96.9 268.72 115.22 268.74 133.55 268.76 C 151.88 268.77 170.2 268.79 188.53 268.81 C 206.85 268.82 225.18 268.84 243.5 268.86 C 261.83 268.87 278.8 262.21 290.12 247.8 C 301.44 233.39 308.91 216.95 315.11 199.7 C 321.31 182.46 325.11 165.55 328.77 147.59 C 332.43 129.63 335.47 112.8 337.85 94.63 C 340.23 76.46 343.73 57.51 358.13 46.18 C 372.54 34.85 391.2 32.9 409.49 31.88 C 427.79 30.86 445.55 31.77 462.91 37.64 C 480.28 43.5 492.8 59.22 496.49 77.17 C 500.18 95.12 501.65 112.23 504.86 130.27 C 508.07 148.31 511.61 165.25 516.81 182.82 C 522.01 200.4 527.83 217.22 536.76 233.23 C 545.68 249.23 557.83 263.93 575.48 268.86 C 593.12 273.8 565.32 281.87 547 281.87 C 528.67 281.87 510.35 281.87 492.02 281.87 C 473.7 281.87 455.37 281.87 437.05 281.87 C 418.72 281.87 400.4 281.87 382.07 281.87 C 363.75 281.87 345.42 281.87 327.09 281.87 C 308.77 281.87 290.44 281.87 272.12 281.87 C 253.79 281.87 235.47 281.87 217.14 281.87 C 198.82 281.87 180.49 281.87 162.17 281.87 C 143.84 281.87 125.52 281.87 107.19 281.87 C 88.87 281.87 70.54 281.87 52.22 281.87 C 33.89 281.87 2.07 293.84 1.02 275.54 C -0.02 257.25 30.62 259.33 41.65 244.69 C 52.68 230.05 59.11 213.19 65 195.84 C 70.9 178.49 74.91 161.55 78.5 143.58 C 82.08 125.61 84.82 108.55 86.92 90.35 C 89.02 72.14 95.49 54.48 110.62 44.15 C 125.76 33.83 144.16 31.65 162.48 30.98 Z M 409.45 43.99 C 418.1 43.94 426.57 43.96 435.16 44.98 C 443.74 46 452.09 47.33 459.93 50.98 C 467.77 54.63 475.06 59.78 479.22 67.36 C 483.37 74.94 484.76 83.21 485.87 91.78 C 486.98 100.36 487.77 108.48 488.91 117.05 C 490.05 125.62 492.67 133.44 493.84 142.01 C 495.02 150.57 496.76 158.69 498.76 167.1 C 500.77 175.51 502.81 183.36 505.24 191.66 C 507.66 199.95 510.8 207.91 513.95 215.96 C 517.1 224.01 521.45 231.45 525.49 239.09 C 529.53 246.73 534.23 253.7 539.81 260.3 C 545.39 266.91 539.64 268.75 530.99 268.76 C 522.35 268.76 513.7 268.77 505.05 268.77 C 496.41 268.78 487.76 268.78 479.12 268.78 C 470.47 268.79 461.83 268.79 453.18 268.8 C 444.54 268.8 435.89 268.81 427.24 268.81 C 418.6 268.81 409.95 268.82 401.31 268.82 C 392.66 268.83 384.02 268.83 375.37 268.84 C 366.73 268.84 358.08 268.84 349.43 268.85 C 340.79 268.85 332.14 268.86 323.5 268.86 C 314.85 268.87 306.21 268.87 297.56 268.88 C 288.92 268.88 296.63 260.71 302.16 254.07 C 307.69 247.42 311.58 239.66 315.32 231.86 C 319.06 224.07 322.09 216.13 325.5 208.18 C 328.9 200.24 331.24 192.23 333.34 183.84 C 335.44 175.46 338.09 167.71 339.84 159.24 C 341.59 150.78 343.59 142.88 344.67 134.31 C 345.75 125.73 347.85 117.75 348.86 109.17 C 349.87 100.58 350.84 92.47 351.91 83.89 C 352.98 75.31 356.45 67.2 362.38 60.9 C 368.3 54.61 375.94 50.28 384.29 48.06 C 392.65 45.85 400.86 44.92 409.45 43.99 Z" fill="currentColor" fill-rule="evenodd"/><rect x="114" y="195" width="7" height="107" fill="#FF4200"/><rect x="104" y="210" width="27" height="25" fill="#FF4200"/><rect x="152" y="171" width="7" height="72" fill="#FF4200"/><rect x="142" y="186" width="27" height="42" fill="#FF4200"/><rect x="190.5" y="144" width="7" height="66" fill="#FF4200"/><rect x="181" y="158" width="26" height="37" fill="#FF4200"/><rect x="368" y="141" width="7" height="49" fill="#FF4200"/><rect x="358" y="160" width="27" height="12" fill="#FF4200"/><rect x="402.5" y="100" width="7" height="77" fill="#FF4200"/><rect x="393" y="114" width="26" height="48" fill="#FF4200"/><rect x="436" y="2" width="7" height="131" fill="#FF4200"/><rect x="426" y="19" width="27" height="100" fill="#FF4200"/><circle cx="167" cy="304" r="14.5" fill="currentColor"/><circle cx="418" cy="304" r="14.5" fill="currentColor"/></svg></span><span class="brand-word"><span>Bell to Bell</span> <span>Strategies</span></span></a><div class="bell" data-bell="static"><button type="button" class="bell-chip" aria-expanded="false" aria-controls="bell-panel" aria-label="NYSE opens at 9:30 AM ET on trading days. Show market hours."><svg class="bell-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1.8a1.4 1.4 0 1 1 0 2.8a1.4 1.4 0 1 1 0-2.8zM12 4.6c-3.6 0-6 2.7-6 6.2v3.9c0 .9-.4 1.7-1.1 2.3l-.9.8v1.2h16v-1.2l-.9-.8c-.7-.6-1.1-1.4-1.1-2.3v-3.9c0-3.5-2.4-6.2-6-6.2zM9.6 20.2a2.4 2.4 0 0 0 4.8 0z"/></svg><span class="bell-dot" aria-hidden="true"></span><span class="bell-l"><span class="bell-x">NYSE &middot; </span><span class="bell-w">NY open</span></span><span class="bell-t">9:30 AM ET</span></button><div class="bell-panel" id="bell-panel" hidden><p class="bp-h">New York Stock Exchange</p><p class="bp-open">Opening bell 9:30 AM ET<span class="bp-local"></span></p><p class="bp-close">Closing bell 4:00 PM ET<span class="bp-local"></span></p><p class="bp-now"></p><p class="bp-next"></p><p class="bp-cme">CME Globex, NQ and MNQ: Sunday 6:00 PM to Friday 5:00 PM ET, with a daily halt from 5:00 to 6:00 PM ET. Holiday hours differ.</p><a href="/dashboard">Market dashboard</a></div></div><nav class="main" aria-label="Main"><a href="strategies.html" aria-current="page">Strategies</a><a href="stratboard.html">StratBoard</a><a href="prop-deals.html">Prop Deals</a><a href="performance.html">Performance</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="/dashboard">Dashboard</a></nav><a class="btn primary small cta" href="pricing.html">See plans</a><details class="menu"><summary><span class="menu-t">Menu</span></summary><nav class="menu-panel" aria-label="Main"><a href="strategies.html" aria-current="page">Strategies</a><a href="stratboard.html">StratBoard</a><a href="prop-deals.html">Prop Deals</a><a href="performance.html">Performance</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="ninjatrader.html">NinjaTrader</a><a href="/dashboard">Dashboard</a><a class="btn primary" href="pricing.html">See plans</a></nav></details></div></header>
+<nav class="lineup-nav" aria-label="The five strategies"><div class="wrap"><div class="lineup-links"><a class="s-breakout" href="breakout.html"><span class="dot" aria-hidden="true"></span>Breakout</a><a class="s-trend" href="trend.html" aria-current="page"><span class="dot" aria-hidden="true"></span>Trend</a><a class="s-momentum" href="momentum.html"><span class="dot" aria-hidden="true"></span>Momentum</a><a class="s-select" href="select.html"><span class="dot" aria-hidden="true"></span>Select</a><a class="s-overnight" href="overnight.html"><span class="dot" aria-hidden="true"></span>Overnight</a></div></div></nav>
+<main>
+<section class="hero page"><div class="wrap">
+<p class="eyebrow">NQ and MNQ<span class="sep">/</span>Intraday trend-following</p>
+<h1><span class="nm-pre">Bell to Bell</span> <span class="nm">Trend</span></h1>
+<p class="lede">A rules-based intraday trend-following strategy for Nasdaq-100 futures, with rules-based sizing. It trades during US regular hours, stays in while a trend holds and exits by rule, so a winning trade can keep running. It sends no stop-loss order at entry.</p>
+<dl class="spec spec3" data-bar="At a glance">
+<div><dt>Markets</dt><dd>NQ and MNQ</dd></div>
+<div><dt>Pace</dt><dd>1 or 2 trades a week</dd></div>
+<div><dt>Hours</dt><dd>Regular session only<small>9:30 AM&ndash;4:00 PM ET (8:30 AM&ndash;3:00 PM CT)</small></dd></div>
+<div><dt>Stop-loss at entry</dt><dd>None; it exits by its rules</dd></div>
+<div><dt>Size</dt><dd>Your base size, or twice it on some trades</dd></div>
+<div><dt>Positions</dt><dd>One at a time</dd></div>
+</dl>
+
+</div></section>
+
+<section class="replay" id="replay" data-page="trend" data-fixed="trend"><div class="wrap"><div class="rp-head"><div><p class="eyebrow">Backtest replay &middot; hypothetical</p><h2>The last 30 days with a trade</h2><div class="rp-meta"><p class="rp-range muted">Fri Jul 10 – Fri Nov 20 · data through Fri Nov 20, updated daily</p><span class="rp-today" hidden>Updated today</span></div></div><div class="rp-btns"><button type="button" class="rp-share btn ghost small">Share</button><button type="button" class="rp-replay btn ghost small">Replay</button></div></div><div class="rp-figs"><div class="rp-fig" data-fig="net"><span>Net</span><b>+$6,786</b></div><div class="rp-fig" data-fig="green"><span>Green days</span><b>18 of 30</b></div><div class="rp-fig" data-fig="best"><span>Best day</span><b>+$3,788</b></div><div class="rp-fig" data-fig="worst"><span>Worst day</span><b>−$832</b></div><div class="rp-fig" data-fig="dd"><span>Max drawdown</span><b>−$1,624</b></div><div class="rp-fig" data-fig="trades"><span>Trades</span><b>30</b></div></div><div class="rp-chart" tabindex="0" role="group" aria-label="The running total, one point a day. Hover, tap or use the arrow keys for each day&rsquo;s figures."><div class="rp-plot"><svg class="rp-svg" viewBox="0 0 600 180" preserveAspectRatio="none" aria-hidden="true"></svg><div class="rp-scale" aria-hidden="true"></div><div class="rp-card" hidden aria-live="polite"></div></div><div class="rp-dates" aria-hidden="true"></div></div><div class="rp-tabs" role="tablist"><button type="button" role="tab" class="rp-tab on" data-tab="days" aria-selected="true">Days</button><button type="button" role="tab" class="rp-tab" data-tab="trades" aria-selected="false">Trades</button></div><div class="rp-panel" data-panel="days"><div class="table-scroll"><table class="rp-days"><thead><tr><th scope="col">Day</th><th scope="col" class="num">Trades</th><th scope="col" class="num">W-L</th><th scope="col" class="num">Net</th><th scope="col">Strategies</th></tr></thead><tbody><tr data-i="0"><td>Fri Nov 20</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$3,788</td><td>Trend 1</td></tr><tr data-i="1"><td>Tue Nov 17</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$609</td><td>Trend 1</td></tr><tr data-i="2"><td>Fri Nov 13</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$895</td><td>Trend 1</td></tr><tr data-i="3"><td>Thu Nov 12</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$295</td><td>Trend 1</td></tr><tr data-i="4"><td>Wed Nov 4</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$158</td><td>Trend 1</td></tr><tr data-i="5"><td>Thu Oct 29</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$235</td><td>Trend 1</td></tr><tr data-i="6"><td>Tue Oct 27</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$784</td><td>Trend 1</td></tr><tr data-i="7"><td>Wed Oct 21</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$294</td><td>Trend 1</td></tr><tr data-i="8"><td>Tue Oct 13</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$23</td><td>Trend 1</td></tr><tr data-i="9"><td>Mon Oct 12</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$301</td><td>Trend 1</td></tr><tr data-i="10"><td>Mon Oct 5</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$597</td><td>Trend 1</td></tr><tr data-i="11"><td>Tue Sep 29</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$33</td><td>Trend 1</td></tr><tr data-i="12"><td>Thu Sep 24</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$134</td><td>Trend 1</td></tr><tr data-i="13"><td>Tue Sep 22</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$309</td><td>Trend 1</td></tr><tr data-i="14"><td>Thu Sep 17</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$183</td><td>Trend 1</td></tr><tr data-i="15"><td>Mon Sep 14</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$16</td><td>Trend 1</td></tr><tr data-i="16"><td>Tue Sep 8</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$70</td><td>Trend 1</td></tr><tr data-i="17"><td>Fri Sep 4</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$435</td><td>Trend 1</td></tr><tr data-i="18"><td>Thu Aug 27</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$279</td><td>Trend 1</td></tr><tr data-i="19"><td>Wed Aug 26</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$625</td><td>Trend 1</td></tr><tr data-i="20"><td>Mon Aug 24</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$188</td><td>Trend 1</td></tr><tr data-i="21"><td>Thu Aug 13</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$1,106</td><td>Trend 1</td></tr><tr data-i="22"><td>Wed Aug 12</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$20</td><td>Trend 1</td></tr><tr data-i="23"><td>Tue Aug 11</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$223</td><td>Trend 1</td></tr><tr data-i="24"><td>Fri Jul 31</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$832</td><td>Trend 1</td></tr><tr data-i="25"><td>Wed Jul 22</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$202</td><td>Trend 1</td></tr><tr data-i="26"><td>Tue Jul 21</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$295</td><td>Trend 1</td></tr><tr data-i="27"><td>Tue Jul 14</td><td class="num">1</td><td class="num">0-1</td><td class="num rp-down">−$212</td><td>Trend 1</td></tr><tr data-i="28"><td>Mon Jul 13</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$899</td><td>Trend 1</td></tr><tr data-i="29"><td>Fri Jul 10</td><td class="num">1</td><td class="num">1-0</td><td class="num rp-up">+$286</td><td>Trend 1</td></tr></tbody></table></div><button type="button" class="rp-more btn ghost small" data-more="days" hidden>Show all</button></div><div class="rp-panel" data-panel="trades" hidden><div class="table-scroll"><table class="rp-trades"><thead><tr><th scope="col">Date</th><th scope="col">Strategy</th><th scope="col" class="num">Contracts</th><th scope="col" class="num">Result</th></tr></thead><tbody></tbody></table></div><button type="button" class="rp-more btn ghost small" data-more="trades" hidden>Show all</button></div><p class="rp-note small muted">Hypothetical results at 1 MNQ a strategy; Trend and Select take 2 on some trades by their own rules. Days with no trade are left out.</p><p class="rp-links"><a class="rp-board" href="stratboard.html#calc?m=0-1-0-0-0">Run it on your account size in StratBoard &rarr;</a><a href="performance.html">Every figure on Performance &rarr;</a><a class="rp-discord btn ghost small" href="https://discord.gg/9BT2Tz3zKq" target="_blank" rel="noopener">Join the Discord</a></p><div class="plate" role="note" aria-label="Hypothetical performance disclosure"><p class="plate-h"><span>Hypothetical performance</span><span class="plate-rule">CFTC Rule 4.41 &middot; NFA Rule 2-29</span></p><p>These results are based on simulated or hypothetical performance results that have certain inherent limitations. Unlike the results shown in an actual performance record, these results do not represent actual trading. Also, because these trades have not actually been executed, these results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity. Simulated or hypothetical trading programs in general are also subject to the fact that they are designed with the benefit of hindsight. No representation is being made that any account will or is likely to achieve profits or losses similar to these being shown.</p><p class="caps">HYPOTHETICAL PERFORMANCE RESULTS HAVE MANY INHERENT LIMITATIONS, SOME OF WHICH ARE DESCRIBED BELOW. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFITS OR LOSSES SIMILAR TO THOSE SHOWN. IN FACT, THERE ARE FREQUENTLY SHARP DIFFERENCES BETWEEN HYPOTHETICAL PERFORMANCE RESULTS AND THE ACTUAL RESULTS SUBSEQUENTLY ACHIEVED BY ANY PARTICULAR TRADING PROGRAM.</p><p class="caps">ONE OF THE LIMITATIONS OF HYPOTHETICAL PERFORMANCE RESULTS IS THAT THEY ARE GENERALLY PREPARED WITH THE BENEFIT OF HINDSIGHT. IN ADDITION, HYPOTHETICAL TRADING DOES NOT INVOLVE FINANCIAL RISK, AND NO HYPOTHETICAL TRADING RECORD CAN COMPLETELY ACCOUNT FOR THE IMPACT OF FINANCIAL RISK IN ACTUAL TRADING. FOR EXAMPLE, THE ABILITY TO WITHSTAND LOSSES OR TO ADHERE TO A PARTICULAR TRADING PROGRAM IN SPITE OF TRADING LOSSES ARE MATERIAL POINTS WHICH CAN ALSO ADVERSELY AFFECT ACTUAL TRADING RESULTS. THERE ARE NUMEROUS OTHER FACTORS RELATED TO THE MARKETS IN GENERAL OR TO THE IMPLEMENTATION OF ANY SPECIFIC TRADING PROGRAM WHICH CANNOT BE FULLY ACCOUNTED FOR IN THE PREPARATION OF HYPOTHETICAL PERFORMANCE RESULTS AND ALL OF WHICH CAN ADVERSELY AFFECT ACTUAL TRADING RESULTS.</p></div></div></section>
+
+
+<section class="alt"><div class="wrap">
+<div class="sec-head"><p class="eyebrow">On your chart</p><h2>What you'll see, in order</h2><p class="muted">Once it's on, it runs by itself: it waits, trades and goes flat on its own. The exact rules and settings are proprietary. This is the behavior you'll see, and the limits fixed in the code.</p></div>
+<ol class="seq">
+<li><b>Waits</b><p>Each session starts flat. On many days its rules never see a trend, and it doesn't trade.</p></li>
+<li><b>Enters</b><p>When its rules see a trend, it enters in that direction at your base size, or at twice it when its sizing rule says so.</p></li>
+<li><b>Holds</b><p>There is no fixed profit target. It stays in while the trend holds, so a winner can keep running.</p></li>
+<li><b>Exits</b><p>It exits when its rules end the trade. Sometimes it takes the other side in the same step.</p></li>
+<li><b>Flat</b><p>Anything still open is closed before the 16:00 ET close. It never holds overnight.</p></li>
+</ol>
+</div></section>
+
+<section><div class="wrap">
+<div class="panel">
+<div class="pane-bar"><span class="dot" aria-hidden="true"></span><span class="t">Bell to Bell Trend</span><span class="pb-r">Research backtest</span></div>
+<div class="panel-in">
+<h3>Hypothetical results</h3>
+<p class="ctx">MNQ &middot; May 2019 to Oct 2026 (1,920 sessions) &middot; 1 MNQ base, 2 on the larger trades, no compounding &middot; 1 point ($2) a contract a round trip deducted</p>
+<div class="stats">
+<div class="stat"><div class="v">534</div><div class="l">trades, about 1.38 a week; 181 of them at twice the base size</div></div>
+<div class="stat"><div class="v">1.95</div><div class="l">profit factor: 1.83 in the first half, 2.01 in the second</div></div>
+<div class="stat"><div class="v">$48,998</div><div class="l">net at a base of 1 MNQ (24,498.75 points)</div></div>
+<div class="stat"><div class="v">$2,969</div><div class="l">largest drawdown with open trades marked ($2,153 on closed trades)</div></div>
+</div>
+<div class="lasttrade">
+<div><svg class="tradechart win" data-ld="trend" data-ld-through="2026-11-20" viewBox="0 0 320 120" role="img" aria-labelledby="tt-trend" xmlns="http://www.w3.org/2000/svg">
+<title id="tt-trend">The session of its most recent trade, drawn as a simplified price line. The trade itself, prices, times and levels are not shown.</title>
+<polyline class="ld-path" fill="none" points="8,20.16 11.9,31.58 15.79,29.18 19.69,30.91 23.59,25.34 27.49,17.09 31.38,12 35.28,14.88 39.18,21.12 43.08,27.17 46.97,38.98 50.87,43.87 54.77,40.03 58.67,44.93 62.56,43.1 66.46,49.73 70.36,45.31 74.26,47.9 78.15,50.11 82.05,58.08 85.95,53.76 89.85,48.1 93.74,54.14 97.64,57.12 101.54,59.23 105.44,63.84 109.33,65.09 113.23,68.45 117.13,69.5 121.03,69.98 124.92,63.94 128.82,76.51 132.72,68.06 136.62,73.63 140.51,74.3 144.41,72.58 148.31,74.4 152.21,71.62 156.1,75.07 160,75.55 163.9,76.03 167.79,76.7 171.69,72.29 175.59,77.09 179.49,75.84 183.38,78.05 187.28,71.14 191.18,69.79 195.08,75.46 198.97,70.75 202.87,70.75 206.77,76.99 210.67,75.84 214.56,67.3 218.46,71.14 222.36,74.21 226.26,77.38 230.15,84 234.05,85.44 237.95,87.17 241.85,92.74 245.74,96.58 249.64,88.03 253.54,87.07 257.44,88.99 261.33,88.22 265.23,91.58 269.13,95.62 273.03,95.9 276.92,98.5 280.82,95.62 284.72,98.02 288.62,100.61 292.51,108 296.41,102.91 300.31,107.9 304.21,95.14 308.1,106.94 312,104.74"/>
+</svg></div>
+<div><p class="lt-label">Most recent active session</p><p class="lt-result win" data-ld-result="trend">Win, +$3,788 at 2 MNQ (twice the base size)</p>
+<p class="figcap">The session of its most recent trade in the backtest replay, updated each trading day, drawn as a simplified price line, without the trade&rsquo;s entry, exit or direction. No prices, times or levels are shown, and it is not to scale. Some trades lose.</p></div>
+<div class="recent-wrap"><p class="lt-label">Last three active sessions</p><ol class="recent" data-ld-list="trend" aria-label="Last three active sessions, most recent first"><li><span class="rr win">Win</span><span class="rm win">+$3,788</span><span class="rz">at 2 MNQ (twice the base size)</span></li><li><span class="rr win">Win</span><span class="rm win">+$609</span><span class="rz">at 1 MNQ (base size)</span></li><li><span class="rr win">Win</span><span class="rm win">+$895</span><span class="rz">at 1 MNQ (base size)</span></li></ol><p class="figcap">Net at the size traded, after the backtest&rsquo;s costs. Newest first: the first is the session drawn above. No dates are shown.</p></div>
+</div>
+<p class="eyebrow" style="margin-bottom:6px">Profit factor by half of the test period, Standard preset</p>
+<p class="figcap">Bars start at the 1.0 break-even line. Two similar halves suggest a steadier result than one strong half.</p>
+<div class="chart-scroll"><svg class="halves" viewBox="0 0 420 150" role="img" aria-labelledby="ht-trend hd-trend" xmlns="http://www.w3.org/2000/svg">
+<title id="ht-trend">Profit factor by half of the test period, hypothetical research results</title>
+<desc id="hd-trend">First half: 1.83. Second half: 2.01. Bars start at the 1.0 break-even line.</desc>
+<line class="yc-grid" x1="64" y1="50.67" x2="408" y2="50.67"/>
+<text class="yc-t" x="56" y="54.67" text-anchor="end">2.0</text>
+<line class="yc-grid" x1="64" y1="22" x2="408" y2="22"/>
+<text class="yc-t" x="56" y="26" text-anchor="end">3.0</text>
+<line class="yc-grid" x1="64" y1="108" x2="408" y2="108"/>
+<text class="yc-t" x="56" y="112" text-anchor="end">0</text>
+<rect class="yc-bar" x="114" y="55.54" width="72" height="23.79"/>
+<text class="yc-v" x="150" y="48.54" text-anchor="middle">1.83</text>
+<text class="yc-t" x="150" y="130" text-anchor="middle">First half</text>
+<rect class="yc-bar" x="274" y="50.38" width="72" height="28.95"/>
+<text class="yc-v" x="310" y="43.38" text-anchor="middle">2.01</text>
+<text class="yc-t" x="310" y="130" text-anchor="middle">Second half</text>
+<line class="yc-base" x1="64" y1="79.33" x2="408" y2="79.33"/>
+<text class="yc-t yc-be" x="56" y="83.33" text-anchor="end">1.0</text>
+</svg></div>
+<p class="eyebrow" style="margin:6px 0 10px">The two presets</p>
+<div class="table-scroll"><table>
+<thead><tr><th></th><th class="n">Standard</th><th class="n">Base size</th></tr></thead>
+<tbody>
+<tr><td>Size</td><td class="n">base, twice it on 181 trades</td><td class="n">base on every trade</td></tr>
+<tr><td>Profit factor (first half / second half)</td><td class="n">1.95 (1.83 / 2.01)</td><td class="n">1.81 (1.68 / 1.88)</td></tr>
+<tr><td>Net at a base of 1 MNQ</td><td class="n">$48,998</td><td class="n">$32,688</td></tr>
+<tr><td>Largest drawdown, closed trades</td><td class="n">$2,153</td><td class="n">$1,627</td></tr>
+<tr><td>Largest drawdown, open trades marked</td><td class="n">$2,969</td><td class="n">$1,831</td></tr>
+<tr><td>Worst day, open trades marked</td><td class="n lo">&minus;$2,409</td><td class="n lo">&minus;$1,204</td></tr>
+<tr><td>Average trade</td><td class="n">$91.76</td><td class="n">$61.21</td></tr>
+<tr><td>Winning trades</td><td class="n">55.6%</td><td class="n">55.6%</td></tr>
+<tr><td>NQ cross-check, Jan 2018 to Oct 2026, base of 1 NQ (627 trades)</td><td class="n">PF 1.90 (1.62 / 2.10)</td><td class="n">PF 1.77</td></tr>
+<tr><td>NQ net and largest drawdown, points</td><td class="n">25,541.5 / 1,002.5</td><td class="n">17,083.75 / 718.25</td></tr>
+</tbody></table></div>
+<p class="figcap" style="margin-top:12px">Figures with open trades marked come from a day-by-day replay of the same trades.</p>
+</div>
+<div class="panel-in panel-more"><div class="grid2" style="align-items:start">
+<div><h3 class="mini">How it was tested</h3>
+<ul class="checks">
+<li><b>Data:</b> clean NQ and MNQ price data, Eastern time. MNQ from May 2019 and NQ from Jan 2018, both to Oct 2026.</li>
+<li><b>Costs:</b> 1 point a contract a round trip (<span class="usd">$2</span> on MNQ, <span class="usd">$20</span> on NQ). Your costs may be higher.</li>
+<li><b>Sizing rule written down first.</b> The sizing rule, its test and the pass mark were recorded before the test was run.</li>
+<li><b>Sizing against chance.</b> We gave twice the base size to the same number of randomly chosen trades, many times over. Only about 13 in 1,000 random choices did as well or better on MNQ, and 15 in 1,000 on NQ.</li>
+<li><b>Code check.</b> In offline tests, the NinjaTrader strategy file matched the research model trade for trade and size for size. The base-size version was also confirmed inside NinjaTrader: every bar and trade matched on NinjaTrader's own MNQ data.</li>
+</ul></div>
+<div><h3 class="mini">Weak spots</h3>
+<ul class="cautions">
+<li><b>No stop-loss order at entry.</b> A losing trade stays open until its rules exit or the session ends, so the loss on one trade isn't capped at a set amount. In a fast market the exit can fill well away from where the trade turned.</li>
+<li><b>Picked from many variations.</b> Its core rules were picked from 648 tested variations, and the sizing rule was one of 11 tested together. Expect live results below the backtest.</li>
+<li><b>Choppy days cost money.</b> When the market goes nowhere, it can take several small losses in a row.</li>
+<li><b>Check it against your loss limit.</b> If your account has a daily or trailing loss limit, compare it with the worst day and the marked drawdown above before you run it.</li>
+</ul></div>
+</div></div>
+<div class="plate" role="note" aria-label="Hypothetical performance disclosure"><p class="plate-h"><span>Hypothetical performance</span><span class="plate-rule">CFTC Rule 4.41 &middot; NFA Rule 2-29</span></p><p>These results are based on simulated or hypothetical performance results that have certain inherent limitations. Unlike the results shown in an actual performance record, these results do not represent actual trading. Also, because these trades have not actually been executed, these results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity. Simulated or hypothetical trading programs in general are also subject to the fact that they are designed with the benefit of hindsight. No representation is being made that any account will or is likely to achieve profits or losses similar to these being shown.</p><p class="caps">HYPOTHETICAL PERFORMANCE RESULTS HAVE MANY INHERENT LIMITATIONS, SOME OF WHICH ARE DESCRIBED BELOW. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFITS OR LOSSES SIMILAR TO THOSE SHOWN. IN FACT, THERE ARE FREQUENTLY SHARP DIFFERENCES BETWEEN HYPOTHETICAL PERFORMANCE RESULTS AND THE ACTUAL RESULTS SUBSEQUENTLY ACHIEVED BY ANY PARTICULAR TRADING PROGRAM.</p><p class="caps">ONE OF THE LIMITATIONS OF HYPOTHETICAL PERFORMANCE RESULTS IS THAT THEY ARE GENERALLY PREPARED WITH THE BENEFIT OF HINDSIGHT. IN ADDITION, HYPOTHETICAL TRADING DOES NOT INVOLVE FINANCIAL RISK, AND NO HYPOTHETICAL TRADING RECORD CAN COMPLETELY ACCOUNT FOR THE IMPACT OF FINANCIAL RISK IN ACTUAL TRADING. FOR EXAMPLE, THE ABILITY TO WITHSTAND LOSSES OR TO ADHERE TO A PARTICULAR TRADING PROGRAM IN SPITE OF TRADING LOSSES ARE MATERIAL POINTS WHICH CAN ALSO ADVERSELY AFFECT ACTUAL TRADING RESULTS. THERE ARE NUMEROUS OTHER FACTORS RELATED TO THE MARKETS IN GENERAL OR TO THE IMPLEMENTATION OF ANY SPECIFIC TRADING PROGRAM WHICH CANNOT BE FULLY ACCOUNTED FOR IN THE PREPARATION OF HYPOTHETICAL PERFORMANCE RESULTS AND ALL OF WHICH CAN ADVERSELY AFFECT ACTUAL TRADING RESULTS.</p></div>
+</div>
+</div></section>
+
+
+<section class="alt"><div class="wrap">
+<div class="sec-head"><p class="eyebrow">StratBoard</p><h2>Try it on a prop account</h2><p class="muted">Pick an account size, your contracts and your firm&rsquo;s rules, or a Tradeify, Lucid Trading or MyFundedFutures plan with its published rules and prices. The backtest is replayed from every start date on those rules: how often it reached the profit target before the drawdown, how many weeks that took and the worst stretches along the way. Below it: the odds week by week, a check on the order of history, your own evaluation&rsquo;s room, a rough cost to get funded and the odds of a first payout. To run it with the other four, <a href="stratboard.html">open StratBoard</a>.</p></div>
+<div class="pane calc board solo" data-k="trend" data-v2>
+<div class="pane-bar sb-bar"><span class="dot" aria-hidden="true"></span><span class="t">StratBoard</span><span class="sb-sub">Bell to Bell Trend</span><span class="pb-r"><button type="button" class="sb-reset" hidden>Reset</button><span class="sb-live" id="sb-live-trend" role="status" data-s="idle">Backtest replay</span></span></div>
+<div class="calc-in">
+<p class="calc-now">On the <b>50K</b> account at <b>1 MNQ</b>. With JavaScript on, you can pick another account size, your contracts and your firm&rsquo;s rules here.</p>
+<div class="sb-grid">
+<div class="sb-setup">
+<div class="calc-ctl" hidden>
+<section class="sb-sec sb-lineup" aria-label="Contracts">
+<div class="sb-head"><h3 class="sb-h" id="cq-trend">Contracts</h3></div>
+<div class="mixrow s-trend"><span class="dot" aria-hidden="true"></span><span class="mixname">Trend<small>about 1.38 trades a week</small></span><div class="step" role="group" aria-labelledby="cq-trend"><button type="button" data-q="-1" aria-label="One contract fewer">&minus;</button><output class="c-q" aria-live="polite">1</output><span class="unit">MNQ</span><button type="button" data-q="1" aria-label="One contract more">+</button></div></div>
+<p class="sb-hint">Its Base contracts setting. On some trades it uses twice that.</p>
+</section>
+<section class="sb-sec sb-acct" aria-label="Account">
+<h3 class="sb-h" id="ca-trend">Account</h3><div class="seg" role="group" aria-labelledby="ca-trend"><button type="button" data-acct="25K" aria-pressed="false">25K</button><button type="button" data-acct="50K" aria-pressed="true">50K</button><button type="button" data-acct="100K" aria-pressed="false">100K</button><button type="button" data-acct="150K" aria-pressed="false">150K</button><button type="button" data-acct="300K" aria-pressed="false">300K</button></div>
+</section>
+<section class="sb-sec sb-rules" aria-label="Rules">
+<h3 class="sb-h">Rules</h3>
+<div class="calc-f calc-f-rules"><span class="calc-k">Your firm&rsquo;s rules</span><div class="calc-firmrow"><label class="calc-f calc-sf"><span class="calc-k">Firm</span><select class="c-firm"><option value="">Generic rules</option><option value="tradeify">Tradeify</option><option value="lucid">Lucid Trading</option><option value="mffu">MyFundedFutures</option><option value="own">Enter your own</option></select></label><label class="calc-f calc-sf c-planwrap" hidden><span class="calc-k">Plan</span><select class="c-plan"></select></label><div class="c-opts"></div></div><div class="calc-sels c-gen"><label class="calc-f calc-sf"><span class="calc-k">Drawdown</span><select class="c-sel" data-p="dd"><option value="eod" selected>End-of-day trailing</option><option value="intraday">Intraday trailing</option><option value="static">Static</option></select></label><label class="calc-f calc-sf"><span class="calc-k">Daily loss limit (half the drawdown)</span><select class="c-sel" data-p="dll"><option value="off" selected>None</option><option value="day">Ends the day</option><option value="fail">Fails the account</option></select></label><label class="calc-f calc-sf"><span class="calc-k">Consistency rule (best day)</span><select class="c-sel" data-p="c"><option value="0" selected>None</option><option value="50">At most 50% of profit</option><option value="40">At most 40% of profit</option><option value="30">At most 30% of profit</option></select></label><label class="calc-f calc-sf"><span class="calc-k">Minimum trading days</span><select class="c-sel" data-p="d"><option value="0" selected>None</option><option value="3">3 days</option><option value="5">5 days</option><option value="10">10 days</option></select></label></div><div class="calc-sels calc-own" hidden><label class="calc-f calc-sf"><span class="calc-k">Profit target ($)</span><input type="text" inputmode="numeric" class="c-own" data-k="pt" placeholder="3000" autocomplete="off"></label><label class="calc-f calc-sf"><span class="calc-k">Drawdown ($)</span><input type="text" inputmode="numeric" class="c-own" data-k="dv" placeholder="2000" autocomplete="off"></label><label class="calc-f calc-sf"><span class="calc-k">Drawdown type</span><select class="c-ownsel" data-k="dd"><option value="eod" selected>End-of-day trailing</option><option value="intraday">Intraday trailing</option><option value="static">Static</option></select></label><label class="calc-f calc-sf"><span class="calc-k">A trailing floor stops</span><select class="c-ownsel" data-k="lk"><option value="100" selected>At the start + $100</option><option value="0">At the start</option><option value="n">Never</option></select></label><label class="calc-f calc-sf"><span class="calc-k">Daily loss limit ($, 0 = none)</span><input type="text" inputmode="numeric" class="c-own" data-k="dl" placeholder="0" autocomplete="off"></label><label class="calc-f calc-sf"><span class="calc-k">At the daily loss limit</span><select class="c-ownsel" data-k="dm"><option value="day" selected>The day ends</option><option value="fail">The account fails</option></select></label><label class="calc-f calc-sf"><span class="calc-k">Best day at most (% of profit, 0 = none)</span><input type="text" inputmode="numeric" class="c-own" data-k="c" placeholder="0" autocomplete="off"></label><label class="calc-f calc-sf"><span class="calc-k">Minimum trading days</span><input type="text" inputmode="numeric" class="c-own" data-k="d" placeholder="0" autocomplete="off"></label><p class="c-ownnote" aria-live="polite"></p></div><div class="calc-firm" hidden aria-live="polite"></div><label class="calc-chk"><input type="checkbox" class="c-fills"><span>Worse fills: every trade a tick worse in and out</span></label></div><div class="calc-f"><span class="calc-k" id="ch-trend">Time allowed</span><div class="seg seg-h" role="group" aria-labelledby="ch-trend"><button type="button" data-h="13" aria-pressed="false">3 months</button><button type="button" data-h="26" aria-pressed="false">6 months</button><button type="button" data-h="52" aria-pressed="true">1 year</button><button type="button" data-h="104" aria-pressed="false">2 years</button></div><small class="calc-help">How long each try gets to reach the target.</small></div>
+</section>
+<div class="sb-peek" aria-hidden="true"><b class="sb-pk">77%</b><span>reached the target</span><a href="#sb-result-trend" tabindex="-1">See the result</a></div>
+</div>
+</div>
+<div class="sb-result" id="sb-result-trend">
+<p class="calc-rules"><span>Drawdown <b class="c-dd">$2,000</b></span><span><span class="c-ptl">Profit target</span> <b class="c-pt">$3,000</b></span><span class="c-rtype">End-of-day trailing, stops at the start + $100</span><span class="c-rx">No daily loss limit, no consistency rule, no minimum days</span><span>Replayed from <b class="c-starts">1,846</b> start dates, <b class="c-win">May 2019 to Jul 2026</b></span></p>
+<div class="calc-out" aria-live="polite">
+<div class="calc-main"><div class="calc-big"><b class="c-pass">77%</b><span class="c-passl">reached the profit target before the drawdown</span></div>
+<div class="calc-bar" aria-hidden="true"><i class="p" style="width:77.5%"></i><i class="f" style="width:12.1%"></i><i class="n" style="width:10.5%"></i><i class="r" style="width:0.0%"></i></div>
+<p class="sb-stress" hidden></p></div>
+<dl class="calc-stats">
+<div><dt>Hit the drawdown first</dt><dd class="c-fail">12%</dd></div>
+<div><dt>Neither within <span class="c-hl">a year</span></dt><dd class="c-nei">10%</dd></div>
+<div class="c-runrow" hidden><dt>Still running when the backtest ends</dt><dd class="c-run">0%</dd></div>
+<div><dt>Typical time to pass</dt><dd class="c-wk">20 weeks</dd><small class="c-iq">half took 11 to 32 weeks</small></div>
+<div><dt>Worst drawdown at this size</dt><dd class="c-wdd over">$2,969</dd><small class="c-wddp">against the $2,000 drawdown</small></div>
+<div class="sb-srv" hidden><dt>Worst day</dt><dd class="c-wday">&ndash;</dd><small>open trades marked</small></div>
+<div class="sb-srv" hidden><dt>Worst five trading days</dt><dd class="c-w5">&ndash;</dd><small>open trades marked</small></div>
+</dl>
+<div class="sb-mix" hidden>
+<div class="sb-mixhead"><span class="sb-h3">At these sizes</span><span class="sb-mixnote">over the whole test period, after costs, before any firm&rsquo;s rules</span></div>
+<dl class="calc-stats sb-mixstats">
+<div><dt>$ a week</dt><dd class="c-mpw">&ndash;</dd><small>on average</small></div>
+<div><dt>Trades a week</dt><dd class="c-mtw">&ndash;</dd><small>on average</small></div>
+<div><dt>Worst week</dt><dd class="c-mww">&ndash;</dd><small>closed trades, Monday to Friday</small></div>
+<div><dt>Losing days in a row</dt><dd class="c-mld">&ndash;</dd><small>at most, days with a trade</small></div>
+<div><dt>Losing weeks in a row</dt><dd class="c-mlw">&ndash;</dd><small>at most, weeks with a trade</small></div>
+</dl>
+</div>
+</div>
+<p class="calc-note" hidden></p>
+</div>
+</div>
+<div class="sb-how"><span class="sb-h3">How this works</span><p class="c-howline">Each try opens a new account on one trading day and plays the backtest&rsquo;s trades forward under these rules until it reaches the target, hits the drawdown or runs out of time. 1,846 tries, one on every trading day from May 16 2019 to Jul 6 2026, each with at least 3 months of backtest after it. The backtest ends Oct 2 2026.</p><div class="c-tl" aria-hidden="true"><div class="tl-track"><i class="tl-st" style="width:96.6%"></i></div><div class="tl-track tl-hrow"><i class="tl-h" style="width:13.6%"></i></div><p class="tl-keys"><span class="c-tl-starts">Start dates: May 2019 to Jul 2026</span><span class="c-tl-h">Time allowed: 1 year</span><span class="c-tl-span">Test period: May 2019 to Oct 2026</span></p></div></div>
+<div class="sb-more">
+<div class="calc-more" hidden>
+<div class="calc-chartbox"><div class="calc-ch-head"><span class="sb-h3">Week by week</span><span class="calc-legend"><span class="lg p">Reached the target</span><span class="lg f">Hit the drawdown</span></span></div>
+<div class="calc-chart"></div>
+<p class="calc-runnote" hidden></p>
+<details class="calc-wk"><summary>The odds week by week</summary><div class="calc-wtab-wrap"><table class="calc-wtab"><thead><tr><th scope="col">By week</th><th scope="col">Reached the target</th><th scope="col">Hit the drawdown</th></tr></thead><tbody></tbody></table></div></details></div>
+<div class="sb-tools">
+<div class="sb-tabs" role="tablist" aria-label="More checks"><button type="button" role="tab" class="sb-tab" data-tab="shuffle" aria-selected="false">Check the order</button><button type="button" role="tab" class="sb-tab" data-tab="eval" aria-selected="false">Already in an evaluation?</button><button type="button" role="tab" class="sb-tab" data-tab="cost" aria-selected="false">Cost to get funded</button><button type="button" role="tab" class="sb-tab" data-tab="payout" aria-selected="false">After you pass</button></div>
+<div class="calc-tools">
+<details class="calc-tool" data-tool="shuffle"><summary>Check the order</summary><div class="ct-in"><p>The replay follows history in order. This check shuffles the test period into a random order 40 times, five trading days at a time, and replays every start again each time. It shows how much the pass rate depends on the order things happened in.</p><button type="button" class="btn ghost small c-shuffle">Reshuffle 40 times</button><p class="ct-out c-shout" aria-live="polite"></p></div></details>
+<details class="calc-tool" data-tool="eval"><summary>Already in an evaluation?</summary><div class="ct-in"><p>Enter where your account stands now. This compares the room you have left with the worst stretches the backtest had at these sizes.</p><div class="ct-fields"><label><span class="calc-k">Balance now</span><input type="text" inputmode="decimal" class="c-bal" placeholder="e.g. 51200" autocomplete="off"></label><label><span class="calc-k">Floor now</span><input type="text" inputmode="decimal" class="c-floor" placeholder="e.g. 49300" autocomplete="off"></label></div><p class="ct-out c-room" aria-live="polite"></p></div></details>
+<details class="calc-tool" data-tool="cost"><summary>Cost to get funded</summary><div class="ct-in"><p>Enter your firm&rsquo;s prices, or pick a firm&rsquo;s plan above to fill in its list prices. This turns the replay&rsquo;s odds and time into a rough cost.</p><div class="ct-fields"><label><span class="calc-k c-feel">Evaluation fee</span><input type="text" inputmode="decimal" class="c-fee" placeholder="e.g. 99" autocomplete="off"></label><label><span class="calc-k c-resetl">Reset fee</span><input type="text" inputmode="decimal" class="c-reset" placeholder="e.g. 79" autocomplete="off"></label></div><label class="calc-chk c-coderow" hidden><input type="checkbox" class="c-code"><span class="c-codel">Use the code price</span></label><p class="ct-out c-cost" aria-live="polite"></p></div></details>
+<details class="calc-tool" data-tool="payout"><summary>After you pass</summary><div class="ct-in"><p class="c-payin">A funded account started on every start date, on the drawdown rules above: how often it reached a first payout before the account was lost.</p><label class="calc-f"><span class="calc-k">A first payout needs</span><select class="c-pay"><option value="cushion" selected>A profit of the drawdown + $100</option><option value="days">5 winning days of at least $150</option><option value="both">Both, and a best day at most 40%</option></select></label><p class="ct-out c-payout" aria-live="polite"></p></div></details>
+</div></div>
+<p class="calc-share"><button type="button" class="btn ghost small c-copy">Copy a link to this setup</button><span class="c-copied" aria-live="polite"></span></p>
+</div>
+</div>
+<p class="figcap calc-cap">Hypothetical. The research backtest, after its costs, replayed from every trading day of its test period, May 2019 to Oct 2026, with at least 3 months of backtest after it, at the size picked (twice it on the trades where it uses twice the base size), on the rules shown: open trades counted at each minute&rsquo;s worst price, and a try that does neither within the time allowed counted as neither, and one the backtest ends before counted as still running. Runs from nearby start dates share most of their trades, so they aren&rsquo;t independent tries. The worst drawdown is the backtest&rsquo;s, with open trades marked; one larger than the account&rsquo;s can still pass when it comes after the floor has stopped rising. Firms&rsquo; rules differ and change, so check yours. Firm plans use each firm&rsquo;s rules and prices as its own pages showed them on Nov 17 2026; firms change both often, so check before you buy. Bell to Bell Strategies isn&rsquo;t affiliated with Tradeify, Lucid Trading or MyFundedFutures. Its rules were picked after testing many variations, so expect live results below these. None of this is a promise that any account will pass.</p>
+<details class="calc-how"><summary>How this is worked out</summary><ul><li>Every trading day with at least 3 months of backtest after it starts its own try, walked forward one trading day at a time on the rules shown for the time allowed, so every setting uses the same start dates. A try that neither passes nor fails in that time counts as neither; one the backtest ends before counts as still running.</li><li>Each day&rsquo;s lowest point counts open trades at each minute&rsquo;s worst price. A run fails when that point touches the floor, which is checked before that day&rsquo;s close is checked against the profit target.</li><li>End-of-day trailing: the floor follows the highest closing balance, a drawdown below it, and stops rising at the start + $100. Intraday trailing: it follows the highest balance reached during the day, open trades counted at each minute&rsquo;s best price, and stops at the same level. Static: the floor never moves.</li><li>Daily loss limit: half the account&rsquo;s drawdown. When a day&rsquo;s loss reaches it, the day either ends there, closed at the limit, or the account fails, as picked.</li><li>Consistency rule: the profit target only counts once the best day is no more than the share picked of the total profit. Minimum trading days: days with at least one trade.</li><li>Worse fills: every entry and exit a tick worse than the backtest&rsquo;s (an extra $1 a contract on each trade). The board also reruns your setup with worse fills and shows the difference under the result.</li><li>At these sizes: the strategies picked, at the contracts picked, over the whole test period, after the research costs and before any firm&rsquo;s rules (no daily loss limit), with worse fills when picked. $ a week and trades a week divide by the test period&rsquo;s calendar weeks. Select&rsquo;s figures elsewhere count only the sessions with complete data, so its pace there runs a little higher than here. A week runs Monday to Friday and counts the trades that closed in it. A losing day is a day with an entry or an exit whose closed trades came to less than zero; days with neither don&rsquo;t count and don&rsquo;t break a run. Weeks work the same way.</li><li>Worst day and worst five trading days: the deepest point the strategies picked reached together inside one trading day, and inside any five in a row, counted from where that stretch began, with open trades marked.</li><li>Firm plans: the plan&rsquo;s own target, drawdown, daily loss limit, consistency rule and minimum days for the size picked, and for After you pass its funded account and first-payout rules, as each firm&rsquo;s pages showed them on Nov 17 2026. What the replay can&rsquo;t follow (a limit that grows, news windows, contract limits and scaling) is listed under the plan. Enter your own: the same replay on the numbers you type, in $50 steps.</li><li>The figures come from the research backtests after their costs. The board only ever gets back totals and worst cases, never a single trade or when it happened.</li></ul></details>
+<script type="application/json" class="calc-data">{"kind":"one","k":"trend","acct":"50K","q":1,"max":20,"accounts":[{"id":"25K","size":25000,"dd":1000,"pt":1250},{"id":"50K","size":50000,"dd":2000,"pt":3000},{"id":"100K","size":100000,"dd":3000,"pt":6000},{"id":"150K","size":150000,"dd":4500,"pt":9000},{"id":"300K","size":300000,"dd":7500,"pt":20000}],"res":{"25K":[[62.6,37.4,0.0,6.4,3.6,12.6,0.0],[49.3,50.7,0.0,2.6,1.2,5.8,0.0],[41.4,58.6,0.0,1.6,0.8,3.2,0.0],[32.7,67.3,0.0,1.2,0.6,2.0,0.0],[32.0,68.0,0.0,0.8,0.4,1.6,0.0],[30.1,69.9,0.0,0.8,0.4,1.4,0.0],[30.4,69.6,0.0,0.6,0.4,1.2,0.0],[30.9,69.1,0.0,0.6,0.4,1.2,0.0],[32.5,67.5,0.0,0.6,0.4,1.2,0.0],[30.7,69.3,0.0,0.6,0.4,1.2,0.0],[29.0,71.0,0.0,0.6,0.4,1.2,0.0],[28.1,71.9,0.0,0.6,0.4,1.2,0.0],[27.0,73.0,0.0,0.6,0.4,1.0,0.0],[25.1,74.9,0.0,0.6,0.4,1.0,0.0],[23.9,76.1,0.0,0.6,0.2,1.0,0.0],[22.9,77.1,0.0,0.6,0.2,1.0,0.0],[22.1,77.9,0.0,0.6,0.2,1.0,0.0],[20.9,79.1,0.0,0.6,0.2,1.0,0.0],[19.9,80.1,0.0,0.6,0.2,1.0,0.0],[17.9,82.1,0.0,0.4,0.2,1.0,0.0]],"50K":[[77.5,12.1,10.5,19.6,11.2,31.6,0.0],[60.9,39.1,0.0,8.2,4.4,15.2,0.0],[52.8,47.2,0.0,4.6,2.4,9.2,0.0],[47.8,52.2,0.0,3.6,1.6,7.2,0.0],[44.9,55.1,0.0,2.6,1.2,5.6,0.0],[38.1,61.9,0.0,1.8,0.8,3.8,0.0],[33.7,66.3,0.0,1.4,0.6,2.6,0.0],[30.7,69.3,0.0,1.2,0.6,2.2,0.0],[29.6,70.4,0.0,1.2,0.6,2.2,0.0],[29.5,70.5,0.0,1.0,0.4,1.8,0.0],[28.9,71.1,0.0,0.8,0.4,1.6,0.0],[29.1,70.9,0.0,0.8,0.4,1.4,0.0],[28.9,71.1,0.0,0.8,0.4,1.4,0.0],[28.5,71.5,0.0,0.8,0.4,1.4,0.0],[28.3,71.7,0.0,0.8,0.4,1.4,0.0],[28.5,71.5,0.0,0.6,0.4,1.2,0.0],[29.0,71.0,0.0,0.6,0.4,1.2,0.0],[29.3,70.7,0.0,0.6,0.4,1.2,0.0],[29.5,70.5,0.0,0.6,0.4,1.2,0.0],[29.6,70.4,0.0,0.6,0.4,1.2,0.0]],"100K":[[60.3,0.0,35.9,32.6,25.6,42.6,3.8],[68.3,21.2,10.5,20.4,11.6,32.4,0.0],[58.6,41.4,0.0,11.0,6.4,21.4,0.0],[50.6,49.4,0.0,7.0,4.0,12.6,0.0],[45.4,54.6,0.0,5.6,2.8,11.4,0.0],[43.8,56.2,0.0,4.6,2.2,9.4,0.0],[43.1,56.9,0.0,4.0,1.8,8.0,0.0],[40.4,59.6,0.0,3.5,1.4,7.0,0.0],[35.8,64.2,0.0,2.6,1.2,5.4,0.0],[30.6,69.4,0.0,2.0,1.0,4.2,0.0],[28.7,71.3,0.0,1.6,0.8,3.6,0.0],[27.7,72.3,0.0,1.6,0.8,3.2,0.0],[27.7,72.3,0.0,1.6,0.8,3.0,0.0],[27.2,72.8,0.0,1.4,0.6,2.4,0.0],[27.0,73.0,0.0,1.2,0.6,2.2,0.0],[26.3,73.7,0.0,1.2,0.6,2.2,0.0],[26.0,74.0,0.0,1.2,0.6,2.0,0.0],[25.6,74.4,0.0,1.2,0.6,2.0,0.0],[25.9,74.1,0.0,1.0,0.4,1.8,0.0],[26.1,73.9,0.0,1.0,0.4,1.8,0.0]],"150K":[[28.3,0.0,61.6,43.2,35.6,47.3,10.1],[67.1,7.5,22.9,26.0,17.6,38.3,2.5],[68.6,21.0,10.5,20.4,11.7,32.4,0.0],[64.8,35.2,0.0,13.6,7.4,24.2,0.0],[52.2,47.8,0.0,9.6,5.6,16.7,0.0],[51.0,49.0,0.0,6.8,4.0,12.6,0.0],[46.2,53.8,0.0,6.0,3.2,11.8,0.0],[46.0,54.0,0.0,5.2,2.6,10.4,0.0],[43.8,56.2,0.0,4.6,2.2,9.4,0.0],[42.9,57.1,0.0,4.0,1.9,8.2,0.0],[41.7,58.3,0.0,3.6,1.6,7.6,0.0],[40.4,59.6,0.0,3.5,1.4,7.0,0.0],[40.1,59.9,0.0,3.0,1.4,6.4,0.0],[33.9,66.1,0.0,2.4,1.0,5.6,0.0],[30.6,69.4,0.0,2.0,1.0,4.2,0.0],[29.6,70.4,0.0,1.8,1.0,4.0,0.0],[28.7,71.3,0.0,1.6,0.8,3.4,0.0],[27.7,72.3,0.0,1.6,0.8,3.2,0.0],[28.8,71.2,0.0,1.4,0.8,2.8,0.0],[27.5,72.5,0.0,1.4,0.8,2.9,0.0]],"300K":[[0.0,0.0,89.4,null,null,null,10.6],[18.0,0.0,71.5,43.0,38.2,48.2,10.6],[50.7,4.1,40.7,35.9,29.8,42.8,4.5],[60.8,12.7,26.5,28.4,20.4,40.8,0.0],[61.3,20.7,18.0,24.0,14.6,36.6,0.0],[59.2,34.2,6.6,20.6,11.4,31.4,0.0],[58.3,39.3,2.3,17.2,9.6,28.4,0.0],[58.1,41.9,0.1,15.3,8.2,27.2,0.0],[50.4,49.6,0.0,12.2,6.8,20.6,0.0],[49.2,50.8,0.0,9.6,5.8,18.6,0.0],[45.7,54.3,0.0,9.2,5.2,15.1,0.0],[42.3,57.7,0.0,8.0,4.6,15.0,0.0],[42.3,57.7,0.0,7.3,4.0,13.4,0.0],[40.5,59.5,0.0,6.2,3.4,11.8,0.0],[39.9,60.1,0.0,5.6,3.2,11.4,0.0],[38.8,61.2,0.0,5.4,3.0,10.8,0.0],[39.9,60.1,0.0,5.0,2.6,10.4,0.0],[38.6,61.4,0.0,4.8,2.4,10.0,0.0],[38.3,61.7,0.0,4.8,2.2,9.8,0.0],[37.4,62.6,0.0,4.4,2.2,9.4,0.0]]},"ddm":2969.0,"win":{"from":"2019-05-16","to":"2026-10-02","last":"2026-07-06","sessions":1910,"starts":1846},"names":{"breakout":"Breakout","trend":"Trend","momentum":"Momentum","select":"Select","overnight":"Overnight"},"monthly":{"breakout":19.99,"trend":19.99,"select":19.99,"momentum":19.99,"overnight":19.99,"all":74.99},"bundle":"The Patient Five","firms":"firms.json"}</script>
+</div></div>
+<div class="plate solo" role="note" aria-label="Hypothetical performance disclosure"><p class="plate-h"><span>Hypothetical performance</span><span class="plate-rule">CFTC Rule 4.41 &middot; NFA Rule 2-29</span></p><p>These results are based on simulated or hypothetical performance results that have certain inherent limitations. Unlike the results shown in an actual performance record, these results do not represent actual trading. Also, because these trades have not actually been executed, these results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity. Simulated or hypothetical trading programs in general are also subject to the fact that they are designed with the benefit of hindsight. No representation is being made that any account will or is likely to achieve profits or losses similar to these being shown.</p><p class="caps">HYPOTHETICAL PERFORMANCE RESULTS HAVE MANY INHERENT LIMITATIONS, SOME OF WHICH ARE DESCRIBED BELOW. NO REPRESENTATION IS BEING MADE THAT ANY ACCOUNT WILL OR IS LIKELY TO ACHIEVE PROFITS OR LOSSES SIMILAR TO THOSE SHOWN. IN FACT, THERE ARE FREQUENTLY SHARP DIFFERENCES BETWEEN HYPOTHETICAL PERFORMANCE RESULTS AND THE ACTUAL RESULTS SUBSEQUENTLY ACHIEVED BY ANY PARTICULAR TRADING PROGRAM.</p><p class="caps">ONE OF THE LIMITATIONS OF HYPOTHETICAL PERFORMANCE RESULTS IS THAT THEY ARE GENERALLY PREPARED WITH THE BENEFIT OF HINDSIGHT. IN ADDITION, HYPOTHETICAL TRADING DOES NOT INVOLVE FINANCIAL RISK, AND NO HYPOTHETICAL TRADING RECORD CAN COMPLETELY ACCOUNT FOR THE IMPACT OF FINANCIAL RISK IN ACTUAL TRADING. FOR EXAMPLE, THE ABILITY TO WITHSTAND LOSSES OR TO ADHERE TO A PARTICULAR TRADING PROGRAM IN SPITE OF TRADING LOSSES ARE MATERIAL POINTS WHICH CAN ALSO ADVERSELY AFFECT ACTUAL TRADING RESULTS. THERE ARE NUMEROUS OTHER FACTORS RELATED TO THE MARKETS IN GENERAL OR TO THE IMPLEMENTATION OF ANY SPECIFIC TRADING PROGRAM WHICH CANNOT BE FULLY ACCOUNTED FOR IN THE PREPARATION OF HYPOTHETICAL PERFORMANCE RESULTS AND ALL OF WHICH CAN ADVERSELY AFFECT ACTUAL TRADING RESULTS.</p></div>
+</div></section>
+
+<section><div class="wrap"><div class="grid2" style="align-items:start">
+<div><p class="eyebrow">What you control</p><h2 style="margin:10px 0 12px">Your settings</h2><p class="muted">The signal logic is fixed. These are the settings you choose.</p></div>
+<div class="pane"><div class="pane-bar"><span class="dot" aria-hidden="true"></span><span class="t">Settings</span><span class="pb-r">You choose</span></div>
+<div class="table-scroll"><table class="kv"><tbody>
+<tr><td><b>Preset</b></td><td>Standard, or Base size for the same trades at your base size every time.</td></tr>
+<tr><td><b>Base contracts</b></td><td>Your base size. Standard uses twice it on some trades.</td></tr>
+<tr><td><b>Direction</b></td><td>Both sides, long only or short only.</td></tr>
+<tr><td><b>Max loss per trade</b></td><td>An optional stop-loss order at a distance you choose. Off by default, and the results above are without it.</td></tr>
+<tr><td><b>Alerts</b></td><td>NinjaTrader alerts on each fill, on or off.</td></tr>
+<tr><td><b>Trade log</b></td><td>An optional CSV file of your trades.</td></tr>
+</tbody></table></div></div>
+</div>
+
+</div></section>
+
+<section class="alt"><div class="wrap narrow">
+<p class="eyebrow">Before you go live</p><h2 style="margin:10px 0 12px">Run Bell to Bell Trend on Sim first</h2>
+<p class="lede">Your license key works on NinjaTrader's simulator as well as live accounts. Watch a few weeks of trades on Sim, and compare its worst days with your own loss limits before you put real money behind it.</p>
+<div class="actions" style="margin-top:22px"><a class="btn primary" href="pricing.html">See plans</a><a class="btn ghost" href="strategies.html">Compare all five</a></div>
+</div></section>
+
+</main>
+<footer class="site"><div class="wrap">
+<div class="foot-top">
+<div class="foot-brand"><a class="brand" href="index.html" aria-label="Bell to Bell Strategies, home"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 586 320" fill="none" aria-hidden="true" focusable="false"><path d="M 162.48 30.98 C 180.8 31.13 198.92 32.17 215.59 39.77 C 232.27 47.36 243.03 63.11 245.89 81.21 C 248.75 99.31 250.79 116.32 253.91 134.38 C 257.03 152.44 261.1 169.55 266.58 187.04 C 272.06 204.53 285.87 218.42 287.85 236.64 C 289.82 254.85 269.47 231.49 262.32 214.61 C 255.18 197.74 251.12 180.66 246.81 162.85 C 242.51 145.03 239.88 127.93 236.88 109.85 C 233.89 91.77 234.79 71.81 221.44 59.26 C 208.08 46.72 188.94 44.88 170.64 43.9 C 152.34 42.93 133.32 44.8 118.14 55.07 C 102.96 65.33 100.93 85.03 97.9 103.1 C 94.87 121.18 92.84 138.49 89.24 156.45 C 85.63 174.42 80.53 191.3 74.27 208.52 C 68 225.74 60.4 241.81 49.05 256.2 C 37.7 270.59 60.25 268.69 78.57 268.7 C 96.9 268.72 115.22 268.74 133.55 268.76 C 151.88 268.77 170.2 268.79 188.53 268.81 C 206.85 268.82 225.18 268.84 243.5 268.86 C 261.83 268.87 278.8 262.21 290.12 247.8 C 301.44 233.39 308.91 216.95 315.11 199.7 C 321.31 182.46 325.11 165.55 328.77 147.59 C 332.43 129.63 335.47 112.8 337.85 94.63 C 340.23 76.46 343.73 57.51 358.13 46.18 C 372.54 34.85 391.2 32.9 409.49 31.88 C 427.79 30.86 445.55 31.77 462.91 37.64 C 480.28 43.5 492.8 59.22 496.49 77.17 C 500.18 95.12 501.65 112.23 504.86 130.27 C 508.07 148.31 511.61 165.25 516.81 182.82 C 522.01 200.4 527.83 217.22 536.76 233.23 C 545.68 249.23 557.83 263.93 575.48 268.86 C 593.12 273.8 565.32 281.87 547 281.87 C 528.67 281.87 510.35 281.87 492.02 281.87 C 473.7 281.87 455.37 281.87 437.05 281.87 C 418.72 281.87 400.4 281.87 382.07 281.87 C 363.75 281.87 345.42 281.87 327.09 281.87 C 308.77 281.87 290.44 281.87 272.12 281.87 C 253.79 281.87 235.47 281.87 217.14 281.87 C 198.82 281.87 180.49 281.87 162.17 281.87 C 143.84 281.87 125.52 281.87 107.19 281.87 C 88.87 281.87 70.54 281.87 52.22 281.87 C 33.89 281.87 2.07 293.84 1.02 275.54 C -0.02 257.25 30.62 259.33 41.65 244.69 C 52.68 230.05 59.11 213.19 65 195.84 C 70.9 178.49 74.91 161.55 78.5 143.58 C 82.08 125.61 84.82 108.55 86.92 90.35 C 89.02 72.14 95.49 54.48 110.62 44.15 C 125.76 33.83 144.16 31.65 162.48 30.98 Z M 409.45 43.99 C 418.1 43.94 426.57 43.96 435.16 44.98 C 443.74 46 452.09 47.33 459.93 50.98 C 467.77 54.63 475.06 59.78 479.22 67.36 C 483.37 74.94 484.76 83.21 485.87 91.78 C 486.98 100.36 487.77 108.48 488.91 117.05 C 490.05 125.62 492.67 133.44 493.84 142.01 C 495.02 150.57 496.76 158.69 498.76 167.1 C 500.77 175.51 502.81 183.36 505.24 191.66 C 507.66 199.95 510.8 207.91 513.95 215.96 C 517.1 224.01 521.45 231.45 525.49 239.09 C 529.53 246.73 534.23 253.7 539.81 260.3 C 545.39 266.91 539.64 268.75 530.99 268.76 C 522.35 268.76 513.7 268.77 505.05 268.77 C 496.41 268.78 487.76 268.78 479.12 268.78 C 470.47 268.79 461.83 268.79 453.18 268.8 C 444.54 268.8 435.89 268.81 427.24 268.81 C 418.6 268.81 409.95 268.82 401.31 268.82 C 392.66 268.83 384.02 268.83 375.37 268.84 C 366.73 268.84 358.08 268.84 349.43 268.85 C 340.79 268.85 332.14 268.86 323.5 268.86 C 314.85 268.87 306.21 268.87 297.56 268.88 C 288.92 268.88 296.63 260.71 302.16 254.07 C 307.69 247.42 311.58 239.66 315.32 231.86 C 319.06 224.07 322.09 216.13 325.5 208.18 C 328.9 200.24 331.24 192.23 333.34 183.84 C 335.44 175.46 338.09 167.71 339.84 159.24 C 341.59 150.78 343.59 142.88 344.67 134.31 C 345.75 125.73 347.85 117.75 348.86 109.17 C 349.87 100.58 350.84 92.47 351.91 83.89 C 352.98 75.31 356.45 67.2 362.38 60.9 C 368.3 54.61 375.94 50.28 384.29 48.06 C 392.65 45.85 400.86 44.92 409.45 43.99 Z" fill="currentColor" fill-rule="evenodd"/><rect x="114" y="195" width="7" height="107" fill="#FF4200"/><rect x="104" y="210" width="27" height="25" fill="#FF4200"/><rect x="152" y="171" width="7" height="72" fill="#FF4200"/><rect x="142" y="186" width="27" height="42" fill="#FF4200"/><rect x="190.5" y="144" width="7" height="66" fill="#FF4200"/><rect x="181" y="158" width="26" height="37" fill="#FF4200"/><rect x="368" y="141" width="7" height="49" fill="#FF4200"/><rect x="358" y="160" width="27" height="12" fill="#FF4200"/><rect x="402.5" y="100" width="7" height="77" fill="#FF4200"/><rect x="393" y="114" width="26" height="48" fill="#FF4200"/><rect x="436" y="2" width="7" height="131" fill="#FF4200"/><rect x="426" y="19" width="27" height="100" fill="#FF4200"/><circle cx="167" cy="304" r="14.5" fill="currentColor"/><circle cx="418" cy="304" r="14.5" fill="currentColor"/></svg></span><span class="brand-word"><span>Bell to Bell</span> <span>Strategies</span></span></a><p><span class="foot-tag">We’ve got you covered.</span> Automated strategies for NinjaTrader&nbsp;8, with <span class="bn-tv">TradingView</span> and <span class="bn-wc">WealthCharts</span> versions coming soon.</p><p class="foot-mail">Support: <span class="sel">support@belltobellstrategies.com</span></p><nav class="foot-social" aria-label="Bell to Bell on Discord, YouTube and X"><a href="https://discord.gg/9BT2Tz3zKq" target="_blank" rel="noopener">Discord</a><a href="https://www.youtube.com/@BelltoBellStrategies" target="_blank" rel="noopener">YouTube</a><a href="https://x.com/BTBStrategies" target="_blank" rel="noopener">X</a></nav></div>
+<nav class="foot-col" aria-label="Strategies"><h2>Strategies</h2><a class="s-breakout" href="breakout.html"><span class="dot" aria-hidden="true"></span>Breakout</a><a class="s-trend" href="trend.html"><span class="dot" aria-hidden="true"></span>Trend</a><a class="s-momentum" href="momentum.html"><span class="dot" aria-hidden="true"></span>Momentum</a><a class="s-select" href="select.html"><span class="dot" aria-hidden="true"></span>Select</a><a class="s-overnight" href="overnight.html"><span class="dot" aria-hidden="true"></span>Overnight</a></nav>
+<nav class="foot-col" aria-label="Product"><h2>Product</h2><a href="/dashboard">Dashboard</a><a href="prop-deals.html">Prop Deals</a><a href="strategies.html">Compare all five</a><a href="stratboard.html">StratBoard</a><a href="performance.html">Performance</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="setup.html">Setup</a></nav>
+<nav class="foot-col" aria-label="Help"><h2>Help</h2><a href="faq.html">FAQ</a><a href="ninjatrader.html">NinjaTrader and Kinetick</a><a href="legal.html">Legal and disclosures</a><a href="coming-soon.html">Join the waitlist</a></nav>
+</div>
+<div class="foot-risk">
+<h2>Risk disclosure</h2>
+<p>Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one's financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+<p>Every performance figure on this site is hypothetical, from a backtest, unless it is labeled otherwise, and is shown with the statements required for hypothetical results. Bell to Bell Strategies sells software. We do not manage accounts, place trades for customers or give individual trading advice, and nothing on this site is a recommendation to buy or sell any futures contract.</p>
+<p>NinjaTrader&reg; is a registered trademark of NinjaTrader Group, LLC. No NinjaTrader company has any affiliation with the owner, developer, or provider of the products or services described herein, or any interest, ownership or otherwise, in any such product or service, or endorses, recommends or approves any such product or service.</p>
+<p>Kinetick&reg; is a registered trademark of Kinetick, Inc. Nasdaq-100&reg; is a registered trademark of Nasdaq, Inc. CME Group and CME Globex are trademarks of CME Group Inc. NYSE&reg; is a registered trademark of NYSE Group, Inc. None of them is affiliated with Bell to Bell Strategies LLC.</p>
+</div>
+<p class="foot-tm">TradingView and WealthCharts are trademarks of their respective owners. Neither company is affiliated with Bell to Bell Strategies LLC.</p>
+<div class="legal-line"><span>&copy; 2026 Bell to Bell Strategies LLC &middot; belltobellstrategies.com</span><span><a href="legal.html#terms">Terms</a> &middot; <a href="legal.html#privacy">Privacy</a> &middot; <a href="legal.html#refunds">Refund policy</a> &middot; <a href="legal.html#risk">Risk disclosure</a></span></div>
+</div></footer>
+<script id="bell-js">
+(function(){var C={"h":{"New Year’s Day":"2026-01-01 2027-01-01","Martin Luther King Jr. Day":"2026-01-19 2027-01-18 2028-01-17","Washington’s Birthday":"2026-02-16 2027-02-15 2028-02-21","Good Friday":"2026-04-03 2027-03-26 2028-04-14","Memorial Day":"2026-05-25 2027-05-31 2028-05-29","Juneteenth":"2026-06-19 2028-06-19","Independence Day (observed)":"2026-07-03 2027-07-05","Labor Day":"2026-09-07 2027-09-06 2028-09-04","Thanksgiving Day":"2026-11-26 2027-11-25 2028-11-23","Christmas Day":"2026-12-25 2028-12-25","Juneteenth (observed)":"2027-06-18","Christmas Day (observed)":"2027-12-24","Independence Day":"2028-07-04"},"e":"2026-11-27 2026-12-24 2027-11-26 2028-07-03 2028-11-24","t":"2028-12-31"},H={},k;for(k in C.h)C.h[k].split(' ').forEach(function(d){H[d]=k});
+var Q=document,B=Q.querySelector('.bell'),K=B&&B.querySelector('.bell-chip'),P=Q.getElementById('bell-panel'),T=0,F,f=Math.floor,
+D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],M='JanFebMarAprMayJunJulAugSepOctNovDec';
+function et(t){var o={};F.formatToParts(new Date(t)).forEach(function(p){o[p.type]=+p.value});return o}
+try{F=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',second:'numeric'});if(et(0).hour!=19)return}catch(x){return}
+if(!K||!P)return;
+function at(x,h,m){var g=Date.UTC(x.y,x.m-1,x.d,h,m),e=et(g);return g-(Date.UTC(e.year,e.month-1,e.day,e.hour,e.minute,e.second)-g)}
+function day(y,m,d){var t=new Date(Date.UTC(y,m-1,d));return{y:t.getUTCFullYear(),m:t.getUTCMonth()+1,d:t.getUTCDate(),w:t.getUTCDay(),iso:t.toISOString().slice(0,10)}}
+function trades(x){return x.w%6&&!H[x.iso]}
+function two(n){return(n<10?'0':'')+n}
+function hm(h,m){return(h%12||12)+':'+two(m)+(h<12?' AM':' PM')}
+function mine(x,h,m){var t=new Date(at(x,h,m)),s=hm(t.getHours(),t.getMinutes());return s==hm(h,m)?'':' ('+s+' your time)'}
+function say(a,u,b,v){return(a?a+' '+u+(a>1?'s':''):'')+(b||!a?(a?' ':'')+b+' '+v+(b==1?'':'s'):'')}
+function put(s,t){B.querySelector(s).textContent=t}
+function tick(){clearTimeout(T);
+var now=Date.now(),e=et(now),td=day(e.year,e.month,e.day),sd=td,k=0,ec=C.e.indexOf(td.iso)>=0,s='closed',to=at(td,ec?13:16,0),
+w='NY open',t='9:30 AM ET',a='NYSE opens at 9:30 AM ET on trading days.',n,nd;
+if(trades(td)&&now<to){if(now<at(td,9,30)){s='pre';to=at(td,9,30)}else s='open'}
+else{do sd=day(td.y,td.m,td.d+ ++k);while(sd.iso<=C.t&&!trades(sd));to=at(sd,9,30)}
+var x=f((to-now)/1e3),dd=f(x/86400),h=f(x/3600)%24,m=f(x/60)%60,c=x%60;
+if(sd.iso>C.t)s='static';
+else{w=s=='open'?'NY close in':x<86400?'NY open in':'NY open '+D[sd.w].slice(0,3);
+t=x<3600?m+'m '+two(c)+'s':x<86400?h+'h '+two(m)+'m':dd+'d '+h+'h';
+a=x<3600?(m?say(m,'minute',0):'less than a minute'):x<86400?say(h,'hour',m,'minute'):say(dd,'day',h,'hour');
+a=s=='open'?'NYSE closes in '+a+', at '+(ec?1:4)+':00 PM ET.':x<86400?'NYSE opens in '+a+', at 9:30 AM ET.':'NYSE opens '+D[sd.w]+' at 9:30 AM ET, in '+a+'.';
+n=Object.keys(H).concat(C.e.split(' ')).filter(function(i){return i>td.iso}).sort()[0];nd=n&&day(+n.slice(0,4),+n.slice(5,7),+n.slice(8))}
+var z=s=='static';
+B.dataset.bell=s;put('.bell-w',w);put('.bell-t',t);a+=' Show market hours.';if(K.getAttribute('aria-label')!=a)K.setAttribute('aria-label',a);
+put('.bp-open .bp-local',z?'':mine(sd,9,30));put('.bp-close .bp-local',z?'':mine(sd,16,0));
+put('.bp-now',z?'':H[td.iso]?'Closed today for '+H[td.iso]+'.':td.w%6?(s=='closed'?'Closed for the day.':ec?'Closes early today, at 1:00 PM ET.'
+:s=='pre'?'Opens today at 9:30 AM ET.':'Open now. Closes at 4:00 PM ET.'):'Closed for the weekend.');
+put('.bp-next',nd?'Next: '+D[nd.w].slice(0,3)+' '+M.substr(nd.m*3-3,3)+' '+nd.d+', '+(H[n]?'closed for '+H[n]:'closes early at 1:00 PM ET')+'.':'');
+var u=!z&&x<3600?1e3:3e4;
+if(Q.visibilityState!='hidden')T=setTimeout(tick,u-now%u+15)}
+function show(o){P.hidden=!o;K.setAttribute('aria-expanded',o)}
+K.addEventListener('click',function(){var d=Q.querySelector('details.menu[open]');if(d)d.open=false;show(P.hidden)});
+Q.addEventListener('pointerdown',function(e){if(!P.hidden&&!B.contains(e.target))show(false)});
+Q.addEventListener('keydown',function(e){if(e.key=='Escape'&&!P.hidden){show(false);if(B.contains(Q.activeElement))K.focus()}});
+Q.addEventListener('visibilitychange',function(){if(Q.visibilityState=='hidden')clearTimeout(T);else tick()});
+tick()})();
+</script>
+<script id="form-js">
+document.querySelectorAll('form[data-waitlist]').forEach(function(f){f.addEventListener('submit',function(e){var a=f.getAttribute('action')||'';if(a===''||a==='#'){e.preventDefault();var m=f.parentNode.querySelector('.formmsg');if(m)m.textContent='The waitlist isn\'t open yet. Please check back soon.';}});});
+(function(){var ds=[].slice.call(document.querySelectorAll('.popup[id]'));if(!ds.length)return;var cur=null,b=null;
+function key(e){if(e.key==='Escape'){close(e)}else if(e.key==='Tab'){e.preventDefault();b.focus()}}
+function close(e){if(e)e.preventDefault();if(!cur)return;cur.hidden=true;cur=null;document.body.classList.remove('modal-open');document.removeEventListener('keydown',key)}
+function open(){var id=location.hash.slice(1),d=null;ds.forEach(function(x){if(x.id===id)d=x});if(!d)return;close();var m=document.querySelector('.formmsg');if(m){m.textContent=d.getAttribute('data-msg')||'';m.classList.add('ok');}
+ds.forEach(function(x){x.classList.add('js')});cur=d;b=d.querySelector('[data-close]');d.hidden=false;document.body.classList.add('modal-open');try{history.replaceState(null,'',location.pathname+location.search)}catch(x){}
+document.addEventListener('keydown',key);b.focus()}
+ds.forEach(function(d){d.querySelector('[data-close]').addEventListener('click',close);d.addEventListener('click',function(e){if(e.target===d)close(e)})});window.addEventListener('hashchange',open);open();})();
+</script>
+<script id="calc-js">
+(function(){
+// The prop calculators (Nov 12 2026). Each .calc[data-v2] asks the calc server for its figures (CALC_API in build.py); the
+// server replays the backtests on the rules picked and sends back totals only. If it can't be reached, the standard rules
+// still work from the site's own tables (propcalc.json in the page, propcalc-all.txt for the five together).
+// Nov 17 2026: firm plans. "Your firm's rules" can be the generic menus (as before), a Tradeify, Lucid Trading or
+// MyFundedFutures plan from firms.json (propfirms.py), or the visitor's own numbers; the last two use the server's rules
+// mode (r=1), which takes exact amounts.
+// Nov 23 2026: the horizon control became "Time allowed". Every setting starts its tries on the same days (the calc server's API
+// 2026-11-24 and the tables alike), a try the backtest ends before is still running, and the board says what its figures
+// rest on: a how-line and a small timeline (explain).
+var API = "https://calc.belltobellstrategies.com/v1/calc";
+// Nov 18 2026: Prop Deals. The deals Worker reads each firm's site every 6 hours; when it answers, a firm plan's code and code
+// price come from it (today's), and firms.json's Nov 17 figures stay the fallback when it doesn't.
+var DEALS_API = "https://deals.belltobellstrategies.com/v1/deals";
+var KEYS = ['breakout', 'trend', 'momentum', 'select', 'overnight'];
+var SIZEUP = {trend: 1, select: 1};       // their contracts are a base size: some trades use twice it
+var HL = {'13': '3 months', '26': '6 months', '52': 'a year', '104': '2 years'};
+var HW = {'13': '3 months', '26': '6 months', '52': 'year', '104': '2 years'};       // the how-line: "can't use the whole ..."
+var HLB = {'13': '3 months', '26': '6 months', '52': '1 year', '104': '2 years'};    // the timeline's label, as the buttons read
+var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+var DDT = {eod: 'End-of-day trailing, stops at the start + $100', intraday: 'Intraday trailing, stops at the start + $100', 'static': 'Static: the floor never moves'};
+var MENU = {dd: ['eod', 'intraday', 'static'], dll: ['off', 'day', 'fail'], c: ['0', '50', '40', '30'], d: ['0', '3', '5', '10'], h: ['13', '26', '52', '104'], f: ['0', '1'], p: ['cushion', 'days', 'both']};
+var PAYNEEDS = {cushion: 'a profit of the drawdown + $100', days: '5 winning days of at least $150, with the account above its start', both: 'a profit of the drawdown + $100, 5 winning days of at least $150 and a best day at most 40% of the profit'};
+var GEN = {'25K': [1000, 1250], '50K': [2000, 3000], '100K': [3000, 6000], '150K': [4500, 9000], '300K': [7500, 20000]};   // the generic accounts' drawdown and target (app.mjs ACCOUNTS)
+var OWN0 = {pt: 3000, dv: 2000, dd: 'eod', lk: '100', dl: 0, dm: 'day', c: 0, d: 0};
+var LIM = {pt: [250, 50000, 50], dv: [100, 20000, 50], dl: [0, 20000, 50], c: [0, 100, 1], d: [0, 30, 1]};   // app.mjs RULE_NUM
+function pct(x) { return x === 0 || x === 100 ? x + '%' : x < 0.5 ? '<1%' : x >= 99.5 ? '>99%' : Math.round(x) + '%'; }
+function weeks(m) { if (m === null || m === undefined) return '–'; if (m < 1) return 'under 1 week'; var w = Math.round(m); return w + ' week' + (w === 1 ? '' : 's'); }
+function iq(a, b) { if (a === null || b === null || a === undefined || b === undefined) return 'too few passes to say'; var lo = Math.max(1, Math.round(a)), hi = Math.max(1, Math.round(b)); return hi > lo ? 'half took ' + lo + ' to ' + hi + ' weeks' : 'half took about ' + lo + ' week' + (lo === 1 ? '' : 's'); }
+function even(x) { var r = Math.round(x); return Math.abs(x - Math.trunc(x)) === 0.5 && r % 2 !== 0 ? r - 1 : r; }
+function usd(x) { return '$' + even(x).toLocaleString('en-US'); }
+function sm(x) { return x < 0 ? '\u2212' + usd(-x) : usd(x); }   // a signed amount (StratBoard's weekly figures)
+function usdc(x) { var c = Math.round(x * 100); return '$' + (c % 100 ? (c / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : (c / 100).toLocaleString('en-US')); }   // a plan price, with its cents
+function month(s) { return new Date(s + 'T12:00:00Z').toLocaleString('en-US', {month: 'short', year: 'numeric', timeZone: 'UTC'}); }
+function day(s) { var p = s.split('-'); return MON[+p[1] - 1] + ' ' + (+p[2]) + ' ' + p[0]; }   // "2023-12-01" -> "Dec 1 2023" (build.py _day)
+function tone(x, good, warn) { return x >= good ? 'g' : x >= warn ? 'w' : 'r'; }   // a rate: green, amber or red (Nov 17 2026)
+function put(o, parts) {   // writes a result: plain strings, and [text, class] parts in bold and colored
+  o.textContent = '';
+  parts.forEach(function (p) {
+    if (typeof p === 'string') { o.appendChild(document.createTextNode(p)); return; }
+    var b = document.createElement('b'); b.textContent = p[0]; if (p[1]) b.className = p[1]; o.appendChild(b);
+  });
+}
+function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function num(s) { var t = String(s || '').replace(/[$,\s]/g, ''); if (!/^\d+(\.\d+)?$/.test(t)) return null; var v = parseFloat(t); return isFinite(v) ? v : null; }
+function list(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
+function cap1(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+var cache = {};
+function get(qs) {
+  if (cache[qs]) return Promise.resolve(cache[qs]);
+  // no-cache: ask the server every time the page needs an answer (its own cache answers fast), so a browser never reuses
+  // an answer it kept from before a server update (the server marks answers cacheable for up to a week)
+  return fetch(API + '?' + qs, {credentials: 'omit', cache: 'no-cache'}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    // an answer without lastStart and running is from before the same-start-dates rule (API 2026-11-24): the tables, not it
+    .then(function (j) { if (!j || !j.window || !j.result || !j.window.lastStart || typeof j.result.running !== 'number') throw new Error('bad answer'); cache[qs] = j; return j; });
+}
+// the firms' plans (firms.json), loaded once per page and shared by its calculators
+var FIRMS = null, firmLoad = null;
+function loadFirms(file) {
+  if (!firmLoad) firmLoad = fetch(file, {credentials: 'omit'}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (j) { if (!j || !j.firms) throw new Error('bad firms file'); FIRMS = j; return j; });
+  return firmLoad;
+}
+// the deals Worker's snapshot, loaded once per page; null when it doesn't answer (within 8 seconds) or there's no Worker
+var DEALS = null, dealsLoad = null;
+function loadDeals() {
+  if (!DEALS_API || !window.fetch) return Promise.resolve(null);
+  if (!dealsLoad) {
+    var ctl = window.AbortController ? new AbortController() : null, t = setTimeout(function () { if (ctl) ctl.abort(); }, 8000);
+    dealsLoad = fetch(DEALS_API, {credentials: 'omit', cache: 'no-cache', signal: ctl ? ctl.signal : undefined})
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) { clearTimeout(t); if (!j || j.v !== 1 || !Array.isArray(j.firms)) throw new Error('bad snapshot'); DEALS = j; return j; })
+      .catch(function () { clearTimeout(t); return null; });
+  }
+  return dealsLoad;
+}
+var ETW = (function () { try { return new Intl.DateTimeFormat('en-US', {timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}); } catch (e) { return null; } })();
+function etWhen(t) { var d = new Date(t); return (ETW ? ETW.format(d) : d.toUTCString()) + ' ET'; }
+// drawdown words: dt eod|intraday|static, lk where a trailing floor stops (null = never)
+function ddWords(dt, lk, stage) {
+  if (dt === 'static') return 'static: the floor never moves';
+  var t = dt === 'eod' ? 'end-of-day trailing' : 'intraday trailing';
+  return t + (lk === null || lk === undefined ? ', never stops rising' + (stage ? ' in the ' + stage : '') : lk === 0 ? ', stops at the start' : ', stops at the start + ' + usd(lk));
+}
+function dllWords(dl, dm) { return dl ? 'a daily loss limit of ' + usd(dl) + (dm === 'fail' ? ' that fails the account' : ' that ends the day') : 'no daily loss limit'; }
+
+document.querySelectorAll('.calc[data-v2]').forEach(function (c) {
+  var D; try { D = JSON.parse(c.querySelector('.calc-data').textContent); } catch (e) { return; }
+  var $ = function (s) { return c.querySelector(s); }, $$ = function (s) { return c.querySelectorAll(s); };
+  var all = D.kind === 'all';
+  var S = {a: D.acct, dd: 'eod', dll: 'off', c: '0', d: '0', h: '52', f: '0', p: 'cushion', firm: '', plan: '', o: {}, own: {}, code: false};
+  Object.keys(OWN0).forEach(function (k) { S.own[k] = OWN0[k]; });
+  var q, last = null, seq = 0, timer = null, T = null, tableLoad = null, feeEdited = false, feeAuto = false, dealsWait = false;
+  if (all) { q = {}; KEYS.forEach(function (k) { q[k] = D.q[k]; }); } else q = D.q;
+  function acct() { return D.accounts.filter(function (x) { return x.id === S.a; })[0]; }
+  function mix() { return KEYS.map(function (k) { return all ? q[k] : (k === D.k ? q : 0); }); }
+  function anyOn() { return mix().some(function (x) { return x > 0; }); }
+  function mode() { return !S.firm ? 'gen' : S.firm === 'own' ? 'own' : 'firm'; }
+  function firmObj() { if (!FIRMS) return null; return FIRMS.firms.filter(function (f) { return f.id === S.firm; })[0] || null; }
+  function planObj() { var F = firmObj(); return F ? F.plans.filter(function (p) { return p.id === S.plan; })[0] || null : null; }
+  function optKey(P) { return P.opts.map(function (o) { return S.o[o.id]; }).join('|'); }
+  function sizesOf(P) { var k = optKey(P); return P.cfg[k] ? Object.keys(P.cfg[k]) : []; }
+  function firmRule() { var P = planObj(); if (!P) return null; var cf = P.cfg[optKey(P)]; return cf ? cf[S.a] || null : null; }
+  function ownRule() { var o = S.own; return {dv: o.dv, dt: o.dd, lk: o.dd === 'static' || o.lk === 'n' ? null : +o.lk, pt: o.pt, dl: o.dl, dm: o.dm, c: o.c, d: o.d}; }
+  function rule() { var m = mode(); return m === 'firm' ? firmRule() : m === 'own' ? ownRule() : null; }   // the exact rules (firm and own modes)
+  function direct() { var P = mode() === 'firm' ? planObj() : null; return !!(P && P.kind === 'direct'); }
+  function qs() {
+    if (mode() === 'gen') return 'm=' + mix().join('-') + '&a=' + S.a + '&dd=' + S.dd + '&dll=' + S.dll + '&c=' + S.c + '&d=' + S.d + '&h=' + S.h + '&f=' + S.f;
+    var R = rule();
+    return 'r=1&m=' + mix().join('-') + '&dv=' + R.dv + '&pt=' + R.pt + '&dd=' + R.dt + '&lk=' + (R.lk === null ? 'n' : R.lk) + '&dl=' + R.dl + '&dm=' + R.dm +
+      '&c=' + R.c + '&d=' + R.d + '&h=' + S.h + '&f=' + S.f;
+  }
+  function payQs() {      // what "After you pass" adds: a generic payout rule, or the firm's own funded account and payout
+    if (mode() !== 'firm') return '&p=' + S.p;
+    var R = firmRule(), f = R && R.f; if (!f) return null;
+    return '&p=r&ft=' + f.dt + '&fv=' + f.dv + '&fk=' + (f.lk === null ? 'n' : f.lk) + '&fl=' + f.dl + '&fm=' + f.dm + '&pb=' + f.pb + '&pw=' + f.pw +
+      '&pm=' + f.pm + '&pg=' + f.pg + '&pc=' + f.pc + '&pd=' + f.pd + '&pn=' + f.pn;
+  }
+  function standard() { return mode() === 'gen' && S.dd === 'eod' && S.dll === 'off' && S.c === '0' && S.d === '0' && S.h === '52' && S.f === '0'; }
+
+  // ---------- firm, plan and options ----------
+  function pickPlan(P) {      // a plan's first option set, keeping the current size if the plan has it
+    S.plan = P.id; S.o = {};
+    var k0 = Object.keys(P.cfg)[0], parts = k0 ? k0.split('|') : [];
+    P.opts.forEach(function (o, i) { S.o[o.id] = parts[i]; });
+    fitSize(P);
+  }
+  function fitSize(P) {
+    var sz = sizesOf(P);
+    if (sz.indexOf(S.a) < 0) S.a = sz.indexOf('50K') >= 0 ? '50K' : sz[0];
+  }
+  function pickOpt(P, id, v) {   // an option changed: keep it, and if the firm doesn't sell that combination, move the others
+    S.o[id] = v;
+    if (P.cfg[optKey(P)]) return '';
+    var keys = Object.keys(P.cfg), best = null, bestScore = -1, idx = P.opts.map(function (o) { return o.id; }).indexOf(id);
+    keys.forEach(function (k) {
+      var parts = k.split('|'); if (parts[idx] !== v) return;
+      var sc = 0; P.opts.forEach(function (o, i) { if (parts[i] === S.o[o.id]) sc++; });
+      if (sc > bestScore) { bestScore = sc; best = parts; }
+    });
+    if (!best) return '';
+    var moved = [];
+    P.opts.forEach(function (o, i) {
+      if (S.o[o.id] !== best[i]) { var ch = o.choices.filter(function (x) { return x[0] === best[i]; })[0]; moved.push(o.label + ': ' + (ch ? ch[1] : best[i])); }
+      S.o[o.id] = best[i];
+    });
+    return moved.length ? 'The firm sells that option only with ' + list(moved) + ', so that changed too.' : '';
+  }
+  function buildPlanCtl() {      // the plan menu and the plan's option menus
+    var F = firmObj(), wrap = $('.c-planwrap'), opts = $('.c-opts');
+    opts.textContent = '';
+    if (!F) { wrap.hidden = true; return; }
+    var sel = $('.c-plan'); sel.textContent = '';
+    F.plans.forEach(function (p) { var o = el('option', '', p.name); o.value = p.id; sel.appendChild(o); });
+    sel.value = S.plan; wrap.hidden = false;
+    var P = planObj();
+    P.opts.forEach(function (o) {
+      var lab = el('label', 'calc-f calc-sf'), k = el('span', 'calc-k', o.label), s = el('select', 'c-opt');
+      s.setAttribute('data-o', o.id);
+      o.choices.forEach(function (ch) { var x = el('option', '', ch[1]); x.value = ch[0]; s.appendChild(x); });
+      s.value = S.o[o.id];
+      lab.appendChild(k); lab.appendChild(s); opts.appendChild(lab);
+    });
+  }
+  function showMode() {
+    var m = mode();
+    $('.c-gen').hidden = m !== 'gen';
+    $('.calc-own').hidden = m !== 'own';
+    $('.calc-firm').hidden = m !== 'firm';
+    $('.c-firm').value = S.firm;
+    if (m !== 'firm') { $('.c-planwrap').hidden = true; $('.c-opts').textContent = ''; }
+    $('.c-pay').closest('label').hidden = m === 'firm';
+  }
+
+  // today's code for the plan picked, from the deals snapshot: null = no snapshot (use firms.json's Nov 17 figures);
+  // {gone, text} = no code now (ended, or none on the firm's site); {code, price, text} = the code and its price. The
+  // snapshot row is the one for this firm, plan (its board), size and list price: StratBoard options that don't change the
+  // price (Tradeify Select's payout path) share a row, and an option the catalog doesn't list falls back to firms.json.
+  function liveCode() {
+    if (!DEALS) return null;
+    var F = firmObj(), P = planObj(), R = firmRule();
+    if (!F || !P || !R) return null;
+    var f = DEALS.firms.filter(function (x) { return x.id === F.id; })[0];
+    if (!f) return null;
+    var p = f.promo, st = f.status || {};
+    if (p && p.ends && Date.parse(p.ends) <= Date.now() || st.state === 'ended') return {gone: true, text: (p && p.code ? 'Code ' + p.code : 'The sale') + ' ended' + (p && p.ends ? ' ' + etWhen(p.ends) : '') + '.'};
+    if (!p) return st.state === 'none' ? {gone: true, text: 'No public code on ' + F.name + '’s site at its last check.'} : null;
+    var r = f.rows.filter(function (x) { return x.board && x.board.split('/')[0] === P.id && x.size === S.a && x.list === R.fee; })[0];
+    if (!r || r.code === null || r.code === undefined || !r.cc) return null;
+    var ok = (st.state === 'confirmed' || st.state === 'new') && st.confirmedAt && Date.now() - Date.parse(st.confirmedAt) <= 36 * 3600e3;
+    return {code: r.cc, price: r.code, text: 'Code ' + r.cc + ': ' + usdc(r.code) + (ok ? ', confirmed on ' + F.name + '’s site ' + etWhen(st.confirmedAt) : st.confirmedAt ? ', not reconfirmed since ' + etWhen(st.confirmedAt) : '') + '.'};
+  }
+
+  // the plan's rules in words, its prices, contract limits, the firm's automation and news rules, notes and sources
+  function firmBox() {
+    var box = $('.calc-firm'); box.textContent = '';
+    var F = firmObj(), P = planObj(), R = firmRule();
+    if (!F || !P || !R) return;
+    // today's codes: asked for the first time a firm plan shows (most visitors never pick one); this calculator redraws once
+    // they arrive, whichever calculator asked first
+    if (!DEALS && !dealsWait) { dealsWait = true; loadDeals().then(function (j) { if (j && mode() === 'firm') { firmBox(); if (!feeEdited) fillFees(); cost(); } }); }
+    var ul = el('ul', 'cf-rules');
+    function row(k, text, cls) { var li = el('li', cls || ''); li.appendChild(el('span', 'cf-k', k)); li.appendChild(el('span', 'cf-v', text)); ul.appendChild(li); return li; }
+    var ev = [usd(R.pt) + (P.kind === 'direct' ? ' first payout goal' : ' profit target'), usd(R.dv) + ' drawdown, ' + ddWords(R.dt, R.lk, P.kind === 'direct' ? '' : 'evaluation'), dllWords(R.dl, R.dm),
+              R.c ? 'best day at most ' + R.c + '% of the profit' : 'no consistency rule'];
+    if (R.d) ev.push('at least ' + R.d + ' trading day' + (R.d === 1 ? '' : 's'));
+    row(P.kind === 'direct' ? 'No evaluation' : 'Evaluation', cap1(ev.join(', ')) + '.');
+    if (R.f) {
+      var f = R.f;
+      row('Funded', cap1([usd(f.dv) + ' drawdown, ' + ddWords(f.dt, f.lk, ''), dllWords(f.dl, f.dm)].join(', ')) + '. First payout: ' + payNeeds(f) + '.');
+    }
+    row('Payouts', (R.cap ? 'Up to ' + usd(R.cap) + ' on the first payout' : 'No cap per payout') + ', smallest ' + usd(R.minpay) + ', you keep ' + R.split + '%.');
+    var price = (R.fee ? usdc(R.fee) + ' one time' : 'price not on the plan page') + (R.reset ? ', reset ' + usdc(R.reset) : R.rs === 'none' ? ', no resets' : ', reset price not listed');
+    var L = liveCode();
+    row('Price', price + ', no activation fee.' + (L ? ' ' + L.text : R.promo ? ' ' + F.promo.split(':')[0] + ': ' + usdc(R.promo) + '.' : ''));
+    var lim = 'Up to ' + R.mx + ' micros' + (R.mx >= 10 ? ' (' + (R.mx / 10) + ' mini' + (R.mx === 10 ? '' : 's') + ')' : '') + (P.kind === 'direct' ? '' : ' in the evaluation') + (R.fmx ? '; funded starts at ' + R.fmx + ' and scales up' : '') + '.';
+    row('Contracts', lim).classList.add('c-lim');
+    row('Automation', F.auto.text, 'cf-' + F.auto.tone);
+    if (P.news) row('News', P.news, 'cf-w');
+    if (P.notes && P.notes.length) row('Not in the replay', P.notes.join(' '), 'cf-m');
+    box.appendChild(ul);
+    var src = el('p', 'cf-src');
+    src.appendChild(document.createTextNode('From ' + F.name + '’s own pages, checked ' + FIRMS.checkedText + ': '));
+    P.src.forEach(function (s, i) {
+      var a = el('a', '', s[0]); a.href = s[1]; a.rel = 'noopener noreferrer'; a.target = '_blank';
+      if (i) src.appendChild(document.createTextNode(' · ')); src.appendChild(a);
+    });
+    if (L) {   // today's code is from Prop Deals, which links to the firm's own page
+      src.appendChild(document.createTextNode('. The code is from '));
+      var dl = el('a', '', 'Prop Deals'); dl.href = F.id + '-promo-code.html'; src.appendChild(dl);
+      src.appendChild(document.createTextNode(', which reads ' + F.name + '’s site every 6 hours. Firms change rules and prices often, so check before you buy. Not affiliated with ' + F.name + '.'));
+    } else src.appendChild(document.createTextNode('. ' + F.promo + ' Firms change rules and prices often, so check before you buy. Not affiliated with ' + F.name + '.'));
+    box.appendChild(src);
+    if (S.optNote) box.insertBefore(el('p', 'cf-note', S.optNote), box.firstChild);
+    limits();
+  }
+  function payNeeds(f) {
+    var p = [f.pbx];
+    if (f.pw) p.push(f.pw + ' days closing ' + (f.pg ? 'above ' : 'at or above ') + usd(f.pm));
+    if (f.pc) p.push('a best day at most ' + f.pc + '% of the profit');
+    if (f.pd) p.push(f.pd + ' days with a trade');
+    if (f.pn) p.push(f.pn + ' sessions since the account started');
+    return list(p);
+  }
+  function limits() {   // contracts picked against the plan's limit (Trend and Select can use twice their base size)
+    var li = $('.c-lim'); if (!li) return;
+    var R = firmRule(); if (!R) return;
+    var peak = 0, m = mix(); KEYS.forEach(function (k, i) { peak += m[i] * (SIZEUP[k] ? 2 : 1); });
+    var w = li.querySelector('.cf-warn'); if (w) w.remove();
+    var over = peak > R.mx, fover = !over && R.fmx && peak > R.fmx;
+    if (over || fover) {
+      li.querySelector('.cf-v').appendChild(el('span', 'cf-warn', ' At these sizes the strategies can hold up to ' + peak + ' MNQ at once, over ' +
+        (over ? 'this plan’s limit' : 'the funded account’s starting limit') + '.'));
+    }
+  }
+
+  // a shared link: #calc?m=...  generic: the settings the server takes; a firm plan: fp=firm.plan, fo=options; own rules: own=...
+  function readHash() {
+    if (location.hash.indexOf('#calc?') !== 0) return;
+    var p; try { p = new URLSearchParams(location.hash.slice(6)); } catch (e) { return; }
+    var ok = true, n = {};
+    ['h', 'f', 'p'].concat(p.get('fp') || p.get('own') ? [] : ['dd', 'dll', 'c', 'd']).forEach(function (k) { var v = p.get(k); if (v === null) return; if (MENU[k].indexOf(v) < 0) ok = false; else n[k] = v; });
+    var m = (p.get('m') || '').split('-'), nq = null;
+    if (m.length === 5 && m.every(function (x) { return /^\d{1,2}$/.test(x); })) {
+      m = m.map(Number);
+      if (all) { if (m.every(function (x) { return x <= D.maxq; }) && m.some(function (x) { return x > 0; })) nq = m; else ok = false; }
+      else { var i = KEYS.indexOf(D.k); if (m[i] >= 1 && m[i] <= D.max && m.every(function (x, j) { return j === i || x === 0; })) nq = m[i]; else ok = false; }
+    } else if (p.get('m') !== null) ok = false;
+    var a = p.get('a');
+    var own = p.get('own'), fp = p.get('fp');
+    if (own !== null) {   // pt.dv.dd.lk.dl.dm.c.d
+      var v = own.split('.');
+      if (v.length !== 8) ok = false;
+      else {
+        var o = {pt: +v[0], dv: +v[1], dd: v[2], lk: v[3], dl: +v[4], dm: v[5], c: +v[6], d: +v[7]};
+        if (MENU.dd.indexOf(o.dd) < 0 || ['n', '0', '100'].indexOf(o.lk) < 0 || ['day', 'fail'].indexOf(o.dm) < 0) ok = false;
+        Object.keys(LIM).forEach(function (k) { var L = LIM[k]; if (!(o[k] >= L[0] && o[k] <= L[1] && o[k] % L[2] === 0)) ok = false; });
+        if (ok) { n.firm = 'own'; n.own = o; }
+      }
+    }
+    if (a !== null && !fp) { if (D.accounts.some(function (x) { return x.id === a; })) n.a = a; else ok = false; }
+    if (!ok) return;
+    function apply() {
+      Object.keys(n).forEach(function (k) { S[k] = n[k]; });
+      if (nq !== null) { if (all) KEYS.forEach(function (k, i) { q[k] = nq[i]; }); else q = nq; }
+      setTimeout(function () { c.scrollIntoView({block: 'start'}); }, 0);
+    }
+    if (!fp) { apply(); return; }
+    // a firm plan needs firms.json first
+    return loadFirms(D.firms).then(function () {
+      var fs = fp.split('.'), F = FIRMS.firms.filter(function (f) { return f.id === fs[0]; })[0], P = F && F.plans.filter(function (x) { return x.id === fs[1]; })[0];
+      if (!P) return;
+      var parts = (p.get('fo') || '').split('.'), key = P.opts.length ? parts.join('|') : '';
+      if (!P.cfg[key] || (a !== null && !P.cfg[key][a])) return;
+      apply();
+      S.firm = F.id; S.plan = P.id; S.o = {}; P.opts.forEach(function (o, i) { S.o[o.id] = parts[i]; });
+      if (a !== null) S.a = a; else fitSize(P);
+    }).catch(function () {});
+  }
+
+  function rulesExtra(a) {
+    var p = [];
+    p.push(S.dll === 'off' ? 'no daily loss limit' : 'a daily loss limit of ' + usd(a.dd / 2) + (S.dll === 'day' ? ' that ends the day' : ' that fails the account'));
+    p.push(S.c === '0' ? 'no consistency rule' : 'best day at most ' + S.c + '% of the profit');
+    p.push(S.d === '0' ? 'no minimum days' : 'at least ' + S.d + ' trading days');
+    if (S.f === '1') p.push('every trade a tick worse in and out');
+    var s = p.join(', '); return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  function rulesExtraR(R) {    // the same line for exact rules
+    var p = [dllWords(R.dl, R.dm), R.c ? 'best day at most ' + R.c + '% of the profit' : 'no consistency rule', R.d ? 'at least ' + R.d + ' trading day' + (R.d === 1 ? '' : 's') : 'no minimum days'];
+    if (S.f === '1') p.push('every trade a tick worse in and out');
+    return cap1(p.join(', '));
+  }
+  function syncCtl() {
+    var m = mode(), P = m === 'firm' ? planObj() : null, sz = P ? sizesOf(P) : null;
+    $$('[data-acct]').forEach(function (x) {
+      var id = x.getAttribute('data-acct'), off = !!(sz && sz.indexOf(id) < 0);
+      x.setAttribute('aria-pressed', id === S.a ? 'true' : 'false'); x.disabled = off; x.hidden = off && id === '300K';
+    });
+    $$('[data-h]').forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-h') === S.h ? 'true' : 'false'); });
+    $$('.c-sel').forEach(function (s) { s.value = S[s.getAttribute('data-p')]; });
+    $('.c-fills').checked = S.f === '1';
+    $('.c-pay').value = S.p;
+    if (all) {
+      var tot = 0, on = 0;
+      KEYS.forEach(function (k) {
+        tot += q[k]; if (q[k]) on++;
+        var o = c.querySelector('.c-qk[data-k="' + k + '"]'); o.textContent = q[k] || 'Off'; o.closest('.mixrow').classList.toggle('off', !q[k]);
+        c.querySelector('[data-k="' + k + '"][data-q="-1"]').disabled = q[k] <= 0; c.querySelector('[data-k="' + k + '"][data-q="1"]').disabled = q[k] >= D.maxq;
+      });
+      $('.c-tot').textContent = tot + ' MNQ'; $('.c-on').textContent = on; $('.c-totnote').style.display = on ? '' : 'none';
+      $$('[data-on]').forEach(function (x) { var k = x.getAttribute('data-on'), on = q[k] > 0; x.setAttribute('aria-pressed', on ? 'true' : 'false'); x.setAttribute('aria-label', D.names[k] + (on ? ' on' : ' off')); });
+      var code = KEYS.map(function (k) { return q[k]; }).join('-');
+      $$('[data-mix]').forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-mix') === code ? 'true' : 'false'); });
+    } else {
+      $('.c-q').textContent = q; c.querySelector('[data-q="-1"]').disabled = q <= 1; c.querySelector('[data-q="1"]').disabled = q >= D.max;
+    }
+    if (m === 'gen') {
+      var a = acct();
+      $('.c-dd').textContent = usd(a.dd); $('.c-pt').textContent = usd(a.pt); $('.c-ptl').textContent = 'Profit target';
+      $('.c-rtype').textContent = DDT[S.dd]; $('.c-rx').textContent = rulesExtra(a);
+    } else {
+      var R = rule();
+      $('.c-dd').textContent = usd(R.dv); $('.c-pt').textContent = usd(R.pt); $('.c-ptl').textContent = direct() ? 'First payout goal' : 'Profit target';
+      $('.c-rtype').textContent = cap1(ddWords(R.dt, R.lk, direct() ? '' : 'evaluation')); $('.c-rx').textContent = rulesExtraR(R);
+    }
+    if (m === 'own') ['pt', 'dv', 'dl', 'c', 'd'].forEach(function (k) { var i = c.querySelector('.c-own[data-k="' + k + '"]'); if (document.activeElement !== i) i.value = S.own[k]; });
+    if (m === 'own') $$('.c-ownsel').forEach(function (s) { s.value = S.own[s.getAttribute('data-k')]; });
+    $$('.c-hl').forEach(function (x) { x.textContent = HL[S.h]; });
+    limits();
+  }
+
+  // grokbot's analytics hook (live since Nov 12 2026, kept here): a 'b2b:propcalc' event each time the figures are redrawn
+  var drawn = false;
+  function track() {
+    var d = {type: drawn ? 'change' : 'draw', where: all ? 'all-five' : D.k, acct: S.a, q: all ? {} : q,
+             rules: {dd: S.dd, dll: S.dll, c: S.c, d: S.d, h: S.h, f: S.f}, firm: S.firm, plan: S.plan, opts: S.o};
+    if (all) KEYS.forEach(function (k) { d.q[k] = q[k]; });
+    drawn = true;
+    try { window.dispatchEvent(new CustomEvent('b2b:propcalc', {detail: d})); } catch (e) {}
+  }
+
+  function ddNow() { return mode() === 'gen' ? acct().dd : rule().dv; }
+  // the four shares in % (passed, hit the drawdown, neither, still running when the backtest ended), the weeks, the worst drawdown
+  function setOdds(P, F, N, Rn, med, q25, q75, wdd, starts, label) {
+    var dd = ddNow();
+    $('.calc-out').classList.remove('none'); var pk = $('.sb-pk'), tn = tone(P, 70, 50);
+    if (pk) { pk.textContent = pct(P); pk.classList.remove('g', 'w', 'r'); pk.classList.add(tn); }
+    var pb = $('.c-pass'); pb.textContent = pct(P); pb.classList.remove('g', 'w', 'r'); pb.classList.add(tn);   // green, amber or red at every width (Nov 23 2026)
+    // the label back from blank()'s message (Nov 23 2026: this sat inside the comment above, so it stayed on the message)
+    $('.c-passl').textContent = direct() ? 'reached the first payout’s profit goal before the drawdown' : 'reached the profit target before the drawdown';
+    $('.c-fail').textContent = pct(F); $('.c-nei').textContent = pct(N); $('.c-fail').classList.toggle('r', F >= 0.5);
+    $('.c-run').textContent = pct(Rn); $('.c-runrow').hidden = !(Rn > 0);
+    var b = $$('.calc-bar i'); b[0].style.width = P + '%'; b[1].style.width = F + '%'; b[2].style.width = N + '%'; b[3].style.width = Rn + '%';
+    $('.c-wk').textContent = weeks(med); $('.c-iq').textContent = med === null ? 'no start reached the target within ' + HL[S.h] : iq(q25, q75);
+    var d = $('.c-wdd'); d.textContent = usd(wdd); d.classList.toggle('over', wdd > dd); d.classList.toggle('g', wdd <= dd); $('.c-wddp').textContent = 'against the ' + usd(dd) + ' drawdown';
+    $('.c-starts').textContent = starts.toLocaleString('en-US'); $('.c-win').textContent = label;
+    track();
+  }
+  function blank(msg) {
+    worstTiles(null); mixTiles(null); var so = $('.sb-stress'); if (so) so.hidden = true;
+    $('.calc-out').classList.add('none'); $('.c-pass').textContent = '–'; $('.c-pass').classList.remove('g', 'w', 'r');
+    var pk = $('.sb-pk'); if (pk) { pk.textContent = '–'; pk.classList.remove('g', 'w', 'r'); } $('.c-passl').textContent = msg;
+    ['.c-fail', '.c-nei', '.c-wk', '.c-wdd'].forEach(function (s) { $(s).textContent = '–'; $(s).classList.remove('r', 'g', 'over'); }); $('.c-iq').textContent = ''; $('.c-wddp').textContent = '';
+    $('.c-runrow').hidden = true;
+    $$('.calc-bar i').forEach(function (i) { i.style.width = '0%'; });
+    explain(lastW || winNow(), null);   // every setting has the same start dates; what's still running isn't known here
+    track();
+  }
+  function show(j) {
+    last = j;
+    var w = j.window, st = w.starts, R = j.result, W = {from: w.from, to: w.to, last: w.lastStart, sessions: w.sessions, starts: st};
+    setOdds(100 * R.pass / st, 100 * R.fail / st, 100 * R.neither / st, 100 * R.running / st, R.medWeeks, R.q25, R.q75, j.worst.dd, st, month(W.from) + ' to ' + month(W.last));
+    explain(W, R.running);
+    worstTiles(j); mixTiles(j); chart(j); room(); cost(); stress(j);
+  }
+
+  // How this works (Nov 23 2026; Joe: "Same start dates, explained"): what the figures rest on. W = {from, to, last, sessions,
+  // starts}: the first start date, the backtest's last session and the last start date (ISO), the test period's sessions and
+  // the tries. running: how many tries the backtest ended before. With the server down the site's tables hold shares, not
+  // counts, so share (in %) stands in and the line says "about" (Ruling R13); with neither (a blank board) the line stops at
+  // the backtest's end. The timeline is a schematic to the test period's scale: the start dates, then the time allowed.
+  var lastW = null;   // the window the line last described
+  function winNow() { return all ? D.windows[q.select ? 'select' : 'all'] : D.win; }   // the page's own, for the mix picked
+  function explain(W, running, share) {
+    lastW = W;
+    var whole = ', so the latest tries can’t use the whole ' + HW[S.h] + ': ';
+    $('.c-howline').textContent = 'Each try opens a new account on one trading day and plays the backtest’s trades forward under these rules until it reaches ' +
+      (direct() ? 'the first payout goal' : 'the target') + ', hits the drawdown or runs out of time. ' + W.starts.toLocaleString('en-US') + ' tries, one on every trading day from ' +
+      day(W.from) + ' to ' + day(W.last) + ', each with at least 3 months of backtest after it. The backtest ends ' + day(W.to) +
+      (running > 0 ? whole + running.toLocaleString('en-US') + (running === 1 ? ' was' : ' were') + ' still running when it ended.'
+        : running === null && share > 0 ? whole + (share < 0.5 ? 'under 1%' : 'about ' + pct(share)) + ' of them were still running when it ended.' : '.');
+    $('.c-tl .tl-st').style.width = (100 * W.starts / W.sessions).toFixed(1) + '%';
+    $('.c-tl .tl-h').style.width = (100 * Math.min(1, 5 * Number(S.h) / W.sessions)).toFixed(1) + '%';
+    $('.c-tl-starts').textContent = 'Start dates: ' + month(W.from) + ' to ' + month(W.last);
+    $('.c-tl-h').textContent = 'Time allowed: ' + HLB[S.h];
+    $('.c-tl-span').textContent = 'Test period: ' + month(W.from) + ' to ' + month(W.to);
+  }
+
+  // StratBoard (Nov 18 2026): the status in the title bar, the worst day and worst five days the server already sends,
+  // the same setup rerun with worse fills (or without them), the starting mixes and the tools' tab strip.
+  function status(s) {
+    var p = $('.sb-live'); if (!p) return;
+    p.setAttribute('data-s', s);
+    p.textContent = s === 'busy' ? 'Replaying…' : s === 'live' ? 'Replay done' : s === 'std' ? 'Standard figures' : s === 'off' ? 'Waiting for a strategy' : 'Backtest replay';
+  }
+  function worstTiles(j) {
+    var W = j && j.worst;
+    $$('.sb-srv').forEach(function (x) { x.hidden = !W; });
+    if (!W) return;
+    var dd = ddNow();
+    [['.c-wday', W.day], ['.c-w5', W.week]].forEach(function (p) {
+      var o = $(p[0]); if (!o) return;
+      o.textContent = usd(p[1]); o.classList.toggle('over', p[1] > dd); o.classList.toggle('g', p[1] <= dd / 2);
+    });
+  }
+  function stress(j) {
+    var o = $('.sb-stress'); if (!o) return;
+    o.hidden = true;
+    var alt = S.f === '1' ? '0' : '1', my = seq, base = qs(), aq = base.replace(/&f=[01]/, '&f=' + alt);
+    if (aq === base) return;
+    get(aq).then(function (k) {
+      if (my !== seq || !k.window.starts) return;
+      var a = 100 * j.result.pass / j.window.starts, b = 100 * k.result.pass / k.window.starts, d = Math.round(b) - Math.round(a);
+      var diff = d === 0 ? 'about the same' : Math.abs(d) + (Math.abs(d) === 1 ? ' percentage point ' : ' percentage points ') + (d < 0 ? 'lower' : 'higher');
+      var wk = k.mix ? ', and ' + sm(k.mix.perWeek) + ' a week' : '';
+      put(o, alt === '1' ? ['With worse fills, every trade a tick worse in and out: ', [pct(b), tone(b, 70, 50)], ' reached the target, ' + diff + wk + '.']
+                         : ['As tested, without worse fills: ', [pct(b), tone(b, 70, 50)], ' reached the target, ' + diff + wk + '.']);
+      o.hidden = false;
+    }).catch(function () { o.hidden = true; });
+  }
+  function mixTiles(j) {
+    var box = $('.sb-mix'), M = j && j.mix; if (!box) return;
+    box.hidden = !M; if (!M) return;
+    var put1 = function (cls, txt, tone) { var o = $(cls); if (!o) return; o.textContent = txt; o.classList.remove('g', 'r'); if (tone) o.classList.add(tone); };
+    put1('.c-mpw', sm(M.perWeek), M.perWeek > 0 ? 'g' : M.perWeek < 0 ? 'r' : '');
+    put1('.c-mtw', M.tradesPerWeek.toFixed(2));
+    put1('.c-mww', sm(M.worstWeek), M.worstWeek < 0 ? 'r' : '');
+    put1('.c-mld', String(M.loseDays));
+    put1('.c-mlw', String(M.loseWeeks));
+  }
+  var mem = {};   // each strategy's size before its switch turned it off
+  function resetAll() {
+    var d = {a: D.acct, dd: 'eod', dll: 'off', c: '0', d: '0', h: '52', f: '0', p: 'cushion', firm: '', plan: '', o: {}, own: {}, code: false};
+    Object.keys(d).forEach(function (k) { S[k] = d[k]; });
+    Object.keys(OWN0).forEach(function (k) { S.own[k] = OWN0[k]; });
+    if (all) KEYS.forEach(function (k) { q[k] = D.q[k]; }); else q = D.q;
+    mem = {}; delete S.optNote;
+    feeEdited = false; feeAuto = false; $('.c-fee').value = ''; $('.c-reset').value = '';
+    $('.c-bal').value = ''; $('.c-floor').value = ''; $('.c-code').checked = false; $('.c-ownnote').textContent = '';
+    if (location.hash.indexOf('#calc?') === 0 && history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+    tab(''); showMode(); fillFees(); update();
+  }
+  function tab(name) {
+    $$('.calc-tool').forEach(function (d) { var on = d.getAttribute('data-tool') === name; if (d.open !== on) d.open = on; });
+    $$('.sb-tab').forEach(function (b) { b.setAttribute('aria-selected', b.getAttribute('data-tab') === name ? 'true' : 'false'); });
+  }
+
+  var drawnW = 0;
+  function chart(j) {
+    var R = j.result, st = j.window.starts, W = R.curve.pass.length, holder = $('.calc-chart');
+    // drawn at the chart's own width, so the labels keep their size on a phone and on a wide screen
+    var w = Math.max(240, Math.round(holder.clientWidth || 640)), h = Math.max(180, Math.min(240, Math.round(w * 0.32)));
+    var l = 42, r = 10, t = 10, bt = 26, iw = w - l - r, ih = h - t - bt;
+    drawnW = holder.clientWidth;
+    function X(i) { return (l + iw * i / W).toFixed(1); }
+    function Y(p) { return (t + ih * (1 - p / 100)).toFixed(1); }
+    function path(arr) { var s = 'M' + X(0) + ' ' + Y(0); for (var i = 0; i < W; i++) s += ' L' + X(i + 1) + ' ' + Y(100 * arr[i] / st); return s; }
+    var g = '';
+    [0, 25, 50, 75, 100].forEach(function (p) { g += '<line class="gl" x1="' + l + '" x2="' + (w - r) + '" y1="' + Y(p) + '" y2="' + Y(p) + '"/><text class="yl" x="' + (l - 8) + '" y="' + (+Y(p) + 4) + '">' + p + '%</text>'; });
+    (w < 420 ? [0, W / 2, W] : [0, W / 4, W / 2, 3 * W / 4, W]).forEach(function (i) {
+      i = Math.round(i);
+      g += i === W ? '<text class="xl xe" x="' + (w - r) + '" y="' + (h - 7) + '">' + i + ' weeks</text>' : '<text class="xl" x="' + X(i) + '" y="' + (h - 7) + '">' + i + '</text>';
+    });
+    var pEnd = 100 * R.curve.pass[W - 1] / st, fEnd = 100 * R.curve.fail[W - 1] / st;
+    holder.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="By week ' + W + ', ' + pct(pEnd) + ' of the runs had reached the ' + (direct() ? 'first payout goal' : 'profit target') + ' and ' + pct(fEnd) + ' had hit the drawdown">' + g +
+      '<path class="lp" d="' + path(R.curve.pass) + '"/><path class="lf" d="' + path(R.curve.fail) + '"/></svg>';
+    var rows = '';
+    [1, 2, 4, 8, 13, 26, 39, 52, 78, 104].filter(function (x) { return x <= W; }).forEach(function (x) {
+      rows += '<tr><td>' + x + '</td><td>' + pct(100 * R.curve.pass[x - 1] / st) + '</td><td>' + pct(100 * R.curve.fail[x - 1] / st) + '</td></tr>';
+    });
+    $('.calc-wtab tbody').innerHTML = rows;
+    var rn = $('.calc-runnote');   // the lines are shares of every try, and a try the backtest ended before stops adding to them
+    rn.hidden = !R.running;
+    rn.textContent = R.running ? 'The lines count all ' + st.toLocaleString('en-US') + ' tries; a try that started near the end of the backtest can’t add to them after it ends.' : '';
+  }
+
+  // Already in an evaluation? (worked out here, from the totals the server sent)
+  function room() {
+    var o = $('.c-room'), bal = num($('.c-bal').value), fl = num($('.c-floor').value);
+    if (!last || bal === null || fl === null) { o.textContent = ''; return; }
+    var rm = bal - fl;
+    if (rm <= 0) { o.textContent = 'The balance is at or below the floor, so there is no room left.'; return; }
+    var W = last.worst, pc = function (x) { return Math.round(100 * x / rm) + '% of your room'; };
+    o.innerHTML = '';
+    var parts = [['Room to the floor: ', usd(rm), '. '], ['At these sizes the backtest’s worst day was ', usd(W.day), ' (' + pc(W.day) + '), '],
+                 ['its worst five trading days ', usd(W.week), ' (' + pc(W.week) + ') '], ['and its worst drawdown ', usd(W.dd), ' (' + pc(W.dd) + ').']];
+    parts.forEach(function (p, i) {
+      o.appendChild(document.createTextNode(p[0]));
+      var b = document.createElement('b'); b.textContent = p[1]; o.appendChild(b);
+      var s = document.createElement('span'); s.textContent = p[2];
+      if (i > 0) { var sh = [W.day, W.week, W.dd][i - 1] / rm; b.className = s.className = sh > 1 ? 'over' : sh >= 0.75 ? 'w' : 'g'; }   // fits, close, past the floor
+      o.appendChild(s);
+    });
+    var dl = mode() === 'gen' ? (S.dll !== 'off' ? acct().dd / 2 : 0) : rule().dl;
+    if (dl) o.appendChild(document.createTextNode(' These are the backtest’s own figures, before your daily loss limit of ' + usd(dl) + '.'));
+    var dt = mode() === 'gen' ? S.dd : rule().dt;
+    if (dt !== 'static') o.appendChild(document.createTextNode(' A trailing floor moves up as the balance makes new highs, so recheck it as you go.'));
+  }
+
+  // Cost to get funded (worked out here). A firm plan fills in its own prices until the visitor types their own.
+  function monthlyCost() {
+    var on = KEYS.filter(function (k, i) { return mix()[i] > 0; });
+    var sum = on.reduce(function (s, k) { return s + D.monthly[k]; }, 0);
+    if (on.length > 1 && D.monthly.all && D.monthly.all < sum) return {usd: D.monthly.all, what: D.bundle};
+    return {usd: sum, what: on.length === 1 ? 'the ' + D.names[on[0]] + ' plan' : 'those ' + on.length + ' plans'};
+  }
+  function fillFees() {
+    var m = mode(), R = m === 'firm' ? firmRule() : null, F = firmObj();
+    var codeRow = $('.c-coderow'), dir = direct();
+    $('.c-feel').textContent = dir ? 'Account price' : 'Evaluation fee';
+    $('.c-resetl').textContent = dir ? 'Buying it again' : 'Reset fee';
+    var L = R ? liveCode() : null, promo = L ? (L.gone ? null : L.price) : R && R.promo;   // today's code price, or Nov 17's
+    codeRow.hidden = !promo;
+    if (promo) $('.c-codel').textContent = 'Use code ' + (L ? L.code : F.promo.split(':')[0].replace(/^Code /, '')) + ' (' + usdc(promo) + ')';
+    if (feeEdited) return;
+    if (!R) { if (feeAuto) { $('.c-fee').value = ''; $('.c-reset').value = ''; feeAuto = false; } return; }
+    var fee = S.code && promo ? promo : R.fee;
+    $('.c-fee').value = fee ? String(fee) : '';
+    $('.c-reset').value = R.reset ? String(R.reset) : R.fee ? String(R.fee) : '';
+    feeAuto = true;
+  }
+  function cost() {
+    var o = $('.c-cost'), fee = num($('.c-fee').value), rs = num($('.c-reset').value);
+    if (!last || fee === null) { o.textContent = (mode() === 'firm' && firmRule() && !firmRule().fee) ? 'This option’s price isn’t on the firm’s plan page. Enter it from its checkout.' : ''; return; }
+    if (rs === null) rs = fee;
+    var R = last.result, done = R.pass + R.fail, dir = direct();
+    if (!R.pass) { o.textContent = 'No start reached the ' + (dir ? 'first payout goal' : 'target') + ' within ' + HL[S.h] + ' on these settings, so there is no cost to work out.'; return; }
+    var tries = done / R.pass, total = fee + rs * (tries - 1), m = Math.max(1, Math.ceil(R.medWeeks / 4.345)), mc = monthlyCost(), ps = 100 * R.pass / done;
+    var Rf = mode() === 'firm' ? firmRule() : null, tn = Math.round(tries * 10) / 10;
+    put(o, ['Of the runs that ended within ' + HL[S.h] + ', ', [pct(ps), tone(ps, 70, 50)], (dir ? ' reached the first payout goal' : ' passed') + ': about ' + tn + (dir ? (tn === 1 ? ' account' : ' accounts') + ' per success' : (tn === 1 ? ' try' : ' tries') + ' per pass') + ' on average, so about ', [usd(total), 'r'],
+      (dir ? ' in account purchases (' + usd(fee) + ' for the first and ' + usd(rs) + ' for each one after)' : ' in evaluation fees (' + usd(fee) + ' for the first try and ' + usd(rs) + ' for each reset)') + '. The typical ' + (dir ? 'run to the goal' : 'pass') + ' took ' + weeks(R.medWeeks) + ', about ' + m + ' month' + (m === 1 ? '' : 's') +
+      ' of ' + mc.what + ' at ' + usdc(mc.usd) + ' a month: ', [usdc(m * mc.usd), 'r'], '. Rough arithmetic from a hypothetical backtest, not a forecast; ' + (Rf ? 'this firm charges no activation fee, but data and platform fees are left out' : 'it leaves out data, platform and activation fees') + ', and tries that did neither or were still running at the backtest’s end aren’t counted.']);
+  }
+
+  // After you pass (the server works it out)
+  var payTimer = null;
+  function payout() {
+    var det = $('[data-tool="payout"]'), o = $('.c-payout'), intro = $('.c-payin');
+    var m = mode(), R = m === 'firm' ? firmRule() : null;
+    intro.textContent = R ? (R.f ? 'A funded account on ' + firmObj().name + '’s rules for this plan, started on every start date: how often it reached a first payout before the account was lost.' : 'This plan has no evaluation, so the figures above already are the run to its first payout.')
+      : 'A funded account started on every start date, on the drawdown rules above: how often it reached a first payout before the account was lost.';
+    clearTimeout(payTimer);
+    if (!det.open) return;
+    if (!anyOn() || (R && !R.f)) { o.textContent = ''; return; }
+    payTimer = setTimeout(function () {
+      var pq = payQs(); if (pq === null || !anyOn()) return;   // the plan may have changed while this waited
+      var my = seq, s = qs() + pq;
+      o.textContent = 'Working it out…';
+      get(s).then(function (j) {
+        if (my !== seq) return;
+        var P = j.payout, st = j.window.starts;
+        var pp = 100 * P.pass / st, pf = 100 * P.fail / st;
+        var needs = R ? payNeeds(R.f) : PAYNEEDS[S.p];
+        var tail = R ? ' ' + (R.cap ? 'The first payout can be up to ' + usd(R.cap) : 'There’s no cap per payout') + ', and you keep ' + R.split + '%.' : '';
+        put(o, ['Needs ' + needs + '. ', [pct(pp), tone(pp, 70, 50)], ' reached a first payout before losing the funded account, ', [pct(pf), pf >= 0.5 ? 'r' : ''], ' lost it first and ' +
+          pct(100 * P.neither / st) + ' did neither within ' + HL[S.h] + (P.running ? ', and ' + P.running.toLocaleString('en-US') + (P.running === 1 ? ' was' : ' were') + ' still running when the backtest ended' : '') +
+          '. ' + (P.medWeeks === null ? '' : 'The typical first payout came after ' + weeks(P.medWeeks) + ' (' + iq(P.q25, P.q75) + ').') + tail]);
+      }).catch(function () { if (my === seq) o.textContent = 'The StratBoard server isn’t answering right now. Try again in a minute.'; });
+    }, 150);
+  }
+
+  // Check the order (the server reshuffles)
+  function shuffle() {
+    var o = $('.c-shout'), my = seq, b = $('.c-shuffle');
+    if (!anyOn()) return;
+    o.textContent = 'Reshuffling 40 times…'; b.disabled = true;
+    get(qs() + '&x=1').then(function (j) {
+      b.disabled = false; if (my !== seq) return;
+      var X = j.shuffle, st = j.window.starts;
+      var t = function (x) { return [pct(x), tone(x, 70, 50)]; };
+      put(o, ['In history’s order: ', t(100 * j.result.pass / st), '. Across 40 reshuffled orders the pass rate ran from ', t(X.min), ' to ', t(X.max),
+        ', and 8 in 10 of them landed between ', t(X.p10), ' and ', t(X.p90), ' (middle ', t(X.median), ').']);
+    }).catch(function () { b.disabled = false; if (my === seq) o.textContent = 'The StratBoard server isn’t answering right now. Try again in a minute.'; });
+  }
+
+  function linkQs() {
+    var m = mode(), open = $('[data-tool="payout"]').open, s = 'm=' + mix().join('-');
+    if (m === 'gen') return qs() + (open ? '&p=' + S.p : '');
+    if (m === 'own') { var o = S.own; return s + '&own=' + [o.pt, o.dv, o.dd, o.lk, o.dl, o.dm, o.c, o.d].join('.') + '&h=' + S.h + '&f=' + S.f + (open ? '&p=' + S.p : ''); }
+    var P = planObj();
+    return s + '&fp=' + S.firm + '.' + S.plan + (P.opts.length ? '&fo=' + P.opts.map(function (x) { return S.o[x.id]; }).join('.') : '') + '&a=' + S.a + '&h=' + S.h + '&f=' + S.f + (open ? '&p=cushion' : '');
+  }
+  function copy() {
+    var url = location.href.split('#')[0] + '#calc?' + linkQs(), o = $('.c-copied');
+    var done = function () { o.textContent = 'Link copied'; setTimeout(function () { o.textContent = ''; }, 2500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link:', url); });
+    else window.prompt('Copy this link:', url);
+  }
+
+  // when the server can't be reached: the standard rules from the site's own tables
+  function fallback() {
+    var n = $('.calc-note'), W = winNow();
+    $('.calc-more').hidden = true; status('std'); worstTiles(null); mixTiles(null); var so = $('.sb-stress'); if (so) so.hidden = true;
+    if (!standard()) {
+      lastW = W; blank('needs the StratBoard server');
+      n.textContent = mode() === 'gen' ? 'The StratBoard server isn’t answering right now, and these rules need it. The standard rules (end-of-day trailing, no other rules, a year) still work from the site’s own figures. Reload the page to try again.'
+        : 'The StratBoard server isn’t answering right now, and firm plans and your own rules need it. The generic rules (end-of-day trailing, no other rules, a year) still work from the site’s own figures. Reload the page to try again.';
+      n.hidden = false; return;
+    }
+    n.textContent = 'The StratBoard server isn’t answering right now, so this shows the standard rules from the site’s own figures, without the extra tools. Reload the page to try again.';
+    n.hidden = false;
+    if (!all) {
+      var r = D.res[S.a][q - 1];   // [passed, hit the drawdown, neither, median weeks, q25, q75, still running] (shares in %)
+      setOdds(r[0], r[1], r[2], r[6], r[3], r[4], r[5], D.ddm * q, W.starts, month(W.from) + ' to ' + month(W.last));
+      explain(W, null, r[6]);
+      return;
+    }
+    if (!T) {
+      if (!tableLoad) tableLoad = fetch(D.file).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (t) {
+        var s = atob(t.trim()), u = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) u[i] = s.charCodeAt(i);
+        if (u.length !== D.rows * D.rowBytes) throw new Error('size'); T = u.buffer;
+      });
+      tableLoad.then(fallback, function () { blank('couldn’t be worked out'); n.textContent = 'The figures for other settings couldn’t be loaded. Reload the page to try again.'; });
+      return;
+    }
+    var cd = 0; KEYS.forEach(function (k) { cd = cd * (D.maxq + 1) + q[k]; });
+    var ai = D.accounts.map(function (x) { return x.id; }).indexOf(S.a), v = new DataView(T), o = ((cd - 1) * D.accounts.length + ai) * D.rowBytes;
+    var p = v.getUint16(o, true), f = v.getUint16(o + 2, true), med = v.getUint16(o + 4, true), q25 = v.getUint8(o + 6), q75 = v.getUint8(o + 7), dd = v.getUint16(o + 8, true);
+    var rn = v.getUint16(o + 10, true);   // still running, per mille (the 12-byte rows, Nov 23 2026)
+    setOdds(p / 10, f / 10, Math.max(0, 1000 - p - f - rn) / 10, rn / 10, med ? med / 5 : null, q25 === 255 ? null : q25, q75 === 255 ? null : q75, dd, W.starts, W.label);
+    explain(W, null, rn / 10);
+  }
+
+  function run() {
+    var my = ++seq;
+    c.classList.add('busy'); status('busy');
+    get(qs()).then(function (j) {
+      if (my !== seq) return;
+      c.classList.remove('busy'); $('.calc-note').hidden = true; $('.calc-more').hidden = false; status('live');
+      show(j); payout();
+    }).catch(function () { if (my !== seq) return; c.classList.remove('busy'); fallback(); });
+  }
+  function update() {
+    syncCtl(); seq++;
+    $('.c-shout').textContent = '';
+    if (!anyOn()) { clearTimeout(timer); last = null; blank('turn on at least one strategy'); status('off'); room(); cost(); $('.c-payout').textContent = ''; return; }
+    clearTimeout(timer); timer = setTimeout(run, 160);
+  }
+  function planChanged() { S.optNote = ''; buildPlanCtl(); showMode(); firmBox(); fillFees(); payout(); update(); }
+
+  // your own rules: amounts on the server's $50 grid and inside its ranges
+  function ownInput(t) {
+    var k = t.getAttribute('data-k'), L = LIM[k], v = num(t.value), note = $('.c-ownnote');
+    if (v === null) { note.textContent = 'Enter a number.'; return; }
+    var w = Math.min(L[1], Math.max(L[0], Math.round(v / L[2]) * L[2]));
+    note.textContent = w !== v ? (k === 'c' || k === 'd' ? 'Set to ' + w + '.' : 'Set to ' + usd(w) + ': amounts go in $' + L[2] + ' steps from ' + usd(L[0]) + ' to ' + usd(L[1]) + '.') : '';
+    S.own[k] = w; t.value = w; update();
+  }
+
+  c.addEventListener('click', function (e) {
+    var t = e.target.closest('button'); if (!t || !c.contains(t)) return;
+    if (t.classList.contains('sb-tab')) { tab(t.getAttribute('aria-selected') === 'true' ? '' : t.getAttribute('data-tab')); return; }
+    if (t.classList.contains('sb-reset')) { resetAll(); return; }
+    if (t.hasAttribute('data-on')) {
+      var ko = t.getAttribute('data-on');
+      if (q[ko] > 0) { mem[ko] = q[ko]; q[ko] = 0; } else q[ko] = Math.min(D.maxq, mem[ko] || 1);
+      update(); return;
+    }
+    if (t.hasAttribute('data-mix')) {
+      if (!all) return;
+      var mv = t.getAttribute('data-mix').split('-').map(Number);
+      KEYS.forEach(function (k, i) { q[k] = Math.min(D.maxq, Math.max(0, mv[i] || 0)); });
+    }
+    else if (t.hasAttribute('data-acct')) {
+      S.a = t.getAttribute('data-acct');
+      if (mode() === 'own') { var g = GEN[S.a]; S.own.dv = g[0]; S.own.pt = g[1]; $('.c-ownnote').textContent = 'Target and drawdown set to the generic ' + S.a + ' account’s.'; }
+      if (mode() === 'firm') { firmBox(); if (!feeEdited) fillFees(); }
+    }
+    else if (t.hasAttribute('data-h')) S.h = t.getAttribute('data-h');
+    else if (t.hasAttribute('data-q')) {
+      var dq = parseInt(t.getAttribute('data-q'), 10);
+      if (all) { var k = t.getAttribute('data-k'); q[k] = Math.min(D.maxq, Math.max(0, q[k] + dq)); } else q = Math.min(D.max, Math.max(1, q + dq));
+    } else if (t.classList.contains('c-shuffle')) { shuffle(); return; }
+    else if (t.classList.contains('c-copy')) { copy(); return; }
+    else return;
+    update();
+  });
+  c.addEventListener('change', function (e) {
+    var t = e.target;
+    if (t.classList.contains('c-sel')) { S[t.getAttribute('data-p')] = t.value; update(); }
+    else if (t.classList.contains('c-fills')) { S.f = t.checked ? '1' : '0'; update(); }
+    else if (t.classList.contains('c-pay')) { S.p = t.value; payout(); }
+    else if (t.classList.contains('c-firm')) {
+      var v = t.value;
+      if (!v || v === 'own') {
+        S.firm = v; S.plan = ''; S.o = {}; feeEdited = false;
+        if (v === 'own') { S.own.dv = GEN[S.a][0]; S.own.pt = GEN[S.a][1]; }
+        showMode(); fillFees(); payout(); update(); return;
+      }
+      t.disabled = true;
+      loadFirms(D.firms).then(function () {
+        t.disabled = false;
+        var F = FIRMS.firms.filter(function (f) { return f.id === v; })[0]; if (!F) return;
+        S.firm = v; feeEdited = false; pickPlan(F.plans[0]); planChanged();
+      }, function () { t.disabled = false; t.value = S.firm; var n = $('.calc-note'); n.textContent = 'The firms’ plans couldn’t be loaded. Reload the page to try again.'; n.hidden = false; });
+    }
+    else if (t.classList.contains('c-plan')) { var P = firmObj().plans.filter(function (p) { return p.id === t.value; })[0]; if (P) { feeEdited = false; pickPlan(P); planChanged(); } }
+    else if (t.classList.contains('c-opt')) {
+      var Po = planObj(); S.optNote = pickOpt(Po, t.getAttribute('data-o'), t.value); fitSize(Po); feeEdited = false;
+      buildPlanCtl(); firmBox(); fillFees(); payout(); update();
+    }
+    else if (t.classList.contains('c-own')) ownInput(t);
+    else if (t.classList.contains('c-ownsel')) { S.own[t.getAttribute('data-k')] = t.value; update(); }
+    else if (t.classList.contains('c-code')) { S.code = t.checked; feeEdited = false; fillFees(); cost(); }
+  });
+  c.addEventListener('input', function (e) {
+    var t = e.target;
+    if (t.classList.contains('c-bal') || t.classList.contains('c-floor')) room();
+    else if (t.classList.contains('c-fee') || t.classList.contains('c-reset')) { feeEdited = true; cost(); }
+  });
+  $('[data-tool="payout"]').addEventListener('toggle', payout);
+  var rsz = null;
+  window.addEventListener('resize', function () {   // redraw the chart at its new width (not on a phone's height-only changes)
+    clearTimeout(rsz);
+    rsz = setTimeout(function () { if (last && !$('.calc-more').hidden && $('.calc-chart').clientWidth !== drawnW) chart(last); }, 150);
+  });
+
+  c.classList.add('js'); $('.calc-ctl').hidden = false;
+  var tools = $('.sb-tools'); if (tools) tools.classList.add('tabbed');
+  var rs = $('.sb-reset'); if (rs) rs.hidden = false;
+  // pin the result beside the setup while it scrolls, but only when the whole result fits on screen under the site's header
+  var res = $('.sb-result');
+  function pin() { if (res) res.classList.toggle('pin', window.innerWidth > 1000 && res.offsetHeight + 92 <= window.innerHeight); }
+  if (res) { if (window.ResizeObserver) new ResizeObserver(pin).observe(res); window.addEventListener('resize', pin); pin(); }
+  if (location.hash.indexOf('&p=') > 0 && location.hash.indexOf('#calc?') === 0) tab('payout');
+  var h = readHash();
+  function start() {
+    if (mode() === 'firm') { buildPlanCtl(); firmBox(); }
+    showMode(); fillFees(); syncCtl(); payout(); run();
+  }
+  if (h && h.then) h.then(start, start); else start();
+});
+})();
+</script>
+<script type="application/json" id="replay-data">{"v":1,"through":"2026-11-20","made":"2026-11-23","views":{"all":{"days":[{"d":"2026-11-20","n":2,"w":2,"l":0,"net":546300,"by":{"trend":1,"select":1}},{"d":"2026-11-17","n":1,"w":1,"l":0,"net":60850,"by":{"trend":1}},{"d":"2026-11-16","n":1,"w":0,"l":1,"net":-102700,"by":{"overnight":1}},{"d":"2026-11-13","n":2,"w":1,"l":1,"net":35450,"by":{"breakout":1,"trend":1}},{"d":"2026-11-12","n":1,"w":1,"l":0,"net":29500,"by":{"trend":1}},{"d":"2026-11-11","n":1,"w":1,"l":0,"net":12676,"by":{"momentum":1}},{"d":"2026-11-09","n":3,"w":2,"l":1,"net":79926,"by":{"breakout":1,"momentum":1,"select":1}},{"d":"2026-11-06","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-11-04","n":3,"w":1,"l":2,"net":40226,"by":{"trend":1,"momentum":1,"overnight":1}},{"d":"2026-10-30","n":1,"w":0,"l":1,"net":-21324,"by":{"momentum":1}},{"d":"2026-10-29","n":1,"w":0,"l":1,"net":-23500,"by":{"trend":1}},{"d":"2026-10-27","n":3,"w":3,"l":0,"net":114426,"by":{"breakout":1,"trend":1,"momentum":1}},{"d":"2026-10-26","n":2,"w":1,"l":1,"net":-324,"by":{"breakout":1,"momentum":1}},{"d":"2026-10-22","n":1,"w":1,"l":0,"net":42376,"by":{"momentum":1}},{"d":"2026-10-21","n":1,"w":0,"l":1,"net":-29400,"by":{"trend":1}},{"d":"2026-10-19","n":1,"w":1,"l":0,"net":51550,"by":{"overnight":1}},{"d":"2026-10-14","n":2,"w":2,"l":0,"net":98676,"by":{"breakout":1,"momentum":1}},{"d":"2026-10-13","n":2,"w":1,"l":1,"net":2050,"by":{"trend":1,"overnight":1}},{"d":"2026-10-12","n":2,"w":2,"l":0,"net":30626,"by":{"trend":1,"momentum":1}},{"d":"2026-10-08","n":1,"w":1,"l":0,"net":5026,"by":{"momentum":1}},{"d":"2026-10-05","n":2,"w":2,"l":0,"net":70650,"by":{"breakout":1,"trend":1}},{"d":"2026-09-30","n":2,"w":1,"l":1,"net":-32424,"by":{"breakout":1,"momentum":1}},{"d":"2026-09-29","n":1,"w":0,"l":1,"net":-3300,"by":{"trend":1}},{"d":"2026-09-28","n":2,"w":1,"l":1,"net":-24324,"by":{"momentum":1,"overnight":1}},{"d":"2026-09-24","n":1,"w":1,"l":0,"net":13350,"by":{"trend":1}},{"d":"2026-09-23","n":1,"w":1,"l":0,"net":20150,"by":{"breakout":1}},{"d":"2026-09-22","n":1,"w":1,"l":0,"net":30850,"by":{"trend":1}},{"d":"2026-09-21","n":1,"w":1,"l":0,"net":73576,"by":{"momentum":1}},{"d":"2026-09-17","n":1,"w":0,"l":1,"net":-18300,"by":{"trend":1}},{"d":"2026-09-16","n":1,"w":0,"l":1,"net":-5674,"by":{"momentum":1}}],"trades":[{"d":"2026-11-20","s":"trend","c":2,"usd":378800},{"d":"2026-11-20","s":"select","c":2,"usd":167500},{"d":"2026-11-17","s":"trend","c":1,"usd":60850},{"d":"2026-11-16","s":"overnight","c":1,"usd":-102700},{"d":"2026-11-13","s":"breakout","c":1,"usd":-54000},{"d":"2026-11-13","s":"trend","c":1,"usd":89450},{"d":"2026-11-12","s":"trend","c":1,"usd":29500},{"d":"2026-11-11","s":"momentum","c":1,"usd":12676},{"d":"2026-11-09","s":"momentum","c":1,"usd":43176},{"d":"2026-11-09","s":"breakout","c":1,"usd":48850},{"d":"2026-11-09","s":"select","c":1,"usd":-12100},{"d":"2026-11-06","s":"overnight","c":1,"usd":-200},{"d":"2026-11-04","s":"trend","c":2,"usd":-15800},{"d":"2026-11-04","s":"momentum","c":1,"usd":-45974},{"d":"2026-11-04","s":"overnight","c":1,"usd":102000},{"d":"2026-10-30","s":"momentum","c":1,"usd":-21324},{"d":"2026-10-29","s":"trend","c":2,"usd":-23500},{"d":"2026-10-27","s":"breakout","c":1,"usd":20400},{"d":"2026-10-27","s":"trend","c":2,"usd":78400},{"d":"2026-10-27","s":"momentum","c":1,"usd":15626},{"d":"2026-10-26","s":"momentum","c":1,"usd":17426},{"d":"2026-10-26","s":"breakout","c":1,"usd":-17750},{"d":"2026-10-22","s":"momentum","c":1,"usd":42376},{"d":"2026-10-21","s":"trend","c":2,"usd":-29400},{"d":"2026-10-19","s":"overnight","c":1,"usd":51550},{"d":"2026-10-14","s":"momentum","c":1,"usd":40976},{"d":"2026-10-14","s":"breakout","c":1,"usd":57700},{"d":"2026-10-13","s":"trend","c":1,"usd":2250},{"d":"2026-10-13","s":"overnight","c":1,"usd":-200},{"d":"2026-10-12","s":"trend","c":2,"usd":30100}]},"breakout":{"days":[{"d":"2026-11-13","n":1,"w":0,"l":1,"net":-54000,"by":{"breakout":1}},{"d":"2026-11-09","n":1,"w":1,"l":0,"net":48850,"by":{"breakout":1}},{"d":"2026-10-27","n":1,"w":1,"l":0,"net":20400,"by":{"breakout":1}},{"d":"2026-10-26","n":1,"w":0,"l":1,"net":-17750,"by":{"breakout":1}},{"d":"2026-10-14","n":1,"w":1,"l":0,"net":57700,"by":{"breakout":1}},{"d":"2026-10-05","n":1,"w":1,"l":0,"net":11000,"by":{"breakout":1}},{"d":"2026-09-30","n":1,"w":0,"l":1,"net":-33300,"by":{"breakout":1}},{"d":"2026-09-23","n":1,"w":1,"l":0,"net":20150,"by":{"breakout":1}},{"d":"2026-09-03","n":1,"w":0,"l":1,"net":-2750,"by":{"breakout":1}},{"d":"2026-08-13","n":1,"w":1,"l":0,"net":3250,"by":{"breakout":1}},{"d":"2026-08-11","n":1,"w":0,"l":1,"net":-14750,"by":{"breakout":1}},{"d":"2026-07-16","n":1,"w":1,"l":0,"net":34350,"by":{"breakout":1}},{"d":"2026-07-02","n":1,"w":0,"l":1,"net":-14550,"by":{"breakout":1}},{"d":"2026-06-29","n":1,"w":0,"l":1,"net":-2850,"by":{"breakout":1}},{"d":"2026-06-18","n":1,"w":1,"l":0,"net":12550,"by":{"breakout":1}},{"d":"2026-06-16","n":1,"w":1,"l":0,"net":41850,"by":{"breakout":1}},{"d":"2026-05-29","n":1,"w":0,"l":1,"net":-40000,"by":{"breakout":1}},{"d":"2026-04-30","n":1,"w":1,"l":0,"net":9450,"by":{"breakout":1}},{"d":"2026-04-22","n":1,"w":1,"l":0,"net":15250,"by":{"breakout":1}},{"d":"2026-04-21","n":1,"w":1,"l":0,"net":250,"by":{"breakout":1}},{"d":"2026-04-15","n":1,"w":1,"l":0,"net":31250,"by":{"breakout":1}},{"d":"2026-04-09","n":1,"w":1,"l":0,"net":13200,"by":{"breakout":1}},{"d":"2026-04-07","n":1,"w":0,"l":1,"net":-52300,"by":{"breakout":1}},{"d":"2026-03-20","n":1,"w":1,"l":0,"net":44000,"by":{"breakout":1}},{"d":"2026-03-17","n":1,"w":0,"l":1,"net":-13150,"by":{"breakout":1}},{"d":"2026-03-13","n":1,"w":1,"l":0,"net":1000,"by":{"breakout":1}},{"d":"2026-02-26","n":1,"w":0,"l":1,"net":-13300,"by":{"breakout":1}},{"d":"2026-02-25","n":1,"w":1,"l":0,"net":8600,"by":{"breakout":1}},{"d":"2026-02-24","n":1,"w":1,"l":0,"net":4200,"by":{"breakout":1}},{"d":"2026-02-20","n":1,"w":0,"l":1,"net":-13050,"by":{"breakout":1}}],"trades":[{"d":"2026-11-13","s":"breakout","c":1,"usd":-54000},{"d":"2026-11-09","s":"breakout","c":1,"usd":48850},{"d":"2026-10-27","s":"breakout","c":1,"usd":20400},{"d":"2026-10-26","s":"breakout","c":1,"usd":-17750},{"d":"2026-10-14","s":"breakout","c":1,"usd":57700},{"d":"2026-10-05","s":"breakout","c":1,"usd":11000},{"d":"2026-09-30","s":"breakout","c":1,"usd":-33300},{"d":"2026-09-23","s":"breakout","c":1,"usd":20150},{"d":"2026-09-03","s":"breakout","c":1,"usd":-2750},{"d":"2026-08-13","s":"breakout","c":1,"usd":3250},{"d":"2026-08-11","s":"breakout","c":1,"usd":-14750},{"d":"2026-07-16","s":"breakout","c":1,"usd":34350},{"d":"2026-07-02","s":"breakout","c":1,"usd":-14550},{"d":"2026-06-29","s":"breakout","c":1,"usd":-2850},{"d":"2026-06-18","s":"breakout","c":1,"usd":12550},{"d":"2026-06-16","s":"breakout","c":1,"usd":41850},{"d":"2026-05-29","s":"breakout","c":1,"usd":-40000},{"d":"2026-04-30","s":"breakout","c":1,"usd":9450},{"d":"2026-04-22","s":"breakout","c":1,"usd":15250},{"d":"2026-04-21","s":"breakout","c":1,"usd":250},{"d":"2026-04-15","s":"breakout","c":1,"usd":31250},{"d":"2026-04-09","s":"breakout","c":1,"usd":13200},{"d":"2026-04-07","s":"breakout","c":1,"usd":-52300},{"d":"2026-03-20","s":"breakout","c":1,"usd":44000},{"d":"2026-03-17","s":"breakout","c":1,"usd":-13150},{"d":"2026-03-13","s":"breakout","c":1,"usd":1000},{"d":"2026-02-26","s":"breakout","c":1,"usd":-13300},{"d":"2026-02-25","s":"breakout","c":1,"usd":8600},{"d":"2026-02-24","s":"breakout","c":1,"usd":4200},{"d":"2026-02-20","s":"breakout","c":1,"usd":-13050}]},"trend":{"days":[{"d":"2026-11-20","n":1,"w":1,"l":0,"net":378800,"by":{"trend":1}},{"d":"2026-11-17","n":1,"w":1,"l":0,"net":60850,"by":{"trend":1}},{"d":"2026-11-13","n":1,"w":1,"l":0,"net":89450,"by":{"trend":1}},{"d":"2026-11-12","n":1,"w":1,"l":0,"net":29500,"by":{"trend":1}},{"d":"2026-11-04","n":1,"w":0,"l":1,"net":-15800,"by":{"trend":1}},{"d":"2026-10-29","n":1,"w":0,"l":1,"net":-23500,"by":{"trend":1}},{"d":"2026-10-27","n":1,"w":1,"l":0,"net":78400,"by":{"trend":1}},{"d":"2026-10-21","n":1,"w":0,"l":1,"net":-29400,"by":{"trend":1}},{"d":"2026-10-13","n":1,"w":1,"l":0,"net":2250,"by":{"trend":1}},{"d":"2026-10-12","n":1,"w":1,"l":0,"net":30100,"by":{"trend":1}},{"d":"2026-10-05","n":1,"w":1,"l":0,"net":59650,"by":{"trend":1}},{"d":"2026-09-29","n":1,"w":0,"l":1,"net":-3300,"by":{"trend":1}},{"d":"2026-09-24","n":1,"w":1,"l":0,"net":13350,"by":{"trend":1}},{"d":"2026-09-22","n":1,"w":1,"l":0,"net":30850,"by":{"trend":1}},{"d":"2026-09-17","n":1,"w":0,"l":1,"net":-18300,"by":{"trend":1}},{"d":"2026-09-14","n":1,"w":1,"l":0,"net":1600,"by":{"trend":1}},{"d":"2026-09-08","n":1,"w":1,"l":0,"net":6950,"by":{"trend":1}},{"d":"2026-09-04","n":1,"w":0,"l":1,"net":-43500,"by":{"trend":1}},{"d":"2026-08-27","n":1,"w":0,"l":1,"net":-27850,"by":{"trend":1}},{"d":"2026-08-26","n":1,"w":0,"l":1,"net":-62500,"by":{"trend":1}},{"d":"2026-08-24","n":1,"w":0,"l":1,"net":-18800,"by":{"trend":1}},{"d":"2026-08-13","n":1,"w":1,"l":0,"net":110600,"by":{"trend":1}},{"d":"2026-08-12","n":1,"w":1,"l":0,"net":2000,"by":{"trend":1}},{"d":"2026-08-11","n":1,"w":1,"l":0,"net":22250,"by":{"trend":1}},{"d":"2026-07-31","n":1,"w":0,"l":1,"net":-83200,"by":{"trend":1}},{"d":"2026-07-22","n":1,"w":1,"l":0,"net":20200,"by":{"trend":1}},{"d":"2026-07-21","n":1,"w":0,"l":1,"net":-29450,"by":{"trend":1}},{"d":"2026-07-14","n":1,"w":0,"l":1,"net":-21150,"by":{"trend":1}},{"d":"2026-07-13","n":1,"w":1,"l":0,"net":89900,"by":{"trend":1}},{"d":"2026-07-10","n":1,"w":1,"l":0,"net":28600,"by":{"trend":1}}],"trades":[{"d":"2026-11-20","s":"trend","c":2,"usd":378800},{"d":"2026-11-17","s":"trend","c":1,"usd":60850},{"d":"2026-11-13","s":"trend","c":1,"usd":89450},{"d":"2026-11-12","s":"trend","c":1,"usd":29500},{"d":"2026-11-04","s":"trend","c":2,"usd":-15800},{"d":"2026-10-29","s":"trend","c":2,"usd":-23500},{"d":"2026-10-27","s":"trend","c":2,"usd":78400},{"d":"2026-10-21","s":"trend","c":2,"usd":-29400},{"d":"2026-10-13","s":"trend","c":1,"usd":2250},{"d":"2026-10-12","s":"trend","c":2,"usd":30100},{"d":"2026-10-05","s":"trend","c":1,"usd":59650},{"d":"2026-09-29","s":"trend","c":1,"usd":-3300},{"d":"2026-09-24","s":"trend","c":1,"usd":13350},{"d":"2026-09-22","s":"trend","c":1,"usd":30850},{"d":"2026-09-17","s":"trend","c":1,"usd":-18300},{"d":"2026-09-14","s":"trend","c":1,"usd":1600},{"d":"2026-09-08","s":"trend","c":1,"usd":6950},{"d":"2026-09-04","s":"trend","c":2,"usd":-43500},{"d":"2026-08-27","s":"trend","c":1,"usd":-27850},{"d":"2026-08-26","s":"trend","c":2,"usd":-62500},{"d":"2026-08-24","s":"trend","c":2,"usd":-18800},{"d":"2026-08-13","s":"trend","c":2,"usd":110600},{"d":"2026-08-12","s":"trend","c":1,"usd":2000},{"d":"2026-08-11","s":"trend","c":1,"usd":22250},{"d":"2026-07-31","s":"trend","c":2,"usd":-83200},{"d":"2026-07-22","s":"trend","c":1,"usd":20200},{"d":"2026-07-21","s":"trend","c":1,"usd":-29450},{"d":"2026-07-14","s":"trend","c":1,"usd":-21150},{"d":"2026-07-13","s":"trend","c":2,"usd":89900},{"d":"2026-07-10","s":"trend","c":1,"usd":28600}]},"momentum":{"days":[{"d":"2026-11-11","n":1,"w":1,"l":0,"net":12676,"by":{"momentum":1}},{"d":"2026-11-09","n":1,"w":1,"l":0,"net":43176,"by":{"momentum":1}},{"d":"2026-11-04","n":1,"w":0,"l":1,"net":-45974,"by":{"momentum":1}},{"d":"2026-10-30","n":1,"w":0,"l":1,"net":-21324,"by":{"momentum":1}},{"d":"2026-10-27","n":1,"w":1,"l":0,"net":15626,"by":{"momentum":1}},{"d":"2026-10-26","n":1,"w":1,"l":0,"net":17426,"by":{"momentum":1}},{"d":"2026-10-22","n":1,"w":1,"l":0,"net":42376,"by":{"momentum":1}},{"d":"2026-10-14","n":1,"w":1,"l":0,"net":40976,"by":{"momentum":1}},{"d":"2026-10-12","n":1,"w":1,"l":0,"net":526,"by":{"momentum":1}},{"d":"2026-10-08","n":1,"w":1,"l":0,"net":5026,"by":{"momentum":1}},{"d":"2026-09-30","n":1,"w":1,"l":0,"net":876,"by":{"momentum":1}},{"d":"2026-09-28","n":1,"w":0,"l":1,"net":-27374,"by":{"momentum":1}},{"d":"2026-09-21","n":1,"w":1,"l":0,"net":73576,"by":{"momentum":1}},{"d":"2026-09-16","n":1,"w":0,"l":1,"net":-5674,"by":{"momentum":1}},{"d":"2026-09-03","n":1,"w":1,"l":0,"net":39426,"by":{"momentum":1}},{"d":"2026-08-28","n":1,"w":0,"l":1,"net":-5574,"by":{"momentum":1}},{"d":"2026-08-27","n":1,"w":1,"l":0,"net":1426,"by":{"momentum":1}},{"d":"2026-08-24","n":1,"w":0,"l":1,"net":-12424,"by":{"momentum":1}},{"d":"2026-08-13","n":1,"w":0,"l":1,"net":-12324,"by":{"momentum":1}},{"d":"2026-07-24","n":1,"w":0,"l":1,"net":-25324,"by":{"momentum":1}},{"d":"2026-07-23","n":1,"w":1,"l":0,"net":1526,"by":{"momentum":1}},{"d":"2026-07-16","n":1,"w":0,"l":1,"net":-1024,"by":{"momentum":1}},{"d":"2026-07-13","n":1,"w":0,"l":1,"net":-3824,"by":{"momentum":1}},{"d":"2026-07-09","n":1,"w":0,"l":1,"net":-3624,"by":{"momentum":1}},{"d":"2026-07-07","n":1,"w":0,"l":1,"net":-17074,"by":{"momentum":1}},{"d":"2026-06-29","n":1,"w":1,"l":0,"net":25776,"by":{"momentum":1}},{"d":"2026-06-16","n":1,"w":1,"l":0,"net":74276,"by":{"momentum":1}},{"d":"2026-06-15","n":1,"w":1,"l":0,"net":3176,"by":{"momentum":1}},{"d":"2026-05-29","n":1,"w":0,"l":1,"net":-22774,"by":{"momentum":1}},{"d":"2026-05-26","n":1,"w":0,"l":1,"net":-1624,"by":{"momentum":1}}],"trades":[{"d":"2026-11-11","s":"momentum","c":1,"usd":12676},{"d":"2026-11-09","s":"momentum","c":1,"usd":43176},{"d":"2026-11-04","s":"momentum","c":1,"usd":-45974},{"d":"2026-10-30","s":"momentum","c":1,"usd":-21324},{"d":"2026-10-27","s":"momentum","c":1,"usd":15626},{"d":"2026-10-26","s":"momentum","c":1,"usd":17426},{"d":"2026-10-22","s":"momentum","c":1,"usd":42376},{"d":"2026-10-14","s":"momentum","c":1,"usd":40976},{"d":"2026-10-12","s":"momentum","c":1,"usd":526},{"d":"2026-10-08","s":"momentum","c":1,"usd":5026},{"d":"2026-09-30","s":"momentum","c":1,"usd":876},{"d":"2026-09-28","s":"momentum","c":1,"usd":-27374},{"d":"2026-09-21","s":"momentum","c":1,"usd":73576},{"d":"2026-09-16","s":"momentum","c":1,"usd":-5674},{"d":"2026-09-03","s":"momentum","c":1,"usd":39426},{"d":"2026-08-28","s":"momentum","c":1,"usd":-5574},{"d":"2026-08-27","s":"momentum","c":1,"usd":1426},{"d":"2026-08-24","s":"momentum","c":1,"usd":-12424},{"d":"2026-08-13","s":"momentum","c":1,"usd":-12324},{"d":"2026-07-24","s":"momentum","c":1,"usd":-25324},{"d":"2026-07-23","s":"momentum","c":1,"usd":1526},{"d":"2026-07-16","s":"momentum","c":1,"usd":-1024},{"d":"2026-07-13","s":"momentum","c":1,"usd":-3824},{"d":"2026-07-09","s":"momentum","c":1,"usd":-3624},{"d":"2026-07-07","s":"momentum","c":1,"usd":-17074},{"d":"2026-06-29","s":"momentum","c":1,"usd":25776},{"d":"2026-06-16","s":"momentum","c":1,"usd":74276},{"d":"2026-06-15","s":"momentum","c":1,"usd":3176},{"d":"2026-05-29","s":"momentum","c":1,"usd":-22774},{"d":"2026-05-26","s":"momentum","c":1,"usd":-1624}]},"select":{"days":[{"d":"2026-11-20","n":1,"w":1,"l":0,"net":167500,"by":{"select":1}},{"d":"2026-11-09","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-09-10","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-09-09","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-08-28","n":1,"w":1,"l":0,"net":42700,"by":{"select":1}},{"d":"2026-08-24","n":2,"w":1,"l":1,"net":3200,"by":{"select":2}},{"d":"2026-08-19","n":1,"w":1,"l":0,"net":11250,"by":{"select":1}},{"d":"2026-08-18","n":1,"w":0,"l":1,"net":-7600,"by":{"select":1}},{"d":"2026-08-17","n":1,"w":1,"l":0,"net":20800,"by":{"select":1}},{"d":"2026-08-07","n":1,"w":1,"l":0,"net":10700,"by":{"select":1}},{"d":"2026-07-31","n":1,"w":0,"l":1,"net":-100,"by":{"select":1}},{"d":"2026-07-20","n":1,"w":1,"l":0,"net":9850,"by":{"select":1}},{"d":"2026-07-15","n":1,"w":1,"l":0,"net":22400,"by":{"select":1}},{"d":"2026-07-10","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-07-09","n":1,"w":1,"l":0,"net":13400,"by":{"select":1}},{"d":"2026-07-06","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-06-30","n":1,"w":1,"l":0,"net":156700,"by":{"select":1}},{"d":"2026-05-14","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-05-11","n":1,"w":0,"l":1,"net":-3900,"by":{"select":1}},{"d":"2026-05-04","n":1,"w":0,"l":1,"net":-2100,"by":{"select":1}},{"d":"2026-05-01","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-04-30","n":1,"w":1,"l":0,"net":23250,"by":{"select":1}},{"d":"2026-04-27","n":1,"w":1,"l":0,"net":4300,"by":{"select":1}},{"d":"2026-04-14","n":1,"w":1,"l":0,"net":4800,"by":{"select":1}},{"d":"2026-04-09","n":1,"w":1,"l":0,"net":11900,"by":{"select":1}},{"d":"2026-04-08","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-03-11","n":1,"w":0,"l":1,"net":-100,"by":{"select":1}},{"d":"2026-03-06","n":1,"w":0,"l":1,"net":-600,"by":{"select":1}},{"d":"2026-02-25","n":1,"w":0,"l":1,"net":-12100,"by":{"select":1}},{"d":"2026-01-21","n":1,"w":0,"l":1,"net":-100,"by":{"select":1}}],"trades":[{"d":"2026-11-20","s":"select","c":2,"usd":167500},{"d":"2026-11-09","s":"select","c":1,"usd":-12100},{"d":"2026-09-10","s":"select","c":1,"usd":-12100},{"d":"2026-09-09","s":"select","c":1,"usd":-12100},{"d":"2026-08-28","s":"select","c":1,"usd":42700},{"d":"2026-08-24","s":"select","c":2,"usd":3300},{"d":"2026-08-24","s":"select","c":1,"usd":-100},{"d":"2026-08-19","s":"select","c":1,"usd":11250},{"d":"2026-08-18","s":"select","c":1,"usd":-7600},{"d":"2026-08-17","s":"select","c":1,"usd":20800},{"d":"2026-08-07","s":"select","c":2,"usd":10700},{"d":"2026-07-31","s":"select","c":1,"usd":-100},{"d":"2026-07-20","s":"select","c":1,"usd":9850},{"d":"2026-07-15","s":"select","c":1,"usd":22400},{"d":"2026-07-10","s":"select","c":1,"usd":-12100},{"d":"2026-07-09","s":"select","c":1,"usd":13400},{"d":"2026-07-06","s":"select","c":1,"usd":-12100},{"d":"2026-06-30","s":"select","c":2,"usd":156700},{"d":"2026-05-14","s":"select","c":1,"usd":-12100},{"d":"2026-05-11","s":"select","c":2,"usd":-3900},{"d":"2026-05-04","s":"select","c":1,"usd":-2100},{"d":"2026-05-01","s":"select","c":1,"usd":-12100},{"d":"2026-04-30","s":"select","c":1,"usd":23250},{"d":"2026-04-27","s":"select","c":1,"usd":4300},{"d":"2026-04-14","s":"select","c":1,"usd":4800},{"d":"2026-04-09","s":"select","c":1,"usd":11900},{"d":"2026-04-08","s":"select","c":1,"usd":-12100},{"d":"2026-03-11","s":"select","c":1,"usd":-100},{"d":"2026-03-06","s":"select","c":1,"usd":-600},{"d":"2026-02-25","s":"select","c":1,"usd":-12100}]},"overnight":{"days":[{"d":"2026-11-16","n":1,"w":0,"l":1,"net":-102700,"by":{"overnight":1}},{"d":"2026-11-06","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-11-04","n":1,"w":1,"l":0,"net":102000,"by":{"overnight":1}},{"d":"2026-10-19","n":1,"w":1,"l":0,"net":51550,"by":{"overnight":1}},{"d":"2026-10-13","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-09-28","n":1,"w":1,"l":0,"net":3050,"by":{"overnight":1}},{"d":"2026-09-10","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-09-01","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-08-31","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-07-27","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-07-14","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-06-29","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-05-18","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-04-30","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-04-22","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-03-31","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-03-30","n":1,"w":1,"l":0,"net":54900,"by":{"overnight":1}},{"d":"2026-03-23","n":1,"w":0,"l":1,"net":-29350,"by":{"overnight":1}},{"d":"2026-03-13","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-03-09","n":1,"w":1,"l":0,"net":41850,"by":{"overnight":1}},{"d":"2026-02-06","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-02-02","n":1,"w":1,"l":0,"net":39700,"by":{"overnight":1}},{"d":"2026-01-26","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2026-01-13","n":1,"w":0,"l":1,"net":-4550,"by":{"overnight":1}},{"d":"2026-01-08","n":1,"w":0,"l":1,"net":-1600,"by":{"overnight":1}},{"d":"2025-12-19","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2025-12-18","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2025-11-17","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2025-11-05","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}},{"d":"2025-10-29","n":1,"w":0,"l":1,"net":-200,"by":{"overnight":1}}],"trades":[{"d":"2026-11-16","s":"overnight","c":1,"usd":-102700},{"d":"2026-11-06","s":"overnight","c":1,"usd":-200},{"d":"2026-11-04","s":"overnight","c":1,"usd":102000},{"d":"2026-10-19","s":"overnight","c":1,"usd":51550},{"d":"2026-10-13","s":"overnight","c":1,"usd":-200},{"d":"2026-09-28","s":"overnight","c":1,"usd":3050},{"d":"2026-09-10","s":"overnight","c":1,"usd":-200},{"d":"2026-09-01","s":"overnight","c":1,"usd":-200},{"d":"2026-08-31","s":"overnight","c":1,"usd":-200},{"d":"2026-07-27","s":"overnight","c":1,"usd":-200},{"d":"2026-07-14","s":"overnight","c":1,"usd":-200},{"d":"2026-06-29","s":"overnight","c":1,"usd":-200},{"d":"2026-05-18","s":"overnight","c":1,"usd":-200},{"d":"2026-04-30","s":"overnight","c":1,"usd":-200},{"d":"2026-04-22","s":"overnight","c":1,"usd":-200},{"d":"2026-03-31","s":"overnight","c":1,"usd":-200},{"d":"2026-03-30","s":"overnight","c":1,"usd":54900},{"d":"2026-03-23","s":"overnight","c":1,"usd":-29350},{"d":"2026-03-13","s":"overnight","c":1,"usd":-200},{"d":"2026-03-09","s":"overnight","c":1,"usd":41850},{"d":"2026-02-06","s":"overnight","c":1,"usd":-200},{"d":"2026-02-02","s":"overnight","c":1,"usd":39700},{"d":"2026-01-26","s":"overnight","c":1,"usd":-200},{"d":"2026-01-13","s":"overnight","c":1,"usd":-4550},{"d":"2026-01-08","s":"overnight","c":1,"usd":-1600},{"d":"2025-12-19","s":"overnight","c":1,"usd":-200},{"d":"2025-12-18","s":"overnight","c":1,"usd":-200},{"d":"2025-11-17","s":"overnight","c":1,"usd":-200},{"d":"2025-11-05","s":"overnight","c":1,"usd":-200},{"d":"2025-10-29","s":"overnight","c":1,"usd":-200}]}}}</script>
+<script id="replay-js">
+// The backtest replay (Nov 18 2026): the last 20 days with a trade and the last 20 trades, for all five and each one alone.
+// build.py writes the All five view into the page (readers without scripts see it) and the data as #replay-data
+// (marketing/replay writes replay.json; views.py check_shape guards what it may hold). This adds the line that draws itself
+// in on first view, the day bars, the six views, the Trades tab, a readout on hover or tap, and Replay. From Nov 20 2026 it
+// also asks the replay server for the newest session's file (below, "the daily data").
+(function () {
+  var root = document.getElementById('replay'), tag = document.getElementById('replay-data');
+  if (!root || !tag) return;
+  var data;
+  try { data = JSON.parse(tag.textContent); } catch (e) { return; }
+  if (!data || !data.views || !data.views.all || !data.views.all.days) return;
+  var KEYS = ['breakout', 'trend', 'momentum', 'select', 'overnight'];
+  var NAME = { breakout: 'Breakout', trend: 'Trend', momentum: 'Momentum', select: 'Select', overnight: 'Overnight' };
+  var MIX = { all: '1-1-1-1-1', breakout: '1-0-0-0-0', trend: '0-1-0-0-0', momentum: '0-0-1-0-0', select: '0-0-0-1-0', overnight: '0-0-0-0-1' };
+  var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var LIMIT = 30, FEW = 10;           // at most 30 days and 30 trades a view (Nov 23 2026; views.py LIMIT), 10 rows before Show all
+  var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var $ = function (s) { return root.querySelector(s); }, $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+
+  function dayLabel(s) {
+    var p = s.split('-'), t = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]));
+    return DOW[t.getUTCDay()] + ' ' + MON[t.getUTCMonth()] + ' ' + (+p[2]);
+  }
+  function dollars(c) { return Math.floor(Math.abs(c) / 100 + 0.5); }
+  function money(c) { var d = dollars(c); return d ? (c < 0 ? '−' : '+') + '$' + d.toLocaleString('en-US') : '$0'; }
+  function cls(c) { return !dollars(c) ? 'flat' : c > 0 ? 'up' : 'down'; }
+  function byText(by) { return KEYS.filter(function (k) { return by[k]; }).map(function (k) { return NAME[k] + ' ' + by[k]; }).join(' · '); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  // the window's max drawdown (Nov 23 2026): the largest fall of the running total from a high to a later low, day by day (build.py rp_dd)
+  function maxDD(d) {
+    var cum = 0, peak = 0, dd = 0;
+    for (var i = d.length - 1; i >= 0; i--) { cum += d[i].net; peak = Math.max(peak, cum); dd = Math.max(dd, peak - cum); }
+    return dd;
+  }
+  function headText(n) { return n === 1 ? 'The last day with a trade' : 'The last ' + n + ' days with a trade'; }
+  function figs(v) {
+    var d = v.days;
+    if (!d.length) return { net: [0, '—'], green: [0, '—'], best: [0, '—'], worst: [0, '—'], dd: [0, '—'], trades: [0, '0'] };
+    var nets = d.map(function (x) { return x.net; }), net = nets.reduce(function (a, b) { return a + b; }, 0);
+    var green = nets.filter(function (x) { return x > 0; }).length, best = Math.max.apply(null, nets), worst = Math.min.apply(null, nets);
+    var n = d.reduce(function (a, x) { return a + x.n; }, 0), dd = maxDD(d);
+    return { net: [net, money(net)], green: [green, green + ' of ' + d.length], best: [best, money(best)], worst: [worst, money(worst)], dd: [-dd, money(-dd)], trades: [n, String(n)] };
+  }
+  // a table's rows past the newest 10 wait behind its Show all button (Nov 23 2026); a new view starts at 10 again
+  var open = { days: false, trades: false };
+  function fold(part) {
+    var rows = $$('.rp-' + part + ' tbody tr'), b = $('.rp-more[data-more="' + part + '"]'), all = open[part];
+    rows.forEach(function (t, i) { t.hidden = !all && i >= FEW; });
+    if (!b) return;
+    b.hidden = rows.length <= FEW;
+    b.textContent = all ? 'Show the newest ' + FEW : 'Show all ' + rows.length + ' ' + part;
+    b.setAttribute('aria-expanded', all ? 'true' : 'false');
+  }
+
+  var view = 'all', anim = 0;           // anim: a new view or a new count stops a count still running
+  function render(k) {
+    view = k; anim++;
+    var v = data.views[k], f = figs(v);
+    $$('.rp-chip').forEach(function (b) { var on = b.getAttribute('data-view') === k; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    $$('.rp-fig').forEach(function (el) { el.querySelector('b').textContent = f[el.getAttribute('data-fig')][1]; });
+    var d = v.days, r = $('.rp-range');
+    $('.rp-head h2').textContent = headText(d.length);
+    r.textContent = (d.length ? dayLabel(d[d.length - 1].d) + ' – ' + dayLabel(d[0].d) + ' · ' : '') + 'data through ' + dayLabel(data.through) + ', updated daily';
+    $('.rp-days tbody').innerHTML = d.map(function (x, i) {
+      return '<tr data-i="' + i + '"><td>' + dayLabel(x.d) + '</td><td class="num">' + x.n + '</td><td class="num">' + x.w + '-' + x.l + '</td><td class="num rp-' + cls(x.net) + '">' +
+        money(x.net) + '</td><td>' + esc(byText(x.by)) + '</td></tr>';
+    }).join('');
+    $('.rp-trades tbody').innerHTML = v.trades.map(function (t) {
+      return '<tr><td>' + dayLabel(t.d) + '</td><td>' + NAME[t.s] + '</td><td class="num">' + t.c + ' MNQ</td><td class="num rp-' + cls(t.usd) + '">' + money(t.usd) + '</td></tr>';
+    }).join('');
+    open.days = open.trades = false; fold('days'); fold('trades'); at = -1;
+    var a = $('.rp-board');
+    if (a) a.setAttribute('href', 'stratboard.html#calc?m=' + MIX[k]);
+    chart(v);
+  }
+
+  // the line: the running net of the view's days, oldest on the left, from $0; under it a bar a day
+  function chart(v) {
+    var svg = $('.rp-svg'), W = Math.max(280, Math.round(svg.getBoundingClientRect().width) || 600), H = 180;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var days = v.days.slice().reverse(), n = days.length, cum = [0], i;
+    for (i = 0; i < n; i++) cum.push(cum[i] + days[i].net);
+    var lo = Math.min.apply(null, cum), hi = Math.max.apply(null, cum), top = 14, bot = 112, span = (hi - lo) || 1;
+    var grid = n ? [hi, lo].filter(function (c, k, a) { return k === 0 || c !== a[0]; }) : [];
+    var y = function (c) { return bot - (c - lo) / span * (bot - top); };
+    var slot = (W - 12) / Math.max(n, 1), cx = function (j) { return slot * (j + 0.5); };   // 12 px kept for the latest point's ring
+    var pts = [[0, y(0)]].concat(days.map(function (x, j) { return [cx(j), y(cum[j + 1])]; }));
+    var line = pts.map(function (p, j) { return (j ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ');
+    var area = line + ' L' + pts[pts.length - 1][0].toFixed(1) + ' ' + bot + ' L0 ' + bot + ' Z';
+    var big = Math.max.apply(null, days.map(function (x) { return Math.abs(x.net); }).concat([1])), base = 150, room = 26;
+    var bars = days.map(function (x, j) {
+      var h = Math.max(2, Math.abs(x.net) / big * room), c = cls(x.net), bw = Math.max(3, slot * 0.58);
+      var yy = c === 'down' ? base : base - h;
+      if (c === 'flat') { h = 2; yy = base - 1; }
+      return '<rect class="rp-bar ' + c + '" data-j="' + j + '" style="--i:' + j + '" x="' + (cx(j) - bw / 2).toFixed(1) + '" y="' + yy.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" rx="1.5"></rect>';
+    }).join('');
+    var last = pts[pts.length - 1], up = cum[n] >= 0;
+    svg.classList.toggle('down', !up);
+    svg.innerHTML = '<defs><linearGradient id="rp-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="rp-g0"></stop><stop offset="1" class="rp-g1"></stop></linearGradient></defs>' +
+      '<line class="rp-zero" x1="0" x2="' + W + '" y1="' + y(0).toFixed(1) + '" y2="' + y(0).toFixed(1) + '"></line>' +
+      '<line class="rp-base" x1="0" x2="' + W + '" y1="' + base + '" y2="' + base + '"></line>' +
+      grid.map(function (c) { return '<line class="rp-grid" x1="0" x2="' + W + '" y1="' + y(c).toFixed(1) + '" y2="' + y(c).toFixed(1) + '"></line>'; }).join('') +
+      '<path class="rp-area" d="' + area + '" fill="url(#rp-fill)"></path>' +
+      '<path class="rp-line ' + (up ? 'up' : 'down') + '" d="' + line + '"></path>' + bars +
+      (n ? '<circle class="rp-ring" cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="5"></circle><circle class="rp-dot ' + (up ? 'up' : 'down') + '" cx="' + last[0].toFixed(1) + '" cy="' + last[1].toFixed(1) + '" r="4"></circle>' : '') +
+      '<line class="rp-guide off" x1="0" x2="0" y1="0" y2="' + H + '"></line><circle class="rp-pt off" cx="0" cy="0" r="4.5"></circle>' +
+      '<rect class="rp-hit" x="0" y="0" width="' + W + '" height="' + H + '"></rect>';
+    var p = svg.querySelector('.rp-line');
+    if (p && p.getTotalLength) p.style.setProperty('--len', Math.ceil(p.getTotalLength()));
+    svg._days = days; svg._slot = slot; svg._cum = cum; svg._y = y; svg._cx = cx; svg._W = W; svg._H = H;
+    // the dollar scale (the window's high, $0 when the line crosses it, its low) and the first, middle and last dates, as HTML
+    // over the stretched SVG so the text keeps its shape (Nov 23 2026)
+    var near = function (a, b) { return Math.abs(y(a) - y(b)) < 12; };       // $0 only where it clears the high and the low labels
+    var marks = grid.length ? [[hi, money(hi)]].concat(lo < 0 && hi > 0 && !near(0, hi) && !near(0, lo) ? [[0, '$0']] : []).concat(grid.length > 1 ? [[lo, money(lo)]] : []) : [];
+    $('.rp-scale').innerHTML = marks.map(function (m) { return '<span style="top:' + (y(m[0]) / H * 100).toFixed(2) + '%">' + m[1] + '</span>'; }).join('');
+    var mid = Math.floor((n - 1) / 2);
+    $('.rp-dates').innerHTML = n ? '<span>' + dayLabel(days[0].d) + '</span>' + (n > 2 ? '<span style="left:' + (cx(mid) / W * 100).toFixed(2) + '%">' + dayLabel(days[mid].d) + '</span>' : '') +
+      (n > 1 ? '<span>' + dayLabel(days[n - 1].d) + '</span>' : '') : '';
+    if (at >= 0 && at < n) card(at); else unpoint();
+  }
+
+  // draw: the line runs in, the bars rise; counters count up on the first view and on Replay
+  function draw(count) {
+    root.classList.remove('rp-drawn');
+    void root.offsetWidth;
+    root.dataset.draws = String((+root.dataset.draws || 0) + 1);
+    var go = function () { root.classList.add('rp-drawn'); };
+    if (reduced) { go(); return; }
+    (window.requestAnimationFrame || setTimeout)(go);
+    if (count) counters();
+  }
+  function counters() {
+    var f = figs(data.views[view]), t0 = 0, els = $$('.rp-fig'), my = ++anim;
+    function step(t) {
+      if (my !== anim) return;
+      if (!t0) t0 = t;
+      var k = Math.min(1, (t - t0) / 1200), e = 1 - Math.pow(1 - k, 3);
+      els.forEach(function (el) {
+        var key = el.getAttribute('data-fig'), v = f[key];
+        if (k >= 1 || v[1] === '—') { el.querySelector('b').textContent = v[1]; return; }
+        var x = v[0] * e;
+        el.querySelector('b').textContent = key === 'green' ? Math.round(x) + ' of ' + data.views[view].days.length : key === 'trades' ? String(Math.round(x)) : money(Math.round(x));   // net, best, worst, dd
+      });
+      if (k < 1 && window.requestAnimationFrame) requestAnimationFrame(step);
+    }
+    if (window.requestAnimationFrame) requestAnimationFrame(step); else step(1e9);
+  }
+
+  // the day card (Nov 23 2026): the date, the day, the running total to it and, for All five, each strategy's P&L that day,
+  // from the strategies' own views in the file (each holds every day of its own in All five's window). When they don't add up to
+  // the day (a view cut at its oldest end) the card gives the strategies' trade counts, as the Days table does.
+  var byDay = {}, at = -1;                 // at: the day on the card, oldest first; -1 none
+  function index() {
+    byDay = {};
+    KEYS.forEach(function (k) { var m = byDay[k] = {}; (data.views[k].days || []).forEach(function (x) { m[x.d] = x.net; }); });
+  }
+  function parts(d) {
+    var ks = KEYS.filter(function (k) { return d.by[k]; });
+    var nets = ks.map(function (k) { var x = byDay[k] && byDay[k][d.d]; return typeof x === 'number' ? x : null; });
+    var fits = nets.every(function (x) { return x !== null; }) && nets.reduce(function (a, b) { return a + b; }, 0) === d.net;
+    return ks.map(function (k, i) { return [NAME[k] + ' ' + (fits ? money(nets[i]) : d.by[k]), fits ? cls(nets[i]) : '']; });
+  }
+  function light(j) {
+    var n = ($('.rp-svg')._days || []).length, i = n - 1 - j;
+    $$('.rp-bar').forEach(function (b) { b.classList.toggle('lit', +b.getAttribute('data-j') === j); });
+    $$('.rp-days tbody tr').forEach(function (t) { t.classList.toggle('rp-hl', +t.getAttribute('data-i') === i); });
+  }
+  function card(j) {
+    var svg = $('.rp-svg'), days = svg._days || [], c = $('.rp-card');
+    if (!days.length) return;
+    j = Math.max(0, Math.min(days.length - 1, j)); at = j;
+    var d = days[j], run = svg._cum[j + 1];
+    var lines = [[dayLabel(d.d), 'rc-d'], ['Day ' + money(d.net) + ' · ' + d.n + (d.n === 1 ? ' trade' : ' trades') + ' (' + d.w + '-' + d.l + ')', 'rc-day rp-' + cls(d.net)],
+      ['Running ' + money(run), 'rc-run']].concat(view === 'all' ? parts(d).map(function (p) { return [p[0], 'rc-s' + (p[1] ? ' rp-' + p[1] : '')]; }) : []);
+    c.innerHTML = lines.map(function (l) { return '<span class="rc ' + l[1] + '">' + esc(l[0]) + '</span>'; }).join('');
+    c.hidden = false;
+    var pw = $('.rp-plot').clientWidth, x = svg._cx(j) / svg._W * pw, w = c.offsetWidth;
+    c.style.left = Math.max(4, Math.min(pw - w - 4, x - w / 2)) + 'px';
+    var X = svg._cx(j).toFixed(1), g = svg.querySelector('.rp-guide'), pt = svg.querySelector('.rp-pt');
+    g.setAttribute('x1', X); g.setAttribute('x2', X); g.classList.remove('off');
+    pt.setAttribute('cx', X); pt.setAttribute('cy', svg._y(run).toFixed(1)); pt.classList.remove('off');
+    light(j);
+  }
+  function point(e) {
+    var svg = $('.rp-svg'), days = svg._days || [];
+    if (!days.length) return;
+    var r = svg.getBoundingClientRect(), x = (e.clientX - r.left) / (r.width || 1) * (+svg.getAttribute('viewBox').split(' ')[2]);
+    card(Math.max(0, Math.min(days.length - 1, Math.floor(x / svg._slot))));
+  }
+  function unpoint() {
+    at = -1;
+    var c = $('.rp-card'); if (c) c.hidden = true;
+    $$('.rp-guide, .rp-pt').forEach(function (e) { e.classList.add('off'); });
+    $$('.rp-bar.lit').forEach(function (b) { b.classList.remove('lit'); });
+    $$('.rp-days tr.rp-hl').forEach(function (t) { t.classList.remove('rp-hl'); });
+  }
+
+  // a link per view (Nov 19 2026): #replay-trend and so on opens that view and scrolls to the replay; Share hands the
+  // view's link to the phone's share sheet, or copies it
+  var FIXED = root.getAttribute('data-fixed');       // a strategy page: its own view only (Nov 23 2026)
+  if (FIXED && !data.views[FIXED]) FIXED = null;
+  function fromHash() {
+    if (FIXED) return null;
+    var m = /^#replay-(all|breakout|trend|momentum|select|overnight)$/.exec(location.hash || '');
+    return m ? m[1] : null;
+  }
+  index();
+  root.classList.add('rp-on');
+  var start = fromHash();
+  render(FIXED || start || 'all');
+  if (start && root.scrollIntoView) root.scrollIntoView({ block: 'start' });
+  window.addEventListener('hashchange', function () {
+    var k = fromHash();
+    if (k && k !== view) { render(k); draw(false); if (root.scrollIntoView) root.scrollIntoView({ block: 'start' }); }
+  });
+  var share = $('.rp-share'), said = 0;
+  function say(t) { share.textContent = t; clearTimeout(said); said = setTimeout(function () { share.textContent = 'Share'; }, 2000); }
+  if (share) share.addEventListener('click', function () {
+    var url = location.origin + location.pathname + '#replay-' + view;
+    var inBar = function () { try { history.replaceState(null, '', url); } catch (e) {} say('Link in the address bar'); };
+    if (navigator.share) { navigator.share({ title: document.title, url: url }).catch(function () {}); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () { say('Link copied'); }, inBar);
+    else inBar();
+  });
+  $$('.rp-chip').forEach(function (b) { b.addEventListener('click', function () { render(b.getAttribute('data-view')); draw(false); }); });
+  $$('.rp-more').forEach(function (b) { b.addEventListener('click', function () { var p = b.getAttribute('data-more'); open[p] = !open[p]; fold(p); }); });
+  $$('.rp-tab').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-tab');
+      $$('.rp-tab').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      $$('.rp-panel').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== t; });
+    });
+  });
+  $('.rp-replay').addEventListener('click', function () { chart(data.views[view]); draw(true); });
+  var hit = $('.rp-chart');
+  hit.addEventListener('pointermove', point); hit.addEventListener('pointerdown', point);
+  hit.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') unpoint(); });     // a finger lifts: the card stays
+  document.addEventListener('pointerdown', function (e) { if (at >= 0 && !hit.contains(e.target) && !$('.rp-days').contains(e.target)) unpoint(); });
+  hit.addEventListener('keydown', function (e) {
+    var n = ($('.rp-svg')._days || []).length, j = at, k = e.key;
+    if (!n) return;
+    if (k === 'Escape') { unpoint(); return; }
+    if (k === 'ArrowLeft') j = j < 0 ? n - 1 : j - 1; else if (k === 'ArrowRight') j = j < 0 ? n - 1 : j + 1;
+    else if (k === 'Home') j = 0; else if (k === 'End') j = n - 1; else return;
+    e.preventDefault(); card(j);
+  });
+  var rowsOf = $('.rp-days tbody');
+  rowsOf.addEventListener('mouseover', function (e) {
+    var t = e.target.closest ? e.target.closest('tr') : null, n = ($('.rp-svg')._days || []).length;
+    if (t && at < 0) light(n - 1 - +t.getAttribute('data-i'));
+  });
+  rowsOf.addEventListener('mouseleave', function () { if (at < 0) light(-1); });
+  rowsOf.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('tr') : null, n = ($('.rp-svg')._days || []).length;
+    if (t) card(n - 1 - +t.getAttribute('data-i'));
+  });
+  var wide = 0;
+  window.addEventListener('resize', function () { clearTimeout(wide); wide = setTimeout(function () { chart(data.views[view]); root.classList.add('rp-drawn'); }, 150); });
+
+  // the daily data (Nov 20 2026): after each session the nightly re-run and marketing/replay/daily put that session's file
+  // on the replay server. The page shows it when it is well formed and runs past the file the page was built with, and
+  // keeps its own when the server is slow, down or has nothing newer. The first draw waits for the answer at most 1.5 s.
+  // #replay gets data-source ("loading", then "live" or "page") and data-through (the session the data runs to);
+  // data-live="off" on #replay (the video) leaves the server out.
+  var API = root.getAttribute('data-live') === 'off' ? '' : "https://replay.belltobellstrategies.com/v1/replay";
+  var held = [];
+  function ready(fn) { if (held) held.push(fn); else fn(); }
+  function settle() { var h = held; held = null; if (h) h.forEach(function (f) { f(); }); }
+  function isDate(s) { return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s); }
+  function isInt(x) { return typeof x === 'number' && isFinite(x) && Math.floor(x) === x; }
+  function usable(j) {
+    if (!j || j.v !== 1 || !isDate(j.through) || !isDate(j.made) || !j.views) return false;
+    return ['all'].concat(KEYS).every(function (k) {
+      var v = j.views[k];
+      return !!v && Array.isArray(v.days) && Array.isArray(v.trades) && v.days.length <= LIMIT && v.trades.length <= LIMIT &&
+        v.days.every(function (x) {
+          return !!x && isDate(x.d) && x.d <= j.through && isInt(x.n) && x.n > 0 && isInt(x.w) && isInt(x.l) && isInt(x.net) && !!x.by && typeof x.by === 'object' &&
+            Object.keys(x.by).every(function (s) { return KEYS.indexOf(s) >= 0 && isInt(x.by[s]); });
+        }) &&
+        v.trades.every(function (t) { return !!t && isDate(t.d) && t.d <= j.through && KEYS.indexOf(t.s) >= 0 && (t.c === 1 || t.c === 2) && isInt(t.usd); });
+    });
+  }
+  // "Updated today" (Nov 23 2026): the data runs through today's date in New York, so after each evening publish
+  function today() {
+    var b = $('.rp-today'), t = '';
+    try { t = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()); } catch (e) {}
+    if (b) b.hidden = !t || data.through !== t;
+  }
+  today();
+  root.setAttribute('data-through', data.through);
+  if (API && window.fetch && /^https?:$/.test(location.protocol)) {
+    root.setAttribute('data-source', 'loading');
+    var ctl = window.AbortController ? new AbortController() : null;
+    var hold = setTimeout(settle, 1500), stop = setTimeout(function () { if (ctl) ctl.abort(); }, 8000);
+    fetch(API, { credentials: 'omit', cache: 'no-cache', signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) {
+        if (!usable(j) || j.through <= data.through) throw new Error('nothing newer');
+        data = j; index();
+        root.setAttribute('data-through', j.through);
+        root.setAttribute('data-source', 'live');
+        render(view); today();                     // the view picked stays; once drawn, the new line and bars show drawn
+      })
+      .catch(function () { root.setAttribute('data-source', 'page'); })
+      .then(function () { clearTimeout(hold); clearTimeout(stop); settle(); });
+  } else {
+    root.setAttribute('data-source', 'page');
+    settle();
+  }
+
+  if (reduced || !('IntersectionObserver' in window) || !window.IntersectionObserver) { draw(false); return; }
+  var io = new IntersectionObserver(function (es) {
+    if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); ready(function () { draw(true); }); }
+  }, { threshold: 0.4 });
+  io.observe($('.rp-chart'));            // the chart, not the section: on a short phone the section never shows a quarter of itself
+})();
+</script>
+<script id="lastday-js">
+// The last-trade drawings (Nov 24 2026): each strategy's most recent trade's session as a simplified price line, its result
+// line and its last three active sessions, on the home page, the Strategies page and each strategy page. build.py writes
+// them from site/lastday.json (svgs.trade_svg and marketing/replay/lastday.py's text rules); after each session the daily
+// publisher puts the newest file on the replay server. This asks for it once and, when it passes the same rules as
+// lastday.py check_lastday and runs past the session the page was built with (data-ld-through), redraws every drawing,
+// result line, list and chips from it: all of them or none. <html> gets data-ld-source: "loading", then "live" (redrawn) or
+// "page" (the page's own: the server is slow, down, broken or has nothing newer).
+(function () {
+  var API = "https://replay.belltobellstrategies.com/v1/lastday", html = document.documentElement;
+  var first = document.querySelector('svg[data-ld]');
+  if (!first) return;
+  var through = first.getAttribute('data-ld-through') || '';
+  var KEYS = ['breakout', 'trend', 'momentum', 'select', 'overnight'], BASE = ['trend', 'select'];
+
+  // lastday.py's text rules: dollars, money, result_class (the word and the class follow the dollars shown, Ruling R16: under
+  // 50 cents either way is even), size_text, result_text (here its three parts, which the list shows apart)
+  function dollars(c) { return Math.floor(Math.abs(c) / 100 + 0.5); }
+  function money(c) { var d = dollars(c); return d ? (c < 0 ? '−' : '+') + '$' + d.toLocaleString('en-US') : '$0'; }
+  function cls(net) { return !dollars(net) ? 'even' : net > 0 ? 'win' : 'loss'; }
+  function size(k, c) {
+    if (c.length === 1 && c[0] === 1) return BASE.indexOf(k) >= 0 ? '1 MNQ (base size)' : '1 MNQ';
+    return c.length === 1 && c[0] === 2 ? '2 MNQ (twice the base size)' : '1 and 2 MNQ';
+  }
+  function parts(k, x) {          // "Loss", "−$540", "1 MNQ over 2 trades": result_text is "Loss, −$540 at 1 MNQ over 2 trades"
+    var w = cls(x.net);
+    return [w.charAt(0).toUpperCase() + w.slice(1), money(x.net), size(k, x.c) + (x.n > 1 ? ' over ' + x.n + ' trades' : '')];
+  }
+  function result(k, x) { var p = parts(k, x); return p[0] + ', ' + p[1] + ' at ' + p[2]; }
+  function item(k, x) {           // one of the last three (build.py ld_item)
+    var p = parts(k, x), c = cls(x.net);
+    return '<li><span class="rr ' + c + '">' + p[0] + '</span><span class="rm ' + c + '">' + p[1] + '</span><span class="rz">at ' + p[2] + '</span></li>';
+  }
+  // svgs.trade_svg's points, written as its _f writes them (2 decimals, no trailing zeros)
+  function f2(v) { return v.toFixed(2).replace(/0+$/, '').replace(/\.$/, ''); }
+  function points(p) { return p.map(function (v, i) { return f2(8 + i / (p.length - 1) * 304) + ',' + f2(12 + (1 - v / 1000) * 96); }).join(' '); }
+
+  // lastday.py check_lastday: exactly these fields in this order, real dates, whole numbers in range; and no fraction or
+  // exponent in the text (lastday.py whole_numbers), which JSON.parse would read as a whole number (1.0 is 1)
+  function whole(t) { return !/[.eE]/.test(String(t).replace(/"(?:[^"\\]|\\.)*"/g, '""')); }
+  function isInt(x) { return typeof x === 'number' && isFinite(x) && Math.floor(x) === x; }
+  function isObj(x) { return !!x && typeof x === 'object' && !Array.isArray(x); }
+  function fields(o, f) { var k = Object.keys(o); return k.length === f.length && f.every(function (x, i) { return k[i] === x; }); }
+  function sameC(a, b) { return a.length === b.length && a.every(function (x, i) { return x === b[i]; }); }
+  function isDate(s) {
+    if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
+    var p = s.split('-'), y = +p[0], m = +p[1], d = +p[2], t = new Date(0);
+    if (y < 1 || m < 1 || m > 12 || d < 1) return false;
+    t.setUTCFullYear(y, m, 0);                 // day 0 of the next month: the last day of month m
+    return d <= t.getUTCDate();
+  }
+  function day(x) {                            // n, net, c of the drawn session or of a recent one
+    return isInt(x.n) && x.n >= 1 && isInt(x.net) && Array.isArray(x.c) && [[1], [2], [1, 2]].some(function (s) { return sameC(s, x.c); });
+  }
+  function usable(j) {
+    if (!isObj(j) || !fields(j, ['v', 'through', 'made', 'last']) || j.v !== 1 || !isDate(j.through) || !isDate(j.made)) return false;
+    return isObj(j.last) && fields(j.last, KEYS) && KEYS.every(function (k) {
+      var e = j.last[k];
+      return isObj(e) && fields(e, ['path', 'n', 'net', 'c', 'recent']) && Array.isArray(e.path) && e.path.length >= 2 && e.path.length <= 80 &&
+        e.path.every(function (v) { return isInt(v) && v >= 0 && v <= 1000; }) && day(e) && Array.isArray(e.recent) && e.recent.length >= 1 && e.recent.length <= 3 &&
+        e.recent.every(function (r) { return isObj(r) && fields(r, ['n', 'net', 'c']) && day(r); }) &&
+        e.recent[0].n === e.n && e.recent[0].net === e.net && sameC(e.recent[0].c, e.c);
+    });
+  }
+
+  // every drawing, result line, list and chips on the page, from the file j; nothing changes unless each names one of the five
+  function redraw(j) {
+    var get = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+    var svgs = get('svg[data-ld]'), results = get('[data-ld-result]'), lists = get('[data-ld-list]'), chips = get('[data-ld-chips]');
+    var known = function (a) { return function (el) { return KEYS.indexOf(el.getAttribute(a)) >= 0; }; };
+    if (!svgs.every(known('data-ld')) || !results.every(known('data-ld-result')) || !lists.every(known('data-ld-list')) || !chips.every(known('data-ld-chips')) ||
+        !svgs.every(function (s) { return s.querySelector('polyline.ld-path'); })) throw new Error('a drawing of no strategy');
+    svgs.forEach(function (s) {
+      var e = j.last[s.getAttribute('data-ld')];
+      var keep = (s.getAttribute('class') || '').split(/\s+/).filter(function (c) { return c && c !== 'win' && c !== 'loss' && c !== 'even'; });
+      s.setAttribute('class', keep.concat(cls(e.net)).join(' '));
+      s.querySelector('polyline.ld-path').setAttribute('points', points(e.path));
+      s.setAttribute('data-ld-through', j.through);
+    });
+    results.forEach(function (p) { var k = p.getAttribute('data-ld-result'); p.className = 'lt-result ' + cls(j.last[k].net); p.textContent = result(k, j.last[k]); });
+    lists.forEach(function (o) { var k = o.getAttribute('data-ld-list'); o.innerHTML = j.last[k].recent.map(function (x) { return item(k, x); }).join(''); });
+    chips.forEach(function (c) {
+      c.innerHTML = j.last[c.getAttribute('data-ld-chips')].recent.map(function (x) { return '<span class="chip ' + cls(x.net) + '">' + money(x.net) + '</span>'; }).join('');
+    });
+  }
+
+  if (!API || !window.fetch || !/^https?:$/.test(location.protocol)) { html.setAttribute('data-ld-source', 'page'); return; }
+  html.setAttribute('data-ld-source', 'loading');
+  var ctl = window.AbortController ? new AbortController() : null, over = false;
+  function end(src) { if (!over) { over = true; clearTimeout(stop); html.setAttribute('data-ld-source', src); } }
+  var stop = setTimeout(function () { if (ctl) ctl.abort(); end('page'); }, 8000);     // at most 8 s; a later answer draws nothing
+  fetch(API, { credentials: 'omit', cache: 'no-cache', signal: ctl ? ctl.signal : undefined })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (t) {
+      var j = whole(t) ? JSON.parse(t) : null;
+      if (over || !usable(j) || !(j.through > through)) throw new Error('nothing newer');
+      redraw(j);
+      end('live');
+    })
+    .catch(function () { end('page'); });
+})();
+</script>
+
+<script id="utm-persist-js">
+(function () {
+  var KEY = 'b2b_utm_source';
+  var ALLOWED = {
+    'reddit-daytrading': true,
+    'elitetrader': true,
+    'forexfactory': true,
+    'nt-ecosystem': true,
+    'x': true,
+    'facebook': true,
+    'x-replies': true,
+    'reddit-replies': true,
+    'youtube-replies': true,
+    'substack': true,
+    'medium': true,
+    'reddit': true,
+    'kit': true,
+    'discord': true,
+    'email': true,
+    'quora': true,
+    'linkedin': true,
+    'stocktwits': true,
+    'pinterest': true,
+    'youtube-shorts': true,
+    'tiktok': true
+  };
+  function pick(name) {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var v = q.get(name);
+      if (v) return String(v).slice(0, 80);
+    } catch (e) {}
+    return '';
+  }
+  var source = pick('utm_source') || pick('source');
+  if (source && ALLOWED[source]) {
+    try { sessionStorage.setItem(KEY, source); } catch (e) {}
+  }
+})();
+</script>
+<a class="ask" id="ask" href="faq.html">Support</a>
+<script id="chat-js">
+(()=>{var d=document,API="https://chat.belltobellstrategies.com",KEY='btb-chat',btn=d.getElementById('ask');function $(s,root){return(root||d).querySelector(s);}function on(n,ev,fn){n.addEventListener(ev,fn);}if(!btn||btn.getAttribute('data-ask'))return;btn.setAttribute('data-ask','1');var BUSY="We're getting a lot of messages right now. Please email support@belltobellstrategies.com.";var DOWN="Chat isn't reachable right now. Email support@belltobellstrategies.com.";var GOT="Got it. We'll answer here, and by email if you left one.";var STOP=' a an the of to and or for in on is it my do i you your we with at by from that this be are can how what which does did will if as so not no they them me our '.split(' ').reduce((m,w)=>{m[w]=1;return m;},{});var SYN=[['vps','pc','computer'],['refund','cancel','money','back'],['trial','free'],['key','license','licence'],['prop','firm','evaluation','eval','funded'],['tick','data','feed'],['ninja','ninjatrader'],['tradingview','wealthcharts']];var chat=load(),open=false,hi=0,who='',at=0,busy=false,faq=null,timer=0,sugT=0;var dot=el('span','ask-dot','New reply');dot.hidden=true;btn.appendChild(dot);btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-controls','ask-panel');var panel=el('div','ask-panel');panel.id='ask-panel';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','ask-title');panel.innerHTML='<div class="ask-bar"><b id="ask-title">Support</b><button type="button" class="ask-x" aria-label="Close">\u00d7</button></div><p class="ask-status">Available 24/7. Average response time: 1-2 hrs.</p><div class="ask-log" aria-live="polite"></div><div class="ask-sug" hidden></div><form class="ask-form"><label class="ask-hp">Website<input name="website" tabindex="-1" autocomplete="off"></label><label class="ask-email">Email (optional, so we can reply if you leave)<input type="email" name="email" maxlength="254" autocomplete="email"></label><textarea name="message" maxlength="1000" placeholder="How can we help?" required></textarea><button type="submit" class="btn primary">Send</button><p class="ask-fine">We can\'t give trading or financial advice. Messages are kept 12 months. <a href="legal.html#privacy">Privacy policy</a></p><button type="button" class="ask-new">Start a new message</button></form><p class="ask-note" aria-live="polite"></p>';d.body.appendChild(panel);var log=$('.ask-log',panel),sug=$('.ask-sug',panel),box=$('textarea',panel);var emailBox=$('.ask-email',panel),emailIn=$('input',emailBox),hp=$('[name=website]',panel),note=$('.ask-note',panel);function el(t,c,x){var n=d.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n;}function load(){try{var v=JSON.parse(localStorage.getItem(KEY)||'');if(v&&v.id&&v.token)return v;}catch(e){}return null;}function save(){try{if(chat)localStorage.setItem(KEY,JSON.stringify({id:chat.id,token:chat.token,last:chat.last||0,vt:chat.vt||0}));else localStorage.removeItem(KEY);}catch(e){}}function path(){var p=location.pathname||'/';return(p.charAt(0)==='/'?p:'/'+p).slice(0,200);}function paint(ms){(ms||[]).forEach((m)=>{if(!m||!(m.id>hi))return;hi=m.id;who=m.who;if(m.who==='bell')at=Date.now();var p=el('p',m.who==='bell'?'ask-bell':'ask-me');p.appendChild(el('b','',m.who==='bell'?'Bell to Bell':'You'));p.appendChild(d.createTextNode('\n'+m.body));log.appendChild(p);});if(open&&chat){chat.last=hi;dot.hidden=true;save();}else if(chat&&who==='bell'&&hi>(chat.last||0))dot.hidden=false;log.scrollTop=log.scrollHeight;}function pull(){if(!chat)return Promise.resolve();return fetch(API+'/v1/chats/'+chat.id+'?after='+hi+(open?'&open=1':''),{headers:{Authorization:'Bearer '+chat.token}}).then((r)=>{if(r.status===401||r.status===404){chat=null;save();return;}if(r.ok)return r.json().then((j)=>{paint(j.messages);if(j.status&&j.status.email)emailBox.hidden=true;});}).catch(()=>{});}function gap(){if(d.hidden||!chat)return 0;if(open){var age=Date.now()-at;return age<12e4?5000:age<6e5?15000:60000;}return who==='visitor'&&chat.vt&&Date.now()-chat.vt<18e5?60000:0;}function arm(){clearTimeout(timer);var w=gap();if(w)timer=setTimeout(()=>{pull().then(arm);},w);}function show(){open=true;panel.hidden=false;btn.setAttribute('aria-expanded','true');box.focus();loadFaq().then(match);pull().then(arm);}function shut(){if(!open)return;open=false;panel.hidden=true;btn.setAttribute('aria-expanded','false');btn.focus();arm();}function toks(s){return String(s||'').toLowerCase().split(/[^a-z0-9]+/).filter((w)=>{return w&&!STOP[w];});}function grow(ws){var out=[],i,w,g,j;for(i=0;i<ws.length;i++){w=ws[i];if(w==='money'&&ws[i+1]==='back'){w='refund';i++;}g=null;for(j=0;j<SYN.length;j++)if(SYN[j].indexOf(w)>=0)g=SYN[j];if(g)out.push.apply(out,g);else out.push(w);}return out;}function rank(e,ts){var q=' '+toks(e.q).join(' ')+' ',a=' '+toks(e.a).join(' ')+' ',n=0,seen={},i,t;for(i=0;i<ts.length;i++){t=ts[i];if(seen[t])continue;seen[t]=1;n+=q.indexOf(' '+t+' ')>=0?2:a.indexOf(' '+t+' ')>=0?1:0;}return n;}function showSug(list){sug.textContent='';sug.hidden=!list.length;if(!list.length)return;sug.appendChild(el('p','ask-sug-h','From our FAQ'));list.forEach((e)=>{var b=el('div'),s=e.a.indexOf('. ');b.appendChild(el('p','',e.q));b.appendChild(el('p','',s<0?e.a:e.a.slice(0,s+1)));b.appendChild(el('a','','Read more')).href='faq.html#'+e.id;sug.appendChild(b);});}function match(){var raw=box.value.trim(),scored=[],i,s;if(raw.length<3||!faq){sug.hidden=true;sug.textContent='';return;}var ts=grow(toks(raw));for(i=0;i<faq.length;i++){s=rank(faq[i],ts);if(s>=2)scored.push([s,i]);}scored.sort((a,b)=>{return b[0]-a[0]||a[1]-b[1];});showSug(scored.slice(0,3).map((x)=>{return faq[x[1]];}));}function loadFaq(){if(faq)return Promise.resolve(faq);return fetch('chat-faq.json').then((r)=>{return r.json();}).then((j)=>{return faq=j||[];}).catch(()=>{return faq=[];});}function putEmail(em){return fetch(API+'/v1/chats/'+chat.id+'/email',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer '+chat.token},body:JSON.stringify({email:em})}).then((r)=>{if(r.ok)emailBox.hidden=true;});}function sent(j,em,existed){if(!chat)chat={id:j.id,token:j.token,last:0,vt:Date.now()};else chat.vt=Date.now();at=Date.now();who='visitor';box.value='';sug.hidden=true;paint(j.messages);save();note.textContent=GOT;var extra=existed&&em?putEmail(em):Promise.resolve();if(em)emailBox.hidden=true;return extra.then(pull).then(arm);}function submit(e){e.preventDefault();var text=box.value.trim(),em=emailIn.value.trim();if(!text||busy)return;busy=true;var headers={'Content-Type':'application/json'},url,body,existed=!!chat;if(!chat){url='/v1/chats';body={message:text,page:path(),website:hp.value};if(em)body.email=em;}else{url='/v1/chats/'+chat.id+'/messages';headers.Authorization='Bearer '+chat.token;body={message:text,after:hi};}fetch(API+url,{method:'POST',headers:headers,body:JSON.stringify(body)}).then((r)=>{busy=false;if(r.status===429){note.textContent=BUSY;return;}if(!r.ok){note.textContent=DOWN;return;}return r.json().then((j)=>{return sent(j,em,existed);});}).catch(()=>{busy=false;note.textContent=DOWN;});}function reset(){chat=null;hi=0;who='';at=0;save();log.textContent='';note.textContent='';sug.hidden=true;emailBox.hidden=false;emailIn.value='';dot.hidden=true;box.focus();}on(btn,'click',(e)=>{e.preventDefault();open?shut():show();});on($('.ask-x',panel),'click',shut);on($('.ask-new',panel),'click',reset);on($('form',panel),'submit',submit);on(box,'input',()=>{clearTimeout(sugT);sugT=setTimeout(match,150);});on(d,'keydown',(e)=>{if(e.key==='Escape'&&open){e.preventDefault();shut();}});on(d,'mousedown',(e)=>{if(open&&!panel.contains(e.target)&&!btn.contains(e.target))shut();});on(d,'visibilitychange',()=>{if(d.hidden)clearTimeout(timer);else pull().then(arm);});var peek=$('.sb-peek');if(peek&&window.IntersectionObserver)new IntersectionObserver((es)=>{var hit=es[0]&&es[0].isIntersecting&&es[0].intersectionRect.height>8;if(hit)d.documentElement.style.setProperty('--ask-lift',Math.round(es[0].intersectionRect.height+12)+'px');else d.documentElement.style.removeProperty('--ask-lift');}).observe(peek);var pop=$('.popup');function syncPop(){var p=$('.popup:not([hidden])');btn.hidden=!!p;if(p)shut();}if(pop&&window.MutationObserver)new MutationObserver(syncPop).observe(pop,{attributes:true,attributeFilter:['hidden','class']});syncPop();var hash=location.hash||'',fid=hash.replace(/^#/,'');if(fid&&fid.indexOf('chat=')!==0){var det=d.getElementById(fid);if(det&&det.tagName==='DETAILS'){det.open=true;try{det.scrollIntoView({block:'start'});}catch(e){}}}var cm=/^#chat=([A-Za-z0-9_-]{22})\.([A-Za-z0-9_-]{43})$/.exec(hash);if(cm){chat={id:cm[1],token:cm[2],last:0,vt:0};save();try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}show();}else if(chat)pull().then(arm);})();</script>
+</body>
+</html>
