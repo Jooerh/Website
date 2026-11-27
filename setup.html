@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Setup | Bell to Bell Strategies</title>
+<meta name="description" content="Install a strategy and run it on NinjaTrader's simulator.">
+<link rel="canonical" href="https://belltobellstrategies.com/setup">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bell to Bell Strategies">
+<meta property="og:title" content="Setup | Bell to Bell Strategies">
+<meta property="og:description" content="Install a strategy and run it on NinjaTrader's simulator.">
+<meta property="og:url" content="https://belltobellstrategies.com/setup">
+<meta property="og:image" content="https://belltobellstrategies.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0C0C0B">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23FF4200'/%3E%3Cpath transform='translate%284.48 4%29 scale%28.96%29' d='M12 1.8a1.4 1.4 0 1 1 0 2.8a1.4 1.4 0 1 1 0-2.8zM12 4.6c-3.6 0-6 2.7-6 6.2v3.9c0 .9-.4 1.7-1.1 2.3l-.9.8v1.2h16v-1.2l-.9-.8c-.7-.6-1.1-1.4-1.1-2.3v-3.9c0-3.5-2.4-6.2-6-6.2zM9.6 20.2a2.4 2.4 0 0 0 4.8 0z' fill='%23000'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site"><div class="wrap bar"><a class="brand" href="index.html" aria-label="Bell to Bell Strategies, home"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 586 320" fill="none" aria-hidden="true" focusable="false"><path d="M 162.48 30.98 C 180.8 31.13 198.92 32.17 215.59 39.77 C 232.27 47.36 243.03 63.11 245.89 81.21 C 248.75 99.31 250.79 116.32 253.91 134.38 C 257.03 152.44 261.1 169.55 266.58 187.04 C 272.06 204.53 285.87 218.42 287.85 236.64 C 289.82 254.85 269.47 231.49 262.32 214.61 C 255.18 197.74 251.12 180.66 246.81 162.85 C 242.51 145.03 239.88 127.93 236.88 109.85 C 233.89 91.77 234.79 71.81 221.44 59.26 C 208.08 46.72 188.94 44.88 170.64 43.9 C 152.34 42.93 133.32 44.8 118.14 55.07 C 102.96 65.33 100.93 85.03 97.9 103.1 C 94.87 121.18 92.84 138.49 89.24 156.45 C 85.63 174.42 80.53 191.3 74.27 208.52 C 68 225.74 60.4 241.81 49.05 256.2 C 37.7 270.59 60.25 268.69 78.57 268.7 C 96.9 268.72 115.22 268.74 133.55 268.76 C 151.88 268.77 170.2 268.79 188.53 268.81 C 206.85 268.82 225.18 268.84 243.5 268.86 C 261.83 268.87 278.8 262.21 290.12 247.8 C 301.44 233.39 308.91 216.95 315.11 199.7 C 321.31 182.46 325.11 165.55 328.77 147.59 C 332.43 129.63 335.47 112.8 337.85 94.63 C 340.23 76.46 343.73 57.51 358.13 46.18 C 372.54 34.85 391.2 32.9 409.49 31.88 C 427.79 30.86 445.55 31.77 462.91 37.64 C 480.28 43.5 492.8 59.22 496.49 77.17 C 500.18 95.12 501.65 112.23 504.86 130.27 C 508.07 148.31 511.61 165.25 516.81 182.82 C 522.01 200.4 527.83 217.22 536.76 233.23 C 545.68 249.23 557.83 263.93 575.48 268.86 C 593.12 273.8 565.32 281.87 547 281.87 C 528.67 281.87 510.35 281.87 492.02 281.87 C 473.7 281.87 455.37 281.87 437.05 281.87 C 418.72 281.87 400.4 281.87 382.07 281.87 C 363.75 281.87 345.42 281.87 327.09 281.87 C 308.77 281.87 290.44 281.87 272.12 281.87 C 253.79 281.87 235.47 281.87 217.14 281.87 C 198.82 281.87 180.49 281.87 162.17 281.87 C 143.84 281.87 125.52 281.87 107.19 281.87 C 88.87 281.87 70.54 281.87 52.22 281.87 C 33.89 281.87 2.07 293.84 1.02 275.54 C -0.02 257.25 30.62 259.33 41.65 244.69 C 52.68 230.05 59.11 213.19 65 195.84 C 70.9 178.49 74.91 161.55 78.5 143.58 C 82.08 125.61 84.82 108.55 86.92 90.35 C 89.02 72.14 95.49 54.48 110.62 44.15 C 125.76 33.83 144.16 31.65 162.48 30.98 Z M 409.45 43.99 C 418.1 43.94 426.57 43.96 435.16 44.98 C 443.74 46 452.09 47.33 459.93 50.98 C 467.77 54.63 475.06 59.78 479.22 67.36 C 483.37 74.94 484.76 83.21 485.87 91.78 C 486.98 100.36 487.77 108.48 488.91 117.05 C 490.05 125.62 492.67 133.44 493.84 142.01 C 495.02 150.57 496.76 158.69 498.76 167.1 C 500.77 175.51 502.81 183.36 505.24 191.66 C 507.66 199.95 510.8 207.91 513.95 215.96 C 517.1 224.01 521.45 231.45 525.49 239.09 C 529.53 246.73 534.23 253.7 539.81 260.3 C 545.39 266.91 539.64 268.75 530.99 268.76 C 522.35 268.76 513.7 268.77 505.05 268.77 C 496.41 268.78 487.76 268.78 479.12 268.78 C 470.47 268.79 461.83 268.79 453.18 268.8 C 444.54 268.8 435.89 268.81 427.24 268.81 C 418.6 268.81 409.95 268.82 401.31 268.82 C 392.66 268.83 384.02 268.83 375.37 268.84 C 366.73 268.84 358.08 268.84 349.43 268.85 C 340.79 268.85 332.14 268.86 323.5 268.86 C 314.85 268.87 306.21 268.87 297.56 268.88 C 288.92 268.88 296.63 260.71 302.16 254.07 C 307.69 247.42 311.58 239.66 315.32 231.86 C 319.06 224.07 322.09 216.13 325.5 208.18 C 328.9 200.24 331.24 192.23 333.34 183.84 C 335.44 175.46 338.09 167.71 339.84 159.24 C 341.59 150.78 343.59 142.88 344.67 134.31 C 345.75 125.73 347.85 117.75 348.86 109.17 C 349.87 100.58 350.84 92.47 351.91 83.89 C 352.98 75.31 356.45 67.2 362.38 60.9 C 368.3 54.61 375.94 50.28 384.29 48.06 C 392.65 45.85 400.86 44.92 409.45 43.99 Z" fill="currentColor" fill-rule="evenodd"/><rect x="114" y="195" width="7" height="107" fill="#FF4200"/><rect x="104" y="210" width="27" height="25" fill="#FF4200"/><rect x="152" y="171" width="7" height="72" fill="#FF4200"/><rect x="142" y="186" width="27" height="42" fill="#FF4200"/><rect x="190.5" y="144" width="7" height="66" fill="#FF4200"/><rect x="181" y="158" width="26" height="37" fill="#FF4200"/><rect x="368" y="141" width="7" height="49" fill="#FF4200"/><rect x="358" y="160" width="27" height="12" fill="#FF4200"/><rect x="402.5" y="100" width="7" height="77" fill="#FF4200"/><rect x="393" y="114" width="26" height="48" fill="#FF4200"/><rect x="436" y="2" width="7" height="131" fill="#FF4200"/><rect x="426" y="19" width="27" height="100" fill="#FF4200"/><circle cx="167" cy="304" r="14.5" fill="currentColor"/><circle cx="418" cy="304" r="14.5" fill="currentColor"/></svg></span><span class="brand-word"><span>Bell to Bell</span> <span>Strategies</span></span></a><div class="bell" data-bell="static"><button type="button" class="bell-chip" aria-expanded="false" aria-controls="bell-panel" aria-label="NYSE opens at 9:30 AM ET on trading days. Show market hours."><svg class="bell-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 1.8a1.4 1.4 0 1 1 0 2.8a1.4 1.4 0 1 1 0-2.8zM12 4.6c-3.6 0-6 2.7-6 6.2v3.9c0 .9-.4 1.7-1.1 2.3l-.9.8v1.2h16v-1.2l-.9-.8c-.7-.6-1.1-1.4-1.1-2.3v-3.9c0-3.5-2.4-6.2-6-6.2zM9.6 20.2a2.4 2.4 0 0 0 4.8 0z"/></svg><span class="bell-dot" aria-hidden="true"></span><span class="bell-l"><span class="bell-x">NYSE &middot; </span><span class="bell-w">NY open</span></span><span class="bell-t">9:30 AM ET</span></button><div class="bell-panel" id="bell-panel" hidden><p class="bp-h">New York Stock Exchange</p><p class="bp-open">Opening bell 9:30 AM ET<span class="bp-local"></span></p><p class="bp-close">Closing bell 4:00 PM ET<span class="bp-local"></span></p><p class="bp-now"></p><p class="bp-next"></p><p class="bp-cme">CME Globex, NQ and MNQ: Sunday 6:00 PM to Friday 5:00 PM ET, with a daily halt from 5:00 to 6:00 PM ET. Holiday hours differ.</p><a href="/dashboard">Market dashboard</a></div></div><nav class="main" aria-label="Main"><a href="strategies.html">Strategies</a><a href="stratboard.html">StratBoard</a><a href="prop-deals.html">Prop Deals</a><a href="performance.html">Performance</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="/dashboard">Dashboard</a></nav><a class="btn primary small cta" href="pricing.html">See plans</a><details class="menu"><summary><span class="menu-t">Menu</span></summary><nav class="menu-panel" aria-label="Main"><a href="strategies.html">Strategies</a><a href="stratboard.html">StratBoard</a><a href="prop-deals.html">Prop Deals</a><a href="performance.html">Performance</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="ninjatrader.html">NinjaTrader</a><a href="/dashboard">Dashboard</a><a class="btn primary" href="pricing.html">See plans</a></nav></details></div></header>
+<main>
+<section class="hero page"><div class="wrap">
+<p class="eyebrow">Setup</p>
+<h1>From download to running on Sim</h1>
+<p class="lede">Six steps, in order, for any Bell to Bell strategy. Most problems come from the chart settings in step 4, so each strategy ships with a short setup guide that lists its exact settings.</p>
+<p class="pf-note">These steps are for NinjaTrader 8. Versions for <b class="bn-tv">TradingView</b> and <b class="bn-wc">WealthCharts</b> are coming soon, and their setup steps will come with them.</p>
+</div></section>
+
+<section style="padding-top:4px"><div class="wrap"><div class="grid2 wide-left" style="align-items:start">
+<ol class="steps">
+<li><b>Install NinjaTrader 8</b><p>Use version 8.1.9 or later, and connect a data feed with real-time CME equity-index futures data. NinjaTrader's free trial includes 14 days of real-time data.</p></li>
+<li><b>Import the add-on</b><p>In NinjaTrader's Control Center, choose <span class="path">Tools &rarr; Import &rarr; NinjaScript Add-On&hellip;</span>, pick the Bell to Bell .zip file and confirm. Restart NinjaTrader if it asks.</p></li>
+<li><b>Paste your license key</b><p>It's in your Whop orders right after checkout. Paste it into the strategy's License key setting the first time you add the strategy. It binds to this computer, and to one more if you add a second, such as a VPS; to move it later, reset it from your Whop account.</p></li>
+<li><b>Open the chart from the setup guide</b><p>Open an NQ or MNQ chart with the settings in the strategy's guide, on the <span class="path">CME US Index Futures ETH</span> trading hours, with the days loaded that its guide gives: at least 5 for Bell to Bell Trend and Bell to Bell Select, 30 for the other three. In <span class="path">Tools &rarr; Options &rarr; General</span>, set the time zone to Eastern.</p></li>
+<li><b>Add the strategy on Sim</b><p>Right-click the chart, choose Strategies, then the Bell to Bell strategy. Set your contracts, set <span class="path">Set order quantity</span> to Strategy, pick the <span class="path">Sim101</span> account and enable it.</p></li>
+<li><b>Watch it before going live</b><p>Leave it on Sim long enough to see several trades, and check each one against the behavior on its strategy page. Only consider a live account if your broker or firm allows automated trading, and keep an eye on it while it runs.</p></li>
+</ol>
+<div class="card" style="position:sticky;top:96px"><p class="tagline">Requirements</p>
+<ul>
+<li>NinjaTrader 8, version 8.1.9 or later</li>
+<li>Real-time and historical CME data for NQ and MNQ</li>
+<li>Eastern time, and the chart settings in the setup guide</li>
+<li>At least 5 days of history loaded, 30 for Breakout, Momentum and Overnight</li>
+<li>For Bell to Bell Select: a data feed with historical tick data</li>
+<li>NinjaTrader running whenever the strategy can trade</li>
+</ul>
+<p class="small muted" style="margin:16px 0 0">Trouble? The chart shows a warning when a setting is wrong. Email <span class="sel">support@belltobellstrategies.com</span> with a screenshot of it.</p></div>
+</div>
+
+</div></section>
+
+</main>
+<footer class="site"><div class="wrap">
+<div class="foot-top">
+<div class="foot-brand"><a class="brand" href="index.html" aria-label="Bell to Bell Strategies, home"><span class="brand-mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 586 320" fill="none" aria-hidden="true" focusable="false"><path d="M 162.48 30.98 C 180.8 31.13 198.92 32.17 215.59 39.77 C 232.27 47.36 243.03 63.11 245.89 81.21 C 248.75 99.31 250.79 116.32 253.91 134.38 C 257.03 152.44 261.1 169.55 266.58 187.04 C 272.06 204.53 285.87 218.42 287.85 236.64 C 289.82 254.85 269.47 231.49 262.32 214.61 C 255.18 197.74 251.12 180.66 246.81 162.85 C 242.51 145.03 239.88 127.93 236.88 109.85 C 233.89 91.77 234.79 71.81 221.44 59.26 C 208.08 46.72 188.94 44.88 170.64 43.9 C 152.34 42.93 133.32 44.8 118.14 55.07 C 102.96 65.33 100.93 85.03 97.9 103.1 C 94.87 121.18 92.84 138.49 89.24 156.45 C 85.63 174.42 80.53 191.3 74.27 208.52 C 68 225.74 60.4 241.81 49.05 256.2 C 37.7 270.59 60.25 268.69 78.57 268.7 C 96.9 268.72 115.22 268.74 133.55 268.76 C 151.88 268.77 170.2 268.79 188.53 268.81 C 206.85 268.82 225.18 268.84 243.5 268.86 C 261.83 268.87 278.8 262.21 290.12 247.8 C 301.44 233.39 308.91 216.95 315.11 199.7 C 321.31 182.46 325.11 165.55 328.77 147.59 C 332.43 129.63 335.47 112.8 337.85 94.63 C 340.23 76.46 343.73 57.51 358.13 46.18 C 372.54 34.85 391.2 32.9 409.49 31.88 C 427.79 30.86 445.55 31.77 462.91 37.64 C 480.28 43.5 492.8 59.22 496.49 77.17 C 500.18 95.12 501.65 112.23 504.86 130.27 C 508.07 148.31 511.61 165.25 516.81 182.82 C 522.01 200.4 527.83 217.22 536.76 233.23 C 545.68 249.23 557.83 263.93 575.48 268.86 C 593.12 273.8 565.32 281.87 547 281.87 C 528.67 281.87 510.35 281.87 492.02 281.87 C 473.7 281.87 455.37 281.87 437.05 281.87 C 418.72 281.87 400.4 281.87 382.07 281.87 C 363.75 281.87 345.42 281.87 327.09 281.87 C 308.77 281.87 290.44 281.87 272.12 281.87 C 253.79 281.87 235.47 281.87 217.14 281.87 C 198.82 281.87 180.49 281.87 162.17 281.87 C 143.84 281.87 125.52 281.87 107.19 281.87 C 88.87 281.87 70.54 281.87 52.22 281.87 C 33.89 281.87 2.07 293.84 1.02 275.54 C -0.02 257.25 30.62 259.33 41.65 244.69 C 52.68 230.05 59.11 213.19 65 195.84 C 70.9 178.49 74.91 161.55 78.5 143.58 C 82.08 125.61 84.82 108.55 86.92 90.35 C 89.02 72.14 95.49 54.48 110.62 44.15 C 125.76 33.83 144.16 31.65 162.48 30.98 Z M 409.45 43.99 C 418.1 43.94 426.57 43.96 435.16 44.98 C 443.74 46 452.09 47.33 459.93 50.98 C 467.77 54.63 475.06 59.78 479.22 67.36 C 483.37 74.94 484.76 83.21 485.87 91.78 C 486.98 100.36 487.77 108.48 488.91 117.05 C 490.05 125.62 492.67 133.44 493.84 142.01 C 495.02 150.57 496.76 158.69 498.76 167.1 C 500.77 175.51 502.81 183.36 505.24 191.66 C 507.66 199.95 510.8 207.91 513.95 215.96 C 517.1 224.01 521.45 231.45 525.49 239.09 C 529.53 246.73 534.23 253.7 539.81 260.3 C 545.39 266.91 539.64 268.75 530.99 268.76 C 522.35 268.76 513.7 268.77 505.05 268.77 C 496.41 268.78 487.76 268.78 479.12 268.78 C 470.47 268.79 461.83 268.79 453.18 268.8 C 444.54 268.8 435.89 268.81 427.24 268.81 C 418.6 268.81 409.95 268.82 401.31 268.82 C 392.66 268.83 384.02 268.83 375.37 268.84 C 366.73 268.84 358.08 268.84 349.43 268.85 C 340.79 268.85 332.14 268.86 323.5 268.86 C 314.85 268.87 306.21 268.87 297.56 268.88 C 288.92 268.88 296.63 260.71 302.16 254.07 C 307.69 247.42 311.58 239.66 315.32 231.86 C 319.06 224.07 322.09 216.13 325.5 208.18 C 328.9 200.24 331.24 192.23 333.34 183.84 C 335.44 175.46 338.09 167.71 339.84 159.24 C 341.59 150.78 343.59 142.88 344.67 134.31 C 345.75 125.73 347.85 117.75 348.86 109.17 C 349.87 100.58 350.84 92.47 351.91 83.89 C 352.98 75.31 356.45 67.2 362.38 60.9 C 368.3 54.61 375.94 50.28 384.29 48.06 C 392.65 45.85 400.86 44.92 409.45 43.99 Z" fill="currentColor" fill-rule="evenodd"/><rect x="114" y="195" width="7" height="107" fill="#FF4200"/><rect x="104" y="210" width="27" height="25" fill="#FF4200"/><rect x="152" y="171" width="7" height="72" fill="#FF4200"/><rect x="142" y="186" width="27" height="42" fill="#FF4200"/><rect x="190.5" y="144" width="7" height="66" fill="#FF4200"/><rect x="181" y="158" width="26" height="37" fill="#FF4200"/><rect x="368" y="141" width="7" height="49" fill="#FF4200"/><rect x="358" y="160" width="27" height="12" fill="#FF4200"/><rect x="402.5" y="100" width="7" height="77" fill="#FF4200"/><rect x="393" y="114" width="26" height="48" fill="#FF4200"/><rect x="436" y="2" width="7" height="131" fill="#FF4200"/><rect x="426" y="19" width="27" height="100" fill="#FF4200"/><circle cx="167" cy="304" r="14.5" fill="currentColor"/><circle cx="418" cy="304" r="14.5" fill="currentColor"/></svg></span><span class="brand-word"><span>Bell to Bell</span> <span>Strategies</span></span></a><p><span class="foot-tag">We’ve got you covered.</span> Automated strategies for NinjaTrader&nbsp;8, with <span class="bn-tv">TradingView</span> and <span class="bn-wc">WealthCharts</span> versions coming soon.</p><p class="foot-mail">Support: <span class="sel">support@belltobellstrategies.com</span></p><nav class="foot-social" aria-label="Bell to Bell on Discord, YouTube and X"><a href="https://discord.gg/9BT2Tz3zKq" target="_blank" rel="noopener">Discord</a><a href="https://www.youtube.com/@BelltoBellStrategies" target="_blank" rel="noopener">YouTube</a><a href="https://x.com/BTBStrategies" target="_blank" rel="noopener">X</a></nav></div>
+<nav class="foot-col" aria-label="Strategies"><h2>Strategies</h2><a class="s-breakout" href="breakout.html"><span class="dot" aria-hidden="true"></span>Breakout</a><a class="s-trend" href="trend.html"><span class="dot" aria-hidden="true"></span>Trend</a><a class="s-momentum" href="momentum.html"><span class="dot" aria-hidden="true"></span>Momentum</a><a class="s-select" href="select.html"><span class="dot" aria-hidden="true"></span>Select</a><a class="s-overnight" href="overnight.html"><span class="dot" aria-hidden="true"></span>Overnight</a></nav>
+<nav class="foot-col" aria-label="Product"><h2>Product</h2><a href="/dashboard">Dashboard</a><a href="prop-deals.html">Prop Deals</a><a href="strategies.html">Compare all five</a><a href="stratboard.html">StratBoard</a><a href="performance.html">Performance</a><a href="how-it-works.html">How it works</a><a href="pricing.html">Pricing</a><a href="setup.html">Setup</a></nav>
+<nav class="foot-col" aria-label="Help"><h2>Help</h2><a href="faq.html">FAQ</a><a href="ninjatrader.html">NinjaTrader and Kinetick</a><a href="legal.html">Legal and disclosures</a><a href="coming-soon.html">Join the waitlist</a></nav>
+</div>
+<div class="foot-risk">
+<h2>Risk disclosure</h2>
+<p>Futures and forex trading contains substantial risk and is not for every investor. An investor could potentially lose all or more than the initial investment. Risk capital is money that can be lost without jeopardizing one's financial security or lifestyle. Only risk capital should be used for trading and only those with sufficient risk capital should consider trading. Past performance is not necessarily indicative of future results.</p>
+<p>Every performance figure on this site is hypothetical, from a backtest, unless it is labeled otherwise, and is shown with the statements required for hypothetical results. Bell to Bell Strategies sells software. We do not manage accounts, place trades for customers or give individual trading advice, and nothing on this site is a recommendation to buy or sell any futures contract.</p>
+<p>NinjaTrader&reg; is a registered trademark of NinjaTrader Group, LLC. No NinjaTrader company has any affiliation with the owner, developer, or provider of the products or services described herein, or any interest, ownership or otherwise, in any such product or service, or endorses, recommends or approves any such product or service.</p>
+<p>Kinetick&reg; is a registered trademark of Kinetick, Inc. Nasdaq-100&reg; is a registered trademark of Nasdaq, Inc. CME Group and CME Globex are trademarks of CME Group Inc. NYSE&reg; is a registered trademark of NYSE Group, Inc. None of them is affiliated with Bell to Bell Strategies LLC.</p>
+</div>
+<p class="foot-tm">TradingView and WealthCharts are trademarks of their respective owners. Neither company is affiliated with Bell to Bell Strategies LLC.</p>
+<div class="legal-line"><span>&copy; 2026 Bell to Bell Strategies LLC &middot; belltobellstrategies.com</span><span><a href="legal.html#terms">Terms</a> &middot; <a href="legal.html#privacy">Privacy</a> &middot; <a href="legal.html#refunds">Refund policy</a> &middot; <a href="legal.html#risk">Risk disclosure</a></span></div>
+</div></footer>
+<script id="bell-js">
+(function(){var C={"h":{"New Year’s Day":"2026-01-01 2027-01-01","Martin Luther King Jr. Day":"2026-01-19 2027-01-18 2028-01-17","Washington’s Birthday":"2026-02-16 2027-02-15 2028-02-21","Good Friday":"2026-04-03 2027-03-26 2028-04-14","Memorial Day":"2026-05-25 2027-05-31 2028-05-29","Juneteenth":"2026-06-19 2028-06-19","Independence Day (observed)":"2026-07-03 2027-07-05","Labor Day":"2026-09-07 2027-09-06 2028-09-04","Thanksgiving Day":"2026-11-26 2027-11-25 2028-11-23","Christmas Day":"2026-12-25 2028-12-25","Juneteenth (observed)":"2027-06-18","Christmas Day (observed)":"2027-12-24","Independence Day":"2028-07-04"},"e":"2026-11-27 2026-12-24 2027-11-26 2028-07-03 2028-11-24","t":"2028-12-31"},H={},k;for(k in C.h)C.h[k].split(' ').forEach(function(d){H[d]=k});
+var Q=document,B=Q.querySelector('.bell'),K=B&&B.querySelector('.bell-chip'),P=Q.getElementById('bell-panel'),T=0,F,f=Math.floor,
+D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],M='JanFebMarAprMayJunJulAugSepOctNovDec';
+function et(t){var o={};F.formatToParts(new Date(t)).forEach(function(p){o[p.type]=+p.value});return o}
+try{F=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',second:'numeric'});if(et(0).hour!=19)return}catch(x){return}
+if(!K||!P)return;
+function at(x,h,m){var g=Date.UTC(x.y,x.m-1,x.d,h,m),e=et(g);return g-(Date.UTC(e.year,e.month-1,e.day,e.hour,e.minute,e.second)-g)}
+function day(y,m,d){var t=new Date(Date.UTC(y,m-1,d));return{y:t.getUTCFullYear(),m:t.getUTCMonth()+1,d:t.getUTCDate(),w:t.getUTCDay(),iso:t.toISOString().slice(0,10)}}
+function trades(x){return x.w%6&&!H[x.iso]}
+function two(n){return(n<10?'0':'')+n}
+function hm(h,m){return(h%12||12)+':'+two(m)+(h<12?' AM':' PM')}
+function mine(x,h,m){var t=new Date(at(x,h,m)),s=hm(t.getHours(),t.getMinutes());return s==hm(h,m)?'':' ('+s+' your time)'}
+function say(a,u,b,v){return(a?a+' '+u+(a>1?'s':''):'')+(b||!a?(a?' ':'')+b+' '+v+(b==1?'':'s'):'')}
+function put(s,t){B.querySelector(s).textContent=t}
+function tick(){clearTimeout(T);
+var now=Date.now(),e=et(now),td=day(e.year,e.month,e.day),sd=td,k=0,ec=C.e.indexOf(td.iso)>=0,s='closed',to=at(td,ec?13:16,0),
+w='NY open',t='9:30 AM ET',a='NYSE opens at 9:30 AM ET on trading days.',n,nd;
+if(trades(td)&&now<to){if(now<at(td,9,30)){s='pre';to=at(td,9,30)}else s='open'}
+else{do sd=day(td.y,td.m,td.d+ ++k);while(sd.iso<=C.t&&!trades(sd));to=at(sd,9,30)}
+var x=f((to-now)/1e3),dd=f(x/86400),h=f(x/3600)%24,m=f(x/60)%60,c=x%60;
+if(sd.iso>C.t)s='static';
+else{w=s=='open'?'NY close in':x<86400?'NY open in':'NY open '+D[sd.w].slice(0,3);
+t=x<3600?m+'m '+two(c)+'s':x<86400?h+'h '+two(m)+'m':dd+'d '+h+'h';
+a=x<3600?(m?say(m,'minute',0):'less than a minute'):x<86400?say(h,'hour',m,'minute'):say(dd,'day',h,'hour');
+a=s=='open'?'NYSE closes in '+a+', at '+(ec?1:4)+':00 PM ET.':x<86400?'NYSE opens in '+a+', at 9:30 AM ET.':'NYSE opens '+D[sd.w]+' at 9:30 AM ET, in '+a+'.';
+n=Object.keys(H).concat(C.e.split(' ')).filter(function(i){return i>td.iso}).sort()[0];nd=n&&day(+n.slice(0,4),+n.slice(5,7),+n.slice(8))}
+var z=s=='static';
+B.dataset.bell=s;put('.bell-w',w);put('.bell-t',t);a+=' Show market hours.';if(K.getAttribute('aria-label')!=a)K.setAttribute('aria-label',a);
+put('.bp-open .bp-local',z?'':mine(sd,9,30));put('.bp-close .bp-local',z?'':mine(sd,16,0));
+put('.bp-now',z?'':H[td.iso]?'Closed today for '+H[td.iso]+'.':td.w%6?(s=='closed'?'Closed for the day.':ec?'Closes early today, at 1:00 PM ET.'
+:s=='pre'?'Opens today at 9:30 AM ET.':'Open now. Closes at 4:00 PM ET.'):'Closed for the weekend.');
+put('.bp-next',nd?'Next: '+D[nd.w].slice(0,3)+' '+M.substr(nd.m*3-3,3)+' '+nd.d+', '+(H[n]?'closed for '+H[n]:'closes early at 1:00 PM ET')+'.':'');
+var u=!z&&x<3600?1e3:3e4;
+if(Q.visibilityState!='hidden')T=setTimeout(tick,u-now%u+15)}
+function show(o){P.hidden=!o;K.setAttribute('aria-expanded',o)}
+K.addEventListener('click',function(){var d=Q.querySelector('details.menu[open]');if(d)d.open=false;show(P.hidden)});
+Q.addEventListener('pointerdown',function(e){if(!P.hidden&&!B.contains(e.target))show(false)});
+Q.addEventListener('keydown',function(e){if(e.key=='Escape'&&!P.hidden){show(false);if(B.contains(Q.activeElement))K.focus()}});
+Q.addEventListener('visibilitychange',function(){if(Q.visibilityState=='hidden')clearTimeout(T);else tick()});
+tick()})();
+</script>
+<script id="form-js">
+document.querySelectorAll('form[data-waitlist]').forEach(function(f){f.addEventListener('submit',function(e){var a=f.getAttribute('action')||'';if(a===''||a==='#'){e.preventDefault();var m=f.parentNode.querySelector('.formmsg');if(m)m.textContent='The waitlist isn\'t open yet. Please check back soon.';}});});
+(function(){var ds=[].slice.call(document.querySelectorAll('.popup[id]'));if(!ds.length)return;var cur=null,b=null;
+function key(e){if(e.key==='Escape'){close(e)}else if(e.key==='Tab'){e.preventDefault();b.focus()}}
+function close(e){if(e)e.preventDefault();if(!cur)return;cur.hidden=true;cur=null;document.body.classList.remove('modal-open');document.removeEventListener('keydown',key)}
+function open(){var id=location.hash.slice(1),d=null;ds.forEach(function(x){if(x.id===id)d=x});if(!d)return;close();var m=document.querySelector('.formmsg');if(m){m.textContent=d.getAttribute('data-msg')||'';m.classList.add('ok');}
+ds.forEach(function(x){x.classList.add('js')});cur=d;b=d.querySelector('[data-close]');d.hidden=false;document.body.classList.add('modal-open');try{history.replaceState(null,'',location.pathname+location.search)}catch(x){}
+document.addEventListener('keydown',key);b.focus()}
+ds.forEach(function(d){d.querySelector('[data-close]').addEventListener('click',close);d.addEventListener('click',function(e){if(e.target===d)close(e)})});window.addEventListener('hashchange',open);open();})();
+</script>
+
+<script id="utm-persist-js">
+(function () {
+  var KEY = 'b2b_utm_source';
+  var ALLOWED = {
+    'reddit-daytrading': true,
+    'elitetrader': true,
+    'forexfactory': true,
+    'nt-ecosystem': true,
+    'x': true,
+    'facebook': true,
+    'x-replies': true,
+    'reddit-replies': true,
+    'youtube-replies': true,
+    'substack': true,
+    'medium': true,
+    'reddit': true,
+    'kit': true,
+    'discord': true,
+    'email': true,
+    'quora': true,
+    'linkedin': true,
+    'stocktwits': true,
+    'pinterest': true,
+    'youtube-shorts': true,
+    'tiktok': true
+  };
+  function pick(name) {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var v = q.get(name);
+      if (v) return String(v).slice(0, 80);
+    } catch (e) {}
+    return '';
+  }
+  var source = pick('utm_source') || pick('source');
+  if (source && ALLOWED[source]) {
+    try { sessionStorage.setItem(KEY, source); } catch (e) {}
+  }
+})();
+</script>
+<a class="ask" id="ask" href="faq.html">Support</a>
+<script id="chat-js" src="chat.js"></script>
+</body>
+</html>
